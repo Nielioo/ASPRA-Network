@@ -108,7 +108,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Pengajuan Terakhir:</strong>
-                                <input type="text" name="pengajuan_terakhir" class="form-control"
+                                <input type="date" name="pengajuan_terakhir" class="form-control"
                                     placeholder="Pengajuan Terakhir">
                             </div>
                         </div>
