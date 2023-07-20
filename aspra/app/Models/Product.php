@@ -10,6 +10,17 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'bahan', 'berat', 'volume', 'warna', 'packing', 'isi_produk', 'jenis_test', 'outstanding', 'kebutuhan_per_bulan', 'pengajuan_terakhir'
+        'kode_produk',
+        'nama_produk',
+        'bahan',
+        'berat',
+        'volume',
+        'warna',
+        'packing',
+        'isi_produk',
+        'jenis_test',
+        'outstanding',
+        'kebutuhan_per_bulan',
+        'pengajuan_terakhir'
     ];
 }

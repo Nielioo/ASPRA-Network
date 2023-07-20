@@ -38,8 +38,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'kode_produk' => 'required',
+            'nama_produk' => 'required',
+            'bahan' => 'required',
+            'berat' => 'required',
+            'volume' => 'required',
+            'warna' => 'required',
+            'packing' => 'required',
+            'isi_produk' => 'required',
+            'jenis_test'  => 'required',
+            'outstanding',
+            'kebutuhan_per_bulan',
+            'pengajuan_terakhir'
         ]);
 
         Product::create($request->all());
@@ -69,9 +79,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
-
+            'kode_produk' => 'required',
+            'nama_produk' => 'required',
             'bahan' => 'required',
             'berat' => 'required',
             'volume' => 'required',
