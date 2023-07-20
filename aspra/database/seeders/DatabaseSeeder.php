@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        DB::table('users')->insert([
-            'name' => 'PT. Asia Pramulia Administrator',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('12345678'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Daniel Aprillio',
+        //     'email' => 'daniel@gmail.com',
+        //     'password' => Hash::make('12345678'),
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
     }
 }
