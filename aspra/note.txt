@@ -5,5 +5,5 @@ php artisan migrate:fresh --seed
 php artisan db:seed --class=PermissionTableSeeder
 php artisan db:seed --class=CreateAdminUserSeeder
 
-npm build
+npm run build
 npm run dev
