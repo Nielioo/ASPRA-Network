@@ -19,7 +19,9 @@
                     </div>
                 </div>
 
-                @if ($errors->any())
+                @livewire('products.form-product', ['product' => $product])
+
+                {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
                         <ul>
@@ -116,7 +118,8 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                </form>
+                </form> --}}
+
             </div>
         </div>
     </div>
