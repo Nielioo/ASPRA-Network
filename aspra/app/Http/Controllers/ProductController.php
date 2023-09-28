@@ -35,27 +35,27 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        request()->validate([
-            'kode_produk' => 'required',
-            'nama_produk' => 'required',
-            'bahan' => 'required',
-            'berat' => 'required',
-            'volume' => 'required',
-            'warna' => 'required',
-            'packing' => 'required',
-            'isi_produk' => 'required',
-            'jenis_test'  => 'required',
-            'outstanding',
-            'kebutuhan_per_bulan',
-            'pengajuan_terakhir'
-        ]);
+    // public function store(Request $request)
+    // {
+    //     request()->validate([
+    //         'kode_produk' => 'required',
+    //         'nama_produk' => 'required',
+    //         'bahan' => 'required',
+    //         'berat' => 'required',
+    //         'volume' => 'required',
+    //         'warna' => 'required',
+    //         'packing' => 'required',
+    //         'isi_produk' => 'required',
+    //         'jenis_test'  => 'required',
+    //         'outstanding',
+    //         'kebutuhan_per_bulan',
+    //         'pengajuan_terakhir'
+    //     ]);
 
-        Product::create($request->all());
+    //     Product::create($request->all());
 
-        return redirect()->route('products.index')->with('success','Product created successfully.');
-    }
+    //     return redirect()->route('products.index')->with('success','Product created successfully.');
+    // }
 
     /**
      * Display the specified resource.
@@ -76,27 +76,27 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
-    {
-        request()->validate([
-            'kode_produk' => 'required',
-            'nama_produk' => 'required',
-            'bahan' => 'required',
-            'berat' => 'required',
-            'volume' => 'required',
-            'warna' => 'required',
-            'packing' => 'required',
-            'isi_produk' => 'required',
-            'jenis_test'  => 'required',
-            'outstanding',
-            'kebutuhan_per_bulan',
-            'pengajuan_terakhir'
-        ]);
+    // public function update(Request $request, Product $product)
+    // {
+    //     request()->validate([
+    //         'kode_produk' => 'required',
+    //         'nama_produk' => 'required',
+    //         'bahan' => 'required',
+    //         'berat' => 'required',
+    //         'volume' => 'required',
+    //         'warna' => 'required',
+    //         'packing' => 'required',
+    //         'isi_produk' => 'required',
+    //         'jenis_test'  => 'required',
+    //         'outstanding',
+    //         'kebutuhan_per_bulan',
+    //         'pengajuan_terakhir'
+    //     ]);
 
-        $product->update($request->all());
+    //     $product->update($request->all());
 
-        return redirect()->route('products.index')->with('success','Product updated successfully');
-    }
+    //     return redirect()->route('products.index')->with('success','Product updated successfully');
+    // }
 
     /**
      * Remove the specified resource from storage.
