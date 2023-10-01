@@ -1,7 +1,7 @@
 <x-custom-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Products') }}
+            {{ __('POIs') }}
         </h2>
     </x-slot>
 
@@ -10,13 +10,13 @@
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pb-10">
-                        <h1 class="text-4xl dark:text-white">Products</h2>
+                        <h1 class="text-4xl dark:text-white">POIs</h2>
                     </div>
                     <div class="flex items-center justify-between pb-4">
-                        @can('product-create')
+                        {{-- @can('poi-create') --}}
                             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-                                href="{{ route('products.create') }}"> Create New Product</a>
-                        @endcan
+                                href="{{ route('pois.create') }}"> Create New POI</a>
+                        {{-- @endcan --}}
 
                         <label for="table-search" class="sr-only">Search</label>
                         <div class="relative">
@@ -46,37 +46,39 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 {{-- <th scope="col" class="px-6 py-3">No</th> --}}
-                                <th scope="col" class="px-6 py-3">Kode Produk</th>
-                                <th scope="col" class="px-6 py-3">Nama Produk</th>
-                                <th scope="col" class="px-6 py-3">Outstanding</th>
-                                <th scope="col" class="px-6 py-3">Kebutuhan per Bulan</th>
-                                <th scope="col" class="px-6 py-3">Pengajuan Terakhir</th>
+                                <th scope="col" class="px-6 py-3">Kode POI</th>
+                                <th scope="col" class="px-6 py-3">Tanggal Pembuatan</th>
+                                <th scope="col" class="px-6 py-3">Verifikasi (1)</th>
+                                <th scope="col" class="px-6 py-3">Verifikasi (2)</th>
+                                <th scope="col" class="px-6 py-3">Verifikasi (3)</th>
+                                <th scope="col" class="px-6 py-3">Verifikasi (4)</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($pois as $poi)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     {{-- <td class="px-6 py-4">{{ ++$i }}</td> --}}
-                                    <td class="px-6 py-4">{{ $product->kode_produk }}</td>
-                                    <td class="px-6 py-4">{{ $product->nama_produk }}</td>
-                                    <td class="px-6 py-4">{{ $product->outstanding }}</td>
-                                    <td class="px-6 py-4">{{ $product->kebutuhan_per_bulan }}</td>
-                                    <td class="px-6 py-4">{{ $product->pengajuan_terakhir }}</td>
+                                    <td class="px-6 py-4">{{ $poi->kode_poi }}</td>
+                                    <td class="px-6 py-4">{{ $poi->tanggal_pembuatan_poi }}</td>
+                                    <td class="px-6 py-4">{{ $poi->verifikasi_satu }}</td>
+                                    <td class="px-6 py-4">{{ $poi->verifikasi_dua }}</td>
+                                    <td class="px-6 py-4">{{ $poi->verifikasi_tiga }}</td>
+                                    <td class="px-6 py-4">{{ $poi->verifikasi_empat }}</td>
                                     <td class="px-6 py-4">
-                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                        <form action="{{ route('pois.destroy', $poi->id) }}" method="POST">
                                             <a class="btn btn-info"
-                                                href="{{ route('products.show', $product->id) }}">Show</a>
-                                            @can('product-edit')
+                                                href="{{ route('pois.show', $poi->id) }}">Show</a>
+                                            {{-- @can('poi-edit') --}}
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('products.edit', $product->id) }}">Edit</a>
-                                            @endcan
+                                                    href="{{ route('pois.edit', $poi->id) }}">Edit</a>
+                                            {{-- @endcan --}}
 
                                             @csrf
                                             @method('DELETE')
-                                            @can('product-delete')
+                                            {{-- @can('poi-delete') --}}
                                                 <button type="submit" class="btn btn-danger">Delete</button>
-                                            @endcan
+                                            {{-- @endcan --}}
                                         </form>
                                     </td>
                                 </tr>
@@ -86,7 +88,7 @@
                 </div>
 
                 <div class="pt-5">
-                    {!! $products->links() !!}
+                    {!! $pois->links() !!}
                 </div>
 
             </div>

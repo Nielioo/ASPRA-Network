@@ -1,7 +1,7 @@
 <x-custom-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Product') }}
+            {{ __('POI') }}
         </h2>
     </x-slot>
 
@@ -11,10 +11,10 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
-                            <h2> Show Product</h2>
+                            <h2> Show POI</h2>
                         </div>
                         <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('pois.index') }}"> Back</a>
                         </div>
                     </div>
                 </div>
@@ -22,74 +22,74 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Kode Produk:</strong>
-                            {{ $product->kode_produk }}
+                            <strong>kode_poi:</strong>
+                            {{ $poi->kode_poi }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Nama Produk:</strong>
-                            {{ $product->nama_produk }}
+                            <strong>tanggal_pembuatan_poi:</strong>
+                            {{ $poi->tanggal_pembuatan_poi }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Bahan:</strong>
-                            {{ $product->bahan }}
+                            <strong>nama_customer:</strong>
+                            {{ $poi->nama_customer }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Berat:</strong>
-                            {{ $product->berat }}
+                            <strong>total_order:</strong>
+                            {{ $poi->total_order }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Volume:</strong>
-                            {{ $product->volume }}
+                            <strong>lokasi_penempatan:</strong>
+                            {{ $poi->lokasi_penempatan }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Warna:</strong>
-                            {{ $product->warna }}
+                            <strong>tahap_pengiriman:</strong>
+                            {{ $poi->tahap_pengiriman }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Packing:</strong>
-                            {{ $product->packing }}
+                            <strong>stok_akhir:</strong>
+                            {{ $poi->stok_akhir }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Isi Produk:</strong>
-                            {{ $product->isi_produk }}
+                            <strong>permintaan_khusus:</strong>
+                            {{ $poi->permintaan_khusus }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Jenis Test:</strong>
-                            {{ $product->jenis_test }}
+                            <strong>verifikasi_satu:</strong>
+                            {{ $poi->verifikasi_satu }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Outstanding:</strong>
-                            {{ $product->outstanding }}
+                            <strong>verifikasi_dua:</strong>
+                            {{ $poi->verifikasi_dua }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Kebutuhan per Bulan:</strong>
-                            {{ $product->kebutuhan_per_bulan }}
+                            <strong>verifikasi_tiga:</strong>
+                            {{ $poi->verifikasi_tiga }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Pengajuan Terakhir:</strong>
-                            {{ $product->pengajuan_terakhir }}
+                            <strong>verifikasi_empat:</strong>
+                            {{ $poi->verifikasi_empat }}
                         </div>
                     </div>
                 </div>

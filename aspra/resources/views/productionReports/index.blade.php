@@ -1,7 +1,7 @@
 <x-custom-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Products') }}
+            {{ __('Production Reports') }}
         </h2>
     </x-slot>
 
@@ -10,13 +10,13 @@
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pb-10">
-                        <h1 class="text-4xl dark:text-white">Products</h2>
+                        <h1 class="text-4xl dark:text-white">Production Reports</h2>
                     </div>
                     <div class="flex items-center justify-between pb-4">
-                        @can('product-create')
+                        {{-- @can('production-report-create') --}}
                             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-                                href="{{ route('products.create') }}"> Create New Product</a>
-                        @endcan
+                                href="{{ route('productionReports.create') }}">Create New Production Report</a>
+                        {{-- @endcan --}}
 
                         <label for="table-search" class="sr-only">Search</label>
                         <div class="relative">
@@ -46,37 +46,37 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 {{-- <th scope="col" class="px-6 py-3">No</th> --}}
-                                <th scope="col" class="px-6 py-3">Kode Produk</th>
-                                <th scope="col" class="px-6 py-3">Nama Produk</th>
-                                <th scope="col" class="px-6 py-3">Outstanding</th>
-                                <th scope="col" class="px-6 py-3">Kebutuhan per Bulan</th>
-                                <th scope="col" class="px-6 py-3">Pengajuan Terakhir</th>
+                                <th scope="col" class="px-6 py-3">Kode Laporan</th>
+                                <th scope="col" class="px-6 py-3">Setting Awal</th>
+                                <th scope="col" class="px-6 py-3">Tanggal</th>
+                                <th scope="col" class="px-6 py-3">Approved</th>
+                                <th scope="col" class="px-6 py-3">Rejected</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($productionReports as $productionReport)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     {{-- <td class="px-6 py-4">{{ ++$i }}</td> --}}
-                                    <td class="px-6 py-4">{{ $product->kode_produk }}</td>
-                                    <td class="px-6 py-4">{{ $product->nama_produk }}</td>
-                                    <td class="px-6 py-4">{{ $product->outstanding }}</td>
-                                    <td class="px-6 py-4">{{ $product->kebutuhan_per_bulan }}</td>
-                                    <td class="px-6 py-4">{{ $product->pengajuan_terakhir }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->kode_laporan }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->setting_awal }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->tanggal }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->approved }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->rejected }}</td>
                                     <td class="px-6 py-4">
-                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                        <form action="{{ route('productionReports.destroy', $productionReport->id) }}" method="POST">
                                             <a class="btn btn-info"
-                                                href="{{ route('products.show', $product->id) }}">Show</a>
-                                            @can('product-edit')
+                                                href="{{ route('productionReports.show', $productionReport->id) }}">Show</a>
+                                            {{-- @can('production-report-edit') --}}
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('products.edit', $product->id) }}">Edit</a>
-                                            @endcan
+                                                    href="{{ route('productionReports.edit', $productionReport->id) }}">Edit</a>
+                                            {{-- @endcan --}}
 
                                             @csrf
                                             @method('DELETE')
-                                            @can('product-delete')
+                                            {{-- @can('production-report-delete') --}}
                                                 <button type="submit" class="btn btn-danger">Delete</button>
-                                            @endcan
+                                            {{-- @endcan --}}
                                         </form>
                                     </td>
                                 </tr>
@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="pt-5">
-                    {!! $products->links() !!}
+                    {!! $productionReports->links() !!}
                 </div>
 
             </div>
