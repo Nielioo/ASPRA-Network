@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\PoiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductionReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\ProductionReport;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,4 +35,5 @@ Route::middleware([
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('pois', PoiController::class);
+    Route::resource('productionReports', ProductionReportController::class);
 });

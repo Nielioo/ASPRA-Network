@@ -63,6 +63,6 @@ class PoiController extends Controller
     {
         $poi->delete();
 
-        return redirect()->route('pois.index')->with('success','Product deleted successfully');
+        return redirect()->route('pois.index')->with('success','POI deleted successfully');
     }
 }

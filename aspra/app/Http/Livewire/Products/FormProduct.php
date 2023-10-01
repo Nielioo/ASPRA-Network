@@ -39,6 +39,7 @@ class FormProduct extends Component
         session()->flash('message', 'Product Saved!');
         return redirect()->route('products.index');
     }
+
     public function render()
     {
         return view('livewire.products.form-product');
