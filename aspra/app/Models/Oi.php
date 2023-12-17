@@ -21,4 +21,9 @@ class Oi extends Model
         'verification_three',
         'verification_four',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

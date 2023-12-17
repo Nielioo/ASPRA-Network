@@ -24,6 +24,13 @@ return new class extends Migration
             $table->string('verification_two')->nullable();
             $table->string('verification_three')->nullable();
             $table->string('verification_four')->nullable();
+
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')->on('products')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

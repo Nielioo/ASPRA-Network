@@ -19,6 +19,17 @@
     @csrf
     <div class="row">
         <div class="px-4 py-2">
+            <x-label for="product" value="{{ __('Pilih Produk') }}" />
+            <select wire:model="product">
+                @foreach($products as $product)
+                    <option value="{{ $product->id }}" {{ $product->id == $this->oi->product_id ? 'selected' : '' }}>{{ $product->product_code }}</option>
+                @endforeach
+            </select>
+            @error('oi.product_id')
+                <div>{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="px-4 py-2">
             <x-label for="date_created" value="{{ __('Tanggal Pembuatan OI') }}" />
             <x-input wire:model="oi.date_created" type="date" name="date_created" :value="old('date_created')" class="w-full" disabled required />
             @error('oi.date_created')

@@ -3,15 +3,18 @@
 namespace App\Http\Livewire\Oi;
 
 use App\Models\Oi;
+use App\Models\Product;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class Form extends Component
 {
     public $oi;
+    public $product;
     public $submitButtonName;
 
     protected $rules = [
+        'oi.product_id' => 'required',
         'oi.date_created' => 'required',
         'oi.customer_name' => 'required',
         'oi.total_order' => 'required',
@@ -24,24 +27,18 @@ class Form extends Component
         'oi.verification_four' => '',
     ];
 
-    public function mount() {
-        // Check if the Oi property is set
-        if (!$this->oi){
-            $this->oi = new Oi();
-            $this->oi->date_created = Carbon::now()->format('Y-m-d');
-        }
+    public function mount(Oi $oi = null) {
+        $this->product = $this->oi->product_id;
+        $this->oi = $oi ?? new Oi(['date_created' => Carbon::now()->format('Y-m-d')]);
 
-        // Check if the ID exists in the route parameters
-        if(request()->route('oi')) {
-            $this->submitButtonName = 'Edit';
-        } else {
-            $this->submitButtonName = 'Create';
-        }
+        $this->submitButtonName = $oi ? 'Edit' : 'Create';
     }
 
     public function save()
     {
         $this->validate();
+        $this->oi->product_id = $this->product;
+
         $this->oi->save();
         session()->flash('message', 'Oi Saved!');
         return redirect()->route('ois.index');
@@ -49,6 +46,7 @@ class Form extends Component
 
     public function render()
     {
-        return view('livewire.oi.form');
+        $products = Product::all();
+        return view('livewire.oi.form', ['products' => $products,]);
     }
 }

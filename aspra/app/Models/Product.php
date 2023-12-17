@@ -24,4 +24,9 @@ class Product extends Model
         'needs_per_month',
         'last_order_date',
     ];
+
+    public function ois()
+    {
+        return $this->hasMany(Oi::class);
+    }
 }
