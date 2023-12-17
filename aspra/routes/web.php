@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OiController;
 use App\Http\Controllers\PoiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionReportController;
@@ -33,6 +34,8 @@ Route::middleware([
     })->name('dashboard');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::resource('ois', OiController::class);
+
     Route::resource('products', ProductController::class);
     Route::resource('pois', PoiController::class);
     Route::resource('productionReports', ProductionReportController::class);
