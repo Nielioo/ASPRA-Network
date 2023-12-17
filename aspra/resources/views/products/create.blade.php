@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                @livewire('products.form-product')
+                @livewire('product.form')
 
             </div>
         </div>

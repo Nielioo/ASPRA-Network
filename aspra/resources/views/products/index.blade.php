@@ -48,9 +48,7 @@
                                 {{-- <th scope="col" class="px-6 py-3">No</th> --}}
                                 <th scope="col" class="px-6 py-3">Kode Produk</th>
                                 <th scope="col" class="px-6 py-3">Nama Produk</th>
-                                <th scope="col" class="px-6 py-3">Outstanding</th>
-                                <th scope="col" class="px-6 py-3">Kebutuhan per Bulan</th>
-                                <th scope="col" class="px-6 py-3">Pengajuan Terakhir</th>
+                                <th scope="col" class="px-6 py-3">Stok Akhir</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
@@ -58,25 +56,32 @@
                             @foreach ($products as $product)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     {{-- <td class="px-6 py-4">{{ ++$i }}</td> --}}
-                                    <td class="px-6 py-4">{{ $product->kode_produk }}</td>
-                                    <td class="px-6 py-4">{{ $product->nama_produk }}</td>
-                                    <td class="px-6 py-4">{{ $product->outstanding }}</td>
-                                    <td class="px-6 py-4">{{ $product->kebutuhan_per_bulan }}</td>
-                                    <td class="px-6 py-4">{{ $product->pengajuan_terakhir }}</td>
+                                    <td class="px-6 py-4">{{ $product->product_code }}</td>
+                                    <td class="px-6 py-4">{{ $product->name }}</td>
+                                    <td class="px-6 py-4">{{ $product->remaining_stock }}</td>
                                     <td class="px-6 py-4">
-                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                            <a class="btn btn-info"
-                                                href="{{ route('products.show', $product->id) }}">Show</a>
-                                            @can('product-edit')
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('products.edit', $product->id) }}">Edit</a>
-                                            @endcan
-
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                            class="flex flex-col md:flex-row">
                                             @csrf
+
+                                            <a class="inline-block bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
+                                                href="{{ route('products.show', $product->id) }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </a>
+                                            {{-- @can('product-edit') --}}
+                                            <a class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
+                                                href="{{ route('products.edit', $product->id) }}">
+                                                <i class="fas fa-pencil fa-lg"></i>
+                                            </a>
+                                            {{-- @endcan --}}
+
+                                            {{-- @can('product-delete') --}}
                                             @method('DELETE')
-                                            @can('product-delete')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            @endcan
+                                            <button type="submit"
+                                                class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded">
+                                                <i class="fas fa-trash fa-lg"></i>
+                                            </button>
+                                            {{-- @endcan --}}
                                         </form>
                                     </td>
                                 </tr>

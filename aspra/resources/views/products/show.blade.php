@@ -1,99 +1,90 @@
 <x-custom-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Product') }}
+            {{ __('Products') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="row">
-                    <div class="col-lg-12 margin-tb">
-                        <div class="pull-left">
-                            <h2> Show Product</h2>
-                        </div>
-                        <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
-                        </div>
+            <div class="my-4">
+                <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                    href="{{ route('products.index') }}">Back</a>
+            </div>
+            <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
+                <div class="col-lg-12 margin-tb">
+                    <div class="flex items-center justify-between pb-10">
+                        <h1 class="text-4xl dark:text-white">Detail Product</h2>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Kode Produk:</strong>
-                            {{ $product->kode_produk }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Nama Produk:</strong>
-                            {{ $product->nama_produk }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Bahan:</strong>
-                            {{ $product->bahan }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Berat:</strong>
-                            {{ $product->berat }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Volume:</strong>
-                            {{ $product->volume }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Warna:</strong>
-                            {{ $product->warna }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Packing:</strong>
-                            {{ $product->packing }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Isi Produk:</strong>
-                            {{ $product->isi_produk }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Jenis Test:</strong>
-                            {{ $product->jenis_test }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Outstanding:</strong>
-                            {{ $product->outstanding }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Kebutuhan per Bulan:</strong>
-                            {{ $product->kebutuhan_per_bulan }}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Pengajuan Terakhir:</strong>
-                            {{ $product->pengajuan_terakhir }}
-                        </div>
-                    </div>
-                </div>
+                <table class="table-auto">
+                    <tbody>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>ID</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->id }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Kode Produk</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->product_code }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Nama Produk</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Bahan</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->material }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Berat</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->weight }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Volume</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->volume }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Warna</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->color }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Packing</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->packing }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
+                                <strong>Konten Produk</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->product_content }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Jenis Uji</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->test_type }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
+                                <strong>Sisa Stok</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->remaining_stock }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
+                                <strong>Outstanding</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->outstanding }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
+                                <strong>Kebutuhan per Bulan</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->needs_per_month }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
+                                <strong>Pengajuan Terakhir</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $product->last_order_date }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
-</x-app-layout>
+    </x-app-layout>

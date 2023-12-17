@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_produk')->unique();
-            $table->text('nama_produk');
-            $table->string('bahan');
-            $table->string('berat');
+            $table->string('product_code')->unique();
+            $table->string('name');
+            $table->string('material');
+            $table->string('weight');
             $table->string('volume');
-            $table->string('warna');
+            $table->string('color');
             $table->string('packing');
-            $table->string('isi_produk');
-            $table->string('jenis_test');
-            $table->string('outstanding')->nullable();
-            $table->string('kebutuhan_per_bulan')->nullable();
-            $table->date('pengajuan_terakhir')->nullable();
+            $table->string('product_content');
+            $table->string('test_type');
+            $table->integer('remaining_stock')->nullable();
+            $table->integer('outstanding')->nullable();
+            $table->integer('needs_per_month')->nullable();
+            $table->date('last_order_date')->nullable();
             $table->timestamps();
         });
     }
