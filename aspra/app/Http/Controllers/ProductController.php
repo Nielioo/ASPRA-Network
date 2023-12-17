@@ -61,8 +61,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(string $id)
     {
+        // get data by id
+        $product = Product::findOrFail($id);
+
         // redirect to show view
         return view('products.show',compact('product'));
     }
@@ -70,8 +73,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(string $id)
     {
+        // get data by id
+        $product = Product::findOrFail($id);
+
         // redirect to edit view
         return view('products.edit',compact('product'));
     }
@@ -104,8 +110,11 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(string $id)
     {
+        // get data by id
+        $product = Product::findOrFail($id);
+
         // delete data
         $product->delete();
 
