@@ -11,6 +11,7 @@ class Form extends Component
 {
     public $oi;
     public $product;
+
     public $submitButtonName;
 
     protected $rules = [
@@ -28,8 +29,8 @@ class Form extends Component
     ];
 
     public function mount(Oi $oi = null) {
-        $this->product = $this->oi->product_id;
         $this->oi = $oi ?? new Oi(['date_created' => Carbon::now()->format('Y-m-d')]);
+        $this->product = $this->oi->product_id;
 
         $this->submitButtonName = $oi ? 'Edit' : 'Create';
     }
