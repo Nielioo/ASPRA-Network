@@ -54,16 +54,16 @@
                         </tr>
                         <tr>
                             <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
-                                <strong>Konten Produk</strong></td>
+                                <strong>Isi Produk</strong></td>
                             <td class="border px-4 py-2 text-center">{{ $product->product_content }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Jenis Uji</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Jenis Test</strong></td>
                             <td class="border px-4 py-2 text-center">{{ $product->test_type }}</td>
                         </tr>
                         <tr>
                             <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
-                                <strong>Sisa Stok</strong></td>
+                                <strong>Stok Akhir</strong></td>
                             <td class="border px-4 py-2 text-center">{{ $product->remaining_stock }}</td>
                         </tr>
                         <tr>
