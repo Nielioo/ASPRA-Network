@@ -28,11 +28,16 @@ class Form extends Component
         'oi.verification_four' => '',
     ];
 
-    public function mount(Oi $oi = null) {
-        $this->oi = $oi ?? new Oi(['date_created' => Carbon::now()->format('Y-m-d')]);
-        $this->product = $this->oi->product_id;
+    public function mount() {
+        // Check if the OI property is set
+        if (!$this->oi){
+            $this->oi = new Oi(['date_created' => Carbon::now()->format('Y-m-d')]);
+            $this->product = $this->oi->product_id;
 
-        $this->submitButtonName = $oi ? 'Edit' : 'Create';
+            $this->submitButtonName = 'Create';
+        } else {
+            $this->submitButtonName = 'Edit';
+        }
     }
 
     public function save()
