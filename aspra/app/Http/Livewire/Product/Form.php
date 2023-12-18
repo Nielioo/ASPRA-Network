@@ -30,14 +30,18 @@ class Form extends Component
         // Check if the Product property is set
         if (!$this->product){
             $this->product = new Product();
+
+            $this->submitButtonName = 'Create';
+        } else {
+            $this->submitButtonName = 'Edit';
         }
 
         // Check if the ID exists in the route parameters
-        if(request()->route('product')) {
-            $this->submitButtonName = 'Edit';
-        } else {
-            $this->submitButtonName = 'Create';
-        }
+        // if(request()->route('product')) {
+        //     $this->submitButtonName = 'Edit';
+        // } else {
+        //     $this->submitButtonName = 'Create';
+        // }
     }
 
     public function save()
