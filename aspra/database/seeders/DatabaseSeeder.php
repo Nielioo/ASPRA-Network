@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
                 CreateAdminUserSeeder::class,
 
                 ProductSeeder::class,
+                MachineSeeder::class,
             ]
         );
     }
