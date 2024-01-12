@@ -6,6 +6,7 @@ use App\Http\Controllers\PoiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionReportController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SpkController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::middleware([
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('ois', OiController::class);
+    Route::resource('spks', SpkController::class);
 
     Route::resource('products', ProductController::class);
     Route::resource('machines', MachineController::class);
