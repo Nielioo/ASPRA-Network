@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('spks', function (Blueprint $table) {
             $table->id();
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

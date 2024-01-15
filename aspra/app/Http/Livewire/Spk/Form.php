@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Spk;
 
 use App\Models\Spk;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -37,6 +38,16 @@ class Form extends Component
 
         // Handle file upload
         if ($this->spkFile) {
+
+            // If a file already exists for this SPK, delete it
+            if ($this->spk->file_path) {
+                // Get the file path relative to the storage disk
+                $oldFilePath = str_replace('storage/', '', $this->spk->file_path);
+
+                // Delete the old file
+                Storage::disk('public')->delete($oldFilePath);
+            }
+
             // Generate a unique filename with microtime
             $filename = 'spk' . microtime(true) . '.' . $this->spkFile->getClientOriginalExtension();
 

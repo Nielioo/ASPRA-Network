@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Spk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SpkController extends Controller
 {
@@ -72,6 +73,15 @@ class SpkController extends Controller
     {
         // get data by id
         $spk = Spk::findOrFail($id);
+
+        // If a file already exists for this SPK, delete it
+        if ($spk->file_path) {
+            // Get the file path relative to the storage disk
+            $oldFilePath = str_replace('storage/', '', $spk->file_path);
+
+            // Delete the old file
+            Storage::disk('public')->delete($oldFilePath);
+        }
 
         // delete data
         $spk->delete();
