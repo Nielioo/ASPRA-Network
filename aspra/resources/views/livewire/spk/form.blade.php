@@ -15,14 +15,14 @@
     </div>
 @endif
 
-<form wire:submit.prevent="save" method="POST">
+<form wire:submit.prevent="save" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="px-4 py-2">
             <x-label for="file_path" value="{{ __('File Path') }}" />
-            <x-input wire:model="spk.file_path" type="text" name="file_path" :value="old('file_path')" class="w-full"
+            <x-input wire:model="spkFile" type="file" name="file_path" :value="old('file_path')" class="w-full"
                 required autofocus />
-            @error('spk.file_path')
+            @error('spkFile')
                 <div>{{ $message }}</div>
             @enderror
         </div>
