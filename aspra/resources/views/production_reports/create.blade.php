@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-4">
                 <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                    href="{{ route('productionReports.index') }}">Back</a>
+                    href="{{ route('production_reports.index') }}">Back</a>
             </div>
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
                 <div class="col-lg-12 margin-tb">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                @livewire('production-reports.form-production-report')
+                @livewire('production-report.form')
 
             </div>
         </div>

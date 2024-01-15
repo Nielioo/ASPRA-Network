@@ -72,6 +72,17 @@
                             <span class="ml-3">{{ __('SPKs') }}</span>
                         </x-my-nav-link>
                     </li>
+                    <li>
+                        <x-my-nav-link href="{{ route('production_reports.index') }}" :active="request()->routeIs('production_reports.index')">
+                            <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-6 h-6">
+                                <path
+                                    d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
+                            </svg>
+                            <span class="ml-3">{{ __('Production Reports') }}</span>
+                        </x-my-nav-link>
+                    </li>
 
                     <hr class="border-gray-300 my-2">
 
@@ -109,17 +120,6 @@
                                     d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
                             </svg>
                             <span class="ml-3">{{ __('[X] POIs') }}</span>
-                        </x-my-nav-link>
-                    </li>
-                    <li>
-                        <x-my-nav-link href="{{ route('productionReports.index') }}" :active="request()->routeIs('productionReports.index')">
-                            <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="w-6 h-6">
-                                <path
-                                    d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
-                            </svg>
-                            <span class="ml-3">{{ __('[X] Production Reports') }}</span>
                         </x-my-nav-link>
                     </li>
 

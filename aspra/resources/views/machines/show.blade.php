@@ -14,7 +14,7 @@
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pb-10">
-                        <h1 class="text-4xl dark:text-white">Detail Machine</h2>
+                        <h1 class="text-4xl dark:text-white">Detail Machine</h1>
                     </div>
                 </div>
 

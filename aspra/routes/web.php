@@ -42,5 +42,5 @@ Route::middleware([
     Route::resource('machines', MachineController::class);
 
     Route::resource('pois', PoiController::class);
-    Route::resource('productionReports', ProductionReportController::class);
+    Route::resource('production_reports', ProductionReportController::class);
 });

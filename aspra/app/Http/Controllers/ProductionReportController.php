@@ -12,8 +12,8 @@ class ProductionReportController extends Controller
      */
     public function index()
     {
-        $productionReports = ProductionReport::latest()->paginate(5);
-        return view('productionReports.index',compact('productionReports'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $productionReports = ProductionReport::paginate(10);
+        return view('production_reports.index',compact('productionReports'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -21,7 +21,8 @@ class ProductionReportController extends Controller
      */
     public function create()
     {
-        return view('productionReports.create');
+        // redirect to create view
+        return view('production_reports.create');
     }
 
     /**
@@ -35,17 +36,25 @@ class ProductionReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProductionReport $productionReport)
+    public function show(string $id)
     {
-        return view('productionReports.show', compact('productionReport'));
+        // get data by id
+        $productionReport = ProductionReport::findOrFail($id);
+
+        // redirect to show view
+        return view('production_reports.show',compact('productionReport'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductionReport $productionReport)
+    public function edit(string $id)
     {
-        return view('productionReports.edit', compact('productionReport'));
+        // get data by id
+        $productionReport = ProductionReport::findOrFail($id);
+
+        // redirect to edit view
+        return view('production_reports.edit',compact('productionReport'));
     }
 
     /**
@@ -59,10 +68,15 @@ class ProductionReportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductionReport $productionReport)
+    public function destroy(string $id)
     {
+        // get data by id
+        $productionReport = ProductionReport::findOrFail($id);
+
+        // delete data
         $productionReport->delete();
 
-        return redirect()->route('productionReports.index')->with('success','Report deleted successfully');
+        // redirect to index view
+        return redirect()->route('production_reports.index')->with('success','Production Report deleted successfully');
     }
 }
