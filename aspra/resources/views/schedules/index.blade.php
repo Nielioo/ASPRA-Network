@@ -61,7 +61,6 @@
                                     <td class="px-6 py-4">{{ $schedule->production }}</td>
                                     <td class="px-6 py-4">{{ $schedule->date_start }} {{ $schedule->shift_start }}</td>
                                     <td class="px-6 py-4">{{ $schedule->date_end }} {{ $schedule->shift_end }}</td>
-                                    <td class="px-6 py-4">{{ $schedule->date_end }}</td>
                                     <td class="px-6 py-4">{{ $schedule->machine->name }}</td>
                                     <td class="px-6 py-4 flex flex-col md:flex-row">
                                         <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST"
