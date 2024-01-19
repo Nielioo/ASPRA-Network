@@ -25,7 +25,7 @@
                     <option value="{{ $product->id }}" {{ $product->id == $this->oi->product_id ? 'selected' : '' }}>{{ $product->product_code }}</option>
                 @endforeach
             </select>
-            @error('oi.product_id')
+            @error('product')
                 <div>{{ $message }}</div>
             @enderror
         </div>
