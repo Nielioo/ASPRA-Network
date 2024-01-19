@@ -13,4 +13,9 @@ class Machine extends Model
         'number',
         'name',
     ];
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }
