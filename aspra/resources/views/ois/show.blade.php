@@ -25,7 +25,8 @@
                             <td class="border px-4 py-2 text-center">{{ $oi->id }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tanggal Pembuatan</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tanggal Pembuatan</strong>
+                            </td>
                             <td class="border px-4 py-2 text-center">{{ $oi->date_created }}</td>
                         </tr>
                         <tr>
@@ -37,15 +38,18 @@
                             <td class="border px-4 py-2 text-center">{{ $oi->total_order }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Lokasi Penempatan</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Lokasi Penempatan</strong>
+                            </td>
                             <td class="border px-4 py-2 text-center">{{ $oi->placement_location }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tahap Pengiriman</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tahap Pengiriman</strong>
+                            </td>
                             <td class="border px-4 py-2 text-center">{{ $oi->delivery_stage }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Permintaan Khusus</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Permintaan Khusus</strong>
+                            </td>
                             <td class="border px-4 py-2 text-center">{{ $oi->special_request }}</td>
                         </tr>
                         <tr>
@@ -70,4 +74,4 @@
             </div>
         </div>
     </div>
-    </x-app-layout>
+</x-custom-layout>

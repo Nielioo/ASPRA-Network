@@ -87,4 +87,4 @@
             </div>
         </div>
     </div>
-    </x-app-layout>
+</x-custom-layout>
