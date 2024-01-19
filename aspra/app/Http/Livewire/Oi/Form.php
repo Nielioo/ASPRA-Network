@@ -15,7 +15,7 @@ class Form extends Component
     public $submitButtonName;
 
     protected $rules = [
-        'oi.product_id' => 'required',
+        'product' => 'required',
         'oi.date_created' => 'required',
         'oi.customer_name' => 'required',
         'oi.total_order' => 'required',
