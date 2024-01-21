@@ -21,4 +21,9 @@ class Schedule extends Model
     {
         return $this->belongsTo(Machine::class);
     }
+
+    public function oi()
+    {
+        return $this->belongsTo(Oi::class);
+    }
 }

@@ -16,4 +16,9 @@ class ProductionReport extends Model
         'approved',
         'rejected',
     ];
+
+    public function oi()
+    {
+        return $this->belongsTo(Oi::class);
+    }
 }

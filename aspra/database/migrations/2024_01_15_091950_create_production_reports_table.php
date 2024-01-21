@@ -19,6 +19,13 @@ return new class extends Migration
             $table->enum('shift', ['Shift 1', 'Shift 2', 'Shift 3']);
             $table->integer('approved');
             $table->integer('rejected');
+
+            $table->unsignedBigInteger('oi_id');
+            $table->foreign('oi_id')
+                ->references('id')->on('ois')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

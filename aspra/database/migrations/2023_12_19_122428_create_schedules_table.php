@@ -25,6 +25,12 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->unsignedBigInteger('oi_id');
+            $table->foreign('oi_id')
+                ->references('id')->on('ois')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

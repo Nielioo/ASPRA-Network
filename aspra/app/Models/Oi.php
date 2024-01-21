@@ -26,4 +26,20 @@ class Oi extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+    public function spks()
+    {
+        return $this->hasMany(Spk::class);
+    }
+
+    public function productionReports()
+    {
+        return $this->hasMany(ProductionReport::class);
+    }
+
 }

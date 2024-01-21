@@ -12,4 +12,9 @@ class Spk extends Model
     protected $fillable = [
         'file_path',
     ];
+
+    public function oi()
+    {
+        return $this->belongsTo(Oi::class);
+    }
 }
