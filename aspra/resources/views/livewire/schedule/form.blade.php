@@ -20,8 +20,10 @@
     <div class="row">
         <div class="px-4 py-2">
             <x-label for="machine" value="{{ __('Pilih Mesin') }}" />
+            {{-- Input Dropdown --}}
             <select wire:model="machine"
-                class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <option value="" class="text-slate-400" selected>Select an option</option>
                 @foreach ($machines as $machine)
                     <option value="{{ $machine->id }}" {{ $machine->id == $this->schedule->machine_id ? 'selected' : '' }}>{{ $machine->name }}</option>
                 @endforeach
@@ -48,8 +50,10 @@
         </div>
         <div class="px-4 py-2">
             <x-label for="shift_start" value="{{ __('Pilih shift mulai produksi') }}" />
+            {{-- Input Dropdown --}}
             <select wire:model="schedule.shift_start"
-                class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <option value="" class="text-slate-400" selected>Select an option</option>
                 <option value="Shift 1" {{ $this->schedule->shift_start == 'Shift 1' ? 'selected' : '' }}>Shift 1
                 </option>
                 <option value="Shift 2" {{ $this->schedule->shift_start == 'Shift 2' ? 'selected' : '' }}>Shift 2
@@ -71,8 +75,10 @@
         </div>
         <div class="px-4 py-2">
             <x-label for="shift_end" value="{{ __('Pilih shift selesai produksi') }}" />
+            {{-- Input Dropdown --}}
             <select wire:model="schedule.shift_end"
-                class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <option value="" class="text-slate-400" selected>Select an option</option>
                 <option value="Shift 1" {{ $this->schedule->shift_end == 'Shift 1' ? 'selected' : '' }}>Shift 1
                 </option>
                 <option value="Shift 2" {{ $this->schedule->shift_end == 'Shift 2' ? 'selected' : '' }}>Shift 2

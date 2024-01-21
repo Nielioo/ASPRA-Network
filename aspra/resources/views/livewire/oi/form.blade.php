@@ -20,7 +20,9 @@
     <div class="row">
         <div class="px-4 py-2">
             <x-label for="product" value="{{ __('Pilih Produk') }}" />
+            {{-- Input Dropdown --}}
             <select wire:model="product" class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="" class="text-slate-400" selected>Select an option</option>
                 @foreach ($products as $product)
                     <option value="{{ $product->id }}" {{ $product->id == $this->oi->product_id ? 'selected' : '' }}>{{ $product->product_code }}</option>
                 @endforeach
