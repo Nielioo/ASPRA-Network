@@ -19,6 +19,19 @@
     @csrf
     <div class="row">
         <div class="px-4 py-2">
+            <x-label for="oi" value="{{ __('Pilih OI') }}" />
+            {{-- Input Dropdown --}}
+            <select wire:model="oi" class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="" class="text-slate-400" selected>Select an option</option>
+                @foreach ($ois as $oi)
+                    <option value="{{ $oi->id }}" {{ $oi->id == $this->schedule->oi_id ? 'selected' : '' }}>{{ $oi->id }}</option>
+                @endforeach
+            </select>
+            @error('oi')
+                <div>{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="px-4 py-2">
             <x-label for="machine" value="{{ __('Pilih Mesin') }}" />
             {{-- Input Dropdown --}}
             <select wire:model="machine"

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Schedule;
 
 use App\Models\Machine;
+use App\Models\Oi;
 use App\Models\Schedule;
 use Livewire\Component;
 
@@ -10,10 +11,12 @@ class Form extends Component
 {
     public $schedule;
     public $machine;
+    public $oi;
 
     public $submitButtonName;
 
     protected $rules = [
+        'oi' => 'required',
         'machine' => 'required',
         'schedule.production' => 'required',
         'schedule.date_start' => 'required',
@@ -28,6 +31,7 @@ class Form extends Component
         if (!$this->schedule){
             $this->schedule = new Schedule();
             $this->machine = $this->schedule->machine_id;
+            $this->oi = $this->schedule->oi_id;
 
             $this->submitButtonName = 'Create';
         } else {
@@ -39,6 +43,7 @@ class Form extends Component
     {
         $this->validate();
         $this->schedule->machine_id = $this->machine;
+        $this->schedule->oi_id = $this->oi;
 
         $this->schedule->save();
         session()->flash('message', 'Schedule Saved!');
@@ -48,6 +53,7 @@ class Form extends Component
     public function render()
     {
         $machines = Machine::all();
-        return view('livewire.schedule.form', ['machines' => $machines,]);
+        $ois = Oi::all();
+        return view('livewire.schedule.form', ['machines' => $machines, 'ois' => $ois]);
     }
 }
