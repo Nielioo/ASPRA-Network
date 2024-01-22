@@ -36,13 +36,12 @@ Route::middleware([
     })->name('dashboard');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+
     Route::resource('ois', OiController::class);
     Route::resource('schedules', ScheduleController::class);
     Route::resource('spks', SpkController::class);
+    Route::resource('production_reports', ProductionReportController::class);
 
     Route::resource('products', ProductController::class);
     Route::resource('machines', MachineController::class);
-
-    Route::resource('pois', PoiController::class);
-    Route::resource('production_reports', ProductionReportController::class);
 });
