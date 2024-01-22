@@ -30,7 +30,7 @@
                 @endforeach
             </select>
             @error('oi')
-                <div class="text-red-500">{{ $message }}</div>
+                <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
         <div class="px-4 py-2">
@@ -38,7 +38,7 @@
             <x-input wire:model="productionReport.initial_settings" type="text" name="initial_settings"
                 :value="old('initial_settings')" class="w-full" required autofocus />
             @error('productionReport.initial_settings')
-                <div>{{ $message }}</div>
+                <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
         <div class="px-4 py-2">
@@ -46,7 +46,7 @@
             <x-input wire:model="productionReport.date" type="date" name="date" :value="old('date')" class="w-full"
                 required />
             @error('productionReport.date')
-                <div>{{ $message }}</div>
+                <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
         <div class="px-4 py-2">
@@ -63,7 +63,7 @@
                 </option>
             </select>
             @error('productionReport.shift')
-                <div>{{ $message }}</div>
+                <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
         <div class="px-4 py-2">
@@ -71,7 +71,7 @@
             <x-input wire:model="productionReport.approved" type="text" name="approved" :value="old('approved')"
                 class="w-full" required />
             @error('productionReport.approved')
-                <div>{{ $message }}</div>
+                <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
         <div class="px-4 py-2">
@@ -79,7 +79,7 @@
             <x-input wire:model="productionReport.rejected" type="text" name="rejected" :value="old('rejected')"
                 class="w-full" required />
             @error('productionReport.rejected')
-                <div>{{ $message }}</div>
+                <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
 
