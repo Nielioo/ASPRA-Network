@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('placement_location');
             $table->string('delivery_stage');
             $table->string('special_request')->nullable();
-            $table->string('verification_one')->nullable();
-            $table->string('verification_two')->nullable();
-            $table->string('verification_three')->nullable();
-            $table->string('verification_four')->nullable();
+            $table->boolean('verification_one')->default(0);
+            $table->boolean('verification_two')->default(0);
+            $table->boolean('verification_three')->default(0);
+            $table->boolean('verification_four')->default(0);
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')

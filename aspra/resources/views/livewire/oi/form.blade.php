@@ -82,38 +82,6 @@
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
-        <div class="px-4 py-2">
-            <x-label for="verification_one" value="{{ __('Verifikasi 01') }}" />
-            <x-input wire:model="oi.verification_one" type="text" name="verification_one" :value="old('verification_one')"
-                class="w-full" />
-            @error('oi.verification_one')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="px-4 py-2">
-            <x-label for="verification_two" value="{{ __('Verifikasi 02') }}" />
-            <x-input wire:model="oi.verification_two" type="text" name="verification_two" :value="old('verification_two')"
-                class="w-full" />
-            @error('oi.verification_two')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="px-4 py-2">
-            <x-label for="verification_three" value="{{ __('Verifikasi 03') }}" />
-            <x-input wire:model="oi.verification_three" type="text" name="verification_three" :value="old('verification_three')"
-                class="w-full" />
-            @error('oi.verification_three')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="px-4 py-2">
-            <x-label for="verification_four" value="{{ __('Verifikasi 04') }}" />
-            <x-input wire:model="oi.verification_four" type="text" name="verification_four" :value="old('verification_four')"
-                class="w-full" />
-            @error('oi.verification_four')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
 
         <div class="px-4 pt-8 pb-4">
             <button type="submit"

@@ -22,10 +22,6 @@ class Form extends Component
         'oi.placement_location' => 'required',
         'oi.delivery_stage' => 'required',
         'oi.special_request' => '',
-        'oi.verification_one' => '',
-        'oi.verification_two' => '',
-        'oi.verification_three' => '',
-        'oi.verification_four' => '',
     ];
 
     public function mount() {
