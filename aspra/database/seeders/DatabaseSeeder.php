@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
 
                 ProductSeeder::class,
                 MachineSeeder::class,
+
+                OiSeeder::class,
             ]
         );
     }

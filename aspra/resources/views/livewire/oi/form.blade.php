@@ -68,7 +68,7 @@
         </div>
         <div class="px-4 py-2">
             <x-label for="delivery_stage" value="{{ __('Tahap Pengiriman') }}" />
-            <x-input wire:model="oi.delivery_stage" type="text" name="delivery_stage" :value="old('delivery_stage')"
+            <x-input wire:model="oi.delivery_stage" type="date" name="delivery_stage" :value="old('delivery_stage')"
                 class="w-full" required />
             @error('oi.delivery_stage')
                 <div class="text-red-600">{{ $message }}</div>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('customer_name');
             $table->integer('total_order');
             $table->string('placement_location');
-            $table->string('delivery_stage');
+            $table->date('delivery_stage');
             $table->string('special_request')->nullable();
             $table->boolean('verification_one')->default(0);
             $table->boolean('verification_two')->default(0);

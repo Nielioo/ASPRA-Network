@@ -79,4 +79,13 @@ class OiController extends Controller
         // redirect to index view
         return redirect()->route('ois.index')->with('success','OI deleted successfully');
     }
+
+    public function verify(string $id)
+    {
+        // get data by id
+        $oi = Oi::findOrFail($id);
+
+        // redirect to verify view
+        return view('ois.verify',compact('oi'));
+    }
 }
