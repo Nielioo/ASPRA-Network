@@ -38,6 +38,7 @@ Route::middleware([
     Route::resource('users', UserController::class);
 
     Route::resource('ois', OiController::class);
+    Route::get('ois/{id}/verify', [OiController::class, 'verify'])->name('ois.verify');
     Route::resource('schedules', ScheduleController::class);
     Route::resource('spks', SpkController::class);
     Route::resource('production_reports', ProductionReportController::class);

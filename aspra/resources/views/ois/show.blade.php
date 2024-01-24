@@ -70,6 +70,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="mt-8">
+                    <a class="bg-lime-500 hover:bg-lime-700 text-lime-950 hover:text-white font-semibold py-2 px-4 border border-lime-500 hover:border-transparent rounded"
+                        href="{{ route('ois.verify', $oi->id) }}">Verify OI</a>
+                </div>
 
             </div>
         </div>
