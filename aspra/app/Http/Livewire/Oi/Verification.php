@@ -20,9 +20,9 @@ class Verification extends Component
         // note: temporary. delete this before release
         if ($this->user->hasRole('Admin')) {
             $this->oi->verification_one = true;
-            $this->oi->verification_two = true;
-            $this->oi->verification_three = true;
-            $this->oi->verification_four = true;
+            // $this->oi->verification_two = true;
+            // $this->oi->verification_three = true;
+            // $this->oi->verification_four = true;
         }
 
         if ($this->user->hasRole('VerifyOne')) {

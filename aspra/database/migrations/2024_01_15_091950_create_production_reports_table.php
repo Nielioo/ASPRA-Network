@@ -14,15 +14,22 @@ return new class extends Migration
     {
         Schema::create('production_reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('initial_settings');
+            $table->enum('type', ['INJECT', 'BLOW']);
+            $table->integer('product_quantity');
             $table->date('date');
             $table->enum('shift', ['Shift 1', 'Shift 2', 'Shift 3']);
-            $table->integer('approved');
-            $table->integer('rejected');
+            $table->integer('total_approved');
+            $table->integer('total_rejected');
 
-            $table->unsignedBigInteger('oi_id');
-            $table->foreign('oi_id')
-                ->references('id')->on('ois')
+            $table->unsignedBigInteger('schedule_id');
+            $table->foreign('schedule_id')
+                ->references('id')->on('schedules')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

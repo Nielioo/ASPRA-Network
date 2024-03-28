@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('production');
+            $table->string('product_name');
+            $table->string('product_quantity');
             $table->date('date_start');
             $table->enum('shift_start', ['Shift 1', 'Shift 2', 'Shift 3']);
             $table->date('date_end');

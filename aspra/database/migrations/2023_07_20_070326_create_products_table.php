@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('color');
             $table->string('packing');
             $table->string('product_content');
-            $table->string('test_type');
             $table->integer('remaining_stock')->nullable();
             $table->integer('outstanding')->nullable();
             $table->integer('needs_per_month')->nullable();

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('file_path')->nullable();
 
-            $table->unsignedBigInteger('oi_id');
-            $table->foreign('oi_id')
-                ->references('id')->on('ois')
+            $table->unsignedBigInteger('schedule_id');
+            $table->foreign('schedule_id')
+                ->references('id')->on('schedules')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

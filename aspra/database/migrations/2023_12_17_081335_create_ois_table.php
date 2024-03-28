@@ -19,11 +19,13 @@ return new class extends Migration
             $table->integer('total_order');
             $table->string('placement_location');
             $table->date('delivery_stage');
+            $table->string('test_type');
             $table->string('special_request')->nullable();
-            $table->boolean('verification_one')->default(0);
-            $table->boolean('verification_two')->default(0);
-            $table->boolean('verification_three')->default(0);
-            $table->boolean('verification_four')->default(0);
+            $table->string('verification_one')->default('none');
+            $table->string('verification_two')->default('none');
+            $table->string('verification_three')->default('none');
+            $table->string('verification_four')->default('none');
+            $table->string('verification_five')->default('none');
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')
