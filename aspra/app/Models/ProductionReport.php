@@ -10,15 +10,21 @@ class ProductionReport extends Model
     use HasFactory;
 
     protected $fillable = [
-        'initial_settings',
+        'type',
+        'product_quantity',
         'date',
         'shift',
-        'approved',
-        'rejected',
+        'total_approved',
+        'total_rejected',
     ];
 
-    public function oi()
+    public function schedule()
     {
-        return $this->belongsTo(Oi::class);
+        return $this->belongsTo(Schedule::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

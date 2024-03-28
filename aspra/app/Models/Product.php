@@ -18,7 +18,6 @@ class Product extends Model
         'color',
         'packing',
         'product_content',
-        'test_type',
         'remaining_stock',
         'outstanding',
         'needs_per_month',
@@ -28,5 +27,10 @@ class Product extends Model
     public function ois()
     {
         return $this->hasMany(Oi::class);
+    }
+
+    public function productionReports()
+    {
+        return $this->hasMany(ProductionReport::class);
     }
 }

@@ -13,8 +13,8 @@ class Spk extends Model
         'file_path',
     ];
 
-    public function oi()
+    public function schedule()
     {
-        return $this->belongsTo(Oi::class);
+        return $this->belongsTo(Schedule::class);
     }
 }

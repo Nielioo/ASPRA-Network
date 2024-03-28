@@ -15,11 +15,13 @@ class Oi extends Model
         'total_order',
         'placement_location',
         'delivery_stage',
+        'test_type',
         'special_request',
         'verification_one',
         'verification_two',
         'verification_three',
         'verification_four',
+        'verification_five',
     ];
 
     public function product()
@@ -30,16 +32,6 @@ class Oi extends Model
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
-    }
-
-    public function spks()
-    {
-        return $this->hasMany(Spk::class);
-    }
-
-    public function productionReports()
-    {
-        return $this->hasMany(ProductionReport::class);
     }
 
 }

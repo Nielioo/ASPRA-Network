@@ -10,7 +10,8 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'production',
+        'product_name',
+        'product_quantity',
         'date_start',
         'shift_start',
         'date_end',
@@ -25,5 +26,15 @@ class Schedule extends Model
     public function oi()
     {
         return $this->belongsTo(Oi::class);
+    }
+
+    public function spks()
+    {
+        return $this->hasMany(Spk::class);
+    }
+
+    public function productionReports()
+    {
+        return $this->hasMany(ProductionReport::class);
     }
 }
