@@ -19,7 +19,6 @@ class ProductSeeder extends Seeder
         $materials = ['Wood', 'Metal', 'Plastic'];
         $colors = ['Red', 'Blue', 'Green'];
         $packingTypes = ['Box', 'Bag', 'Wrap'];
-        $testTypes = ['Matching Test', 'Test Drop', 'Test Bocor'];
 
         for ($i = 0; $i < 20; $i++) {
             DB::table('products')->insert([
@@ -31,7 +30,6 @@ class ProductSeeder extends Seeder
                 'color' => $colors[array_rand($colors)],
                 'packing' => $packingTypes[array_rand($packingTypes)],
                 'product_content' => rand(1, 100),
-                'test_type' => $testTypes[array_rand($testTypes)],
                 'remaining_stock' => rand(1, 100),
                 'outstanding' => rand(1, 100),
                 'needs_per_month' => rand(1, 100),
