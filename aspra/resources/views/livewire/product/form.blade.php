@@ -84,14 +84,6 @@
             @enderror
         </div>
         <div class="px-4 py-2">
-            <x-label for="test_type" value="{{ __('Jenis Test') }}" />
-            <x-input wire:model="product.test_type" type="text" name="test_type" :value="old('test_type')" class="w-full"
-                required />
-            @error('product.test_type')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="px-4 py-2">
             <x-label for="remaining_stock" value="{{ __('Stok Akhir') }}" />
             <x-input wire:model="product.remaining_stock" type="number" name="remaining_stock" :value="old('remaining_stock')"
                 class="w-full" required />

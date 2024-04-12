@@ -75,6 +75,14 @@
             @enderror
         </div>
         <div class="px-4 py-2">
+            <x-label for="test_type" value="{{ __('Jenis Test') }}" />
+            <x-input wire:model="oi.test_type" type="text" name="test_type" :value="old('test_type')" class="w-full"
+                required />
+            @error('oi.test_type')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="px-4 py-2">
             <x-label for="special_request" value="{{ __('Permintaan Khusus') }}" />
             <x-input wire:model="oi.special_request" type="text" name="special_request" :value="old('special_request')"
                 class="w-full" />

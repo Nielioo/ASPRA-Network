@@ -52,10 +52,18 @@
             @enderror
         </div>
         <div class="px-4 py-2">
-            <x-label for="production" value="{{ __('Nama Produksi') }}" />
-            <x-input wire:model="schedule.production" type="text" name="production" :value="old('production')" class="w-full"
+            <x-label for="product_name" value="{{ __('Nama produk (sesuai dengan OI)') }}" />
+            <x-input wire:model="schedule.product_name" type="text" name="product_name" :value="old('product_name')" class="w-full"
                 required />
-            @error('schedule.production')
+            @error('schedule.product_name')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="px-4 py-2">
+            <x-label for="product_quantity" value="{{ __('Jumlah produk yang ingin diproduksi') }}" />
+            <x-input wire:model="schedule.product_quantity" type="number" name="product_quantity" :value="old('product_quantity')" class="w-full"
+                required />
+            @error('schedule.product_quantity')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
