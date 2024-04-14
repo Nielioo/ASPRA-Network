@@ -17,11 +17,7 @@ class Oi extends Model
         'delivery_stage',
         'test_type',
         'special_request',
-        'verification_one',
-        'verification_two',
-        'verification_three',
-        'verification_four',
-        'verification_five',
+        'current_verifier',
     ];
 
     public function product()
@@ -29,9 +25,31 @@ class Oi extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function verifications()
+    {
+        return $this->hasMany(Verification::class);
+    }
+
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
     }
+
+    // Auto generate 5 dummy verifications when Oi is created
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::created(function ($oi) {
+    //         for ($i = 1; $i <= 5; $i++) {
+    //             Verification::create([
+    //                 'oi_id' => $oi->id,
+    //                 'status' => 'unVerified',
+    //                 'verifier_name' => 'Verifier ' . $i,
+    //                 'verifier_order' => $i,
+    //             ]);
+    //         }
+    //     });
+    // }
 
 }

@@ -4,30 +4,32 @@ namespace App\Http\Livewire\ProductionReport;
 
 use App\Models\Oi;
 use App\Models\ProductionReport;
+use App\Models\Schedule;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 
 class Form extends Component
 {
     public $productionReport;
-    public $oi;
+    public $schedule;
 
     public $submitButtonName;
 
     protected $rules = [
-        'oi' => 'required',
-        'productionReport.initial_settings' => 'required',
+        'schedule' => 'required',
+        'productionReport.type' => 'required',
+        'productionReport.product_quantity' => 'required',
         'productionReport.date' => 'required',
         'productionReport.shift' => 'required',
-        'productionReport.approved' => 'required',
-        'productionReport.rejected' => 'required',
+        'productionReport.total_approved' => 'required',
+        'productionReport.total_rejected' => 'required',
     ];
 
     public function mount() {
         // Check if the productionReport property is set
         if (!$this->productionReport){
             $this->productionReport = new ProductionReport(['date' => Carbon::now()->format('Y-m-d')]);
-            $this->oi = $this->productionReport->oi_id;
+            $this->schedule = $this->productionReport->schedule_id;
 
             $this->submitButtonName = 'Create';
         } else {
@@ -37,8 +39,11 @@ class Form extends Component
 
     public function save()
     {
+        $schedule = Schedule::find($this->schedule);
+
         $this->validate();
-        $this->productionReport->oi_id = $this->oi;
+        $this->productionReport->schedule_id = $this->schedule;
+        $this->productionReport->product_id = $schedule->oi->product_id;
 
         $this->productionReport->save();
         session()->flash('message', 'Production Report Saved!');
@@ -47,7 +52,7 @@ class Form extends Component
 
     public function render()
     {
-        $ois = Oi::all();
-        return view('livewire.production-report.form', ['ois' => $ois]);
+        $schedules = Schedule::all();
+        return view('livewire.production-report.form', ['schedules' => $schedules]);
     }
 }

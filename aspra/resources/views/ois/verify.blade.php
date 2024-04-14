@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                @livewire('oi.verification', ['oi' => $oi])
+                @livewire('oi.verify-order', ['oi' => $oi])
 
             </div>
         </div>

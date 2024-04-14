@@ -18,7 +18,8 @@ class Form extends Component
     protected $rules = [
         'oi' => 'required',
         'machine' => 'required',
-        'schedule.production' => 'required',
+        'schedule.product_name' => 'required',
+        'schedule.product_quantity' => 'required',
         'schedule.date_start' => 'required',
         'schedule.shift_start' => 'required',
         'schedule.date_end' => 'required',

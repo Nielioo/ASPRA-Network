@@ -21,11 +21,7 @@ return new class extends Migration
             $table->date('delivery_stage');
             $table->string('test_type');
             $table->string('special_request')->nullable();
-            $table->string('verification_one')->default('none');
-            $table->string('verification_two')->default('none');
-            $table->string('verification_three')->default('none');
-            $table->string('verification_four')->default('none');
-            $table->string('verification_five')->default('none');
+            $table->string('current_verifier')->nullable();
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')

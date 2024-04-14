@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Spk;
 
 use App\Models\Oi;
+use App\Models\Schedule;
 use App\Models\Spk;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -14,12 +15,12 @@ class Form extends Component
 
     public $spk;
     public $spkFile;
-    public $oi;
+    public $schedule;
 
     public $submitButtonName;
 
     protected $rules = [
-        'oi' => 'required',
+        'schedule' => 'required',
         'spkFile' => 'nullable|mimes:pdf,xlsx,xls,csv,txt,png,gif,jpg,jpeg|max:8192',
     ];
 
@@ -28,7 +29,7 @@ class Form extends Component
         // Check if the spk property is set
         if (!$this->spk){
             $this->spk = new Spk();
-            $this->oi = $this->spk->oi_id;
+            $this->schedule = $this->spk->schedule_id;
 
             $this->submitButtonName = 'Create';
         } else {
@@ -39,7 +40,7 @@ class Form extends Component
     public function save()
     {
         $this->validate();
-        $this->spk->oi_id = $this->oi;
+        $this->spk->schedule_id = $this->schedule;
 
         // Handle file upload
         if ($this->spkFile) {
@@ -71,7 +72,7 @@ class Form extends Component
 
     public function render()
     {
-        $ois = Oi::all();
-        return view('livewire.spk.form', ['ois' => $ois]);
+        $schedules = Schedule::all();
+        return view('livewire.spk.form', ['schedules' => $schedules]);
     }
 }

@@ -21,6 +21,7 @@ class Form extends Component
         'oi.total_order' => 'required',
         'oi.placement_location' => 'required',
         'oi.delivery_stage' => 'required',
+        'oi.test_type' => 'required',
         'oi.special_request' => '',
     ];
 

@@ -19,7 +19,6 @@ class Form extends Component
         'product.color' => 'required',
         'product.packing' => 'required',
         'product.product_content' => 'required',
-        'product.test_type'  => 'required',
         'product.remaining_stock'  => '',
         'product.outstanding' => '',
         'product.needs_per_month' => '',
