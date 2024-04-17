@@ -45,4 +45,6 @@ Route::middleware([
 
     Route::resource('products', ProductController::class);
     Route::resource('machines', MachineController::class);
+
+    Route::post('/send-message', 'App\Http\Controllers\WhatsAppController@sendMessage');
 });
