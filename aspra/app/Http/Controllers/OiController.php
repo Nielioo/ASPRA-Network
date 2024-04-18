@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Oi;
+use App\Models\Verification;
 use Illuminate\Http\Request;
 
 class OiController extends Controller
@@ -12,7 +13,7 @@ class OiController extends Controller
      */
     public function index()
     {
-        $ois = Oi::latest()->paginate(10);
+        $ois = Oi::with('maxVerificationOrder')->latest()->paginate(10);
         return view('ois.index',compact('ois'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -39,7 +40,7 @@ class OiController extends Controller
     public function show(string $id)
     {
         // get data by id
-        $oi = Oi::findOrFail($id);
+        $oi = Oi::with('product','verifications')->findOrFail($id);
 
         // redirect to show view
         return view('ois.show',compact('oi'));

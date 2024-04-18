@@ -35,6 +35,13 @@ class Oi extends Model
         return $this->hasMany(Schedule::class);
     }
 
+    public function maxVerificationOrder()
+    {
+        return $this->hasOne(Verification::class)
+                    ->selectRaw('oi_id, max(verifier_order) as max')
+                    ->groupBy('oi_id');
+    }
+
     // Auto generate 5 dummy verifications when Oi is created
     // protected static function boot()
     // {

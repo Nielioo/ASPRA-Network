@@ -17,59 +17,92 @@
                         <h1 class="text-4xl dark:text-white">Detail OI</h1>
                     </div>
                 </div>
+                <div class="grid grid-cols-3 gap-1 p-2 border-solid border-2 border-slate-700">
+                    {{-- header 1 --}}
+                    <div class="grid-cols-subgrid col-span-2">
+                        <div class="text-3xl p-2 font-bold">PT Asia Pramulia</div>
+                    </div>
+                    <div class="text-md p-2 font-bold flex items-center">OI ID: {{ $oi->id }}</div>
+                    {{-- header 2 --}}
+                    <div class="grid-cols-subgrid col-span-3">
+                        <div class="text-md text-center font-semibold border-solid border-2 border-slate-400">Laporan
+                            Telusur Balik OI
+                        </div>
+                    </div>
+                    {{-- body --}}
+                    <div class="grid-cols-subgrid col-span-3">
+                        <div class="grid grid-cols-3 gap-1 border-solid border-2 border-slate-400 p-1">
 
-                <table class="table-auto">
+                            <div class="text-md p-2 font-bold">Tanggal Pembuatan</div>
+                            <div class="grid-cols-subgrid col-span-2">
+                                <div class="text-md p-2">{{ $oi->date_created }}</div>
+                            </div>
+                            <div class="text-md p-2 font-bold">Nama Customer</div>
+                            <div class="grid-cols-subgrid col-span-2">
+                                <div class="text-md p-2">{{ $oi->customer_name }}</div>
+                            </div>
+                            <div class="text-md p-2 font-bold">Total Order</div>
+                            <div class="grid-cols-subgrid col-span-2">
+                                <div class="text-md p-2">{{ $oi->total_order }}</div>
+                            </div>
+                            <div class="text-md p-2 font-bold">Lokasi Penempatan</div>
+                            <div class="grid-cols-subgrid col-span-2">
+                                <div class="text-md p-2">{{ $oi->placement_location }}</div>
+                            </div>
+                            <div class="text-md p-2 font-bold">Tahap Pengiriman</div>
+                            <div class="grid-cols-subgrid col-span-2">
+                                <div class="text-md p-2">{{ $oi->delivery_stage }}</div>
+                            </div>
+                            <div class="text-md p-2 font-bold">Tipe Test</div>
+                            <div class="grid-cols-subgrid col-span-2">
+                                <div class="text-md p-2">{{ $oi->test_type }}</div>
+                            </div>
+                            <div class="text-md p-2 font-bold">Permintaan Khusus</div>
+                            <div class="grid-cols-subgrid col-span-2">
+                                <div class="text-md p-2">{{ $oi->special_request }}</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="grid-cols-subgrid col-span-3">
+                        @livewire('oi.product-detail-toogle', ['product' => $oi->product])
+                    </div>
+                </div>
+
+                <div class="col-lg-12 margin-tb">
+                    <div class="flex items-center justify-between py-10">
+                        <h1 class="text-4xl dark:text-white">Riwayat Verifikasi OI</h1>
+                    </div>
+                </div>
+
+                <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">id</th>
+                            <th scope="col" class="px-6 py-3">status</th>
+                            <th scope="col" class="px-6 py-3">verifier_name</th>
+                            <th scope="col" class="px-6 py-3">verifier order</th>
+                            <th scope="col" class="px-6 py-3">updated_at</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>ID</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->id }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tanggal Pembuatan</strong>
-                            </td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->date_created }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Nama Customer</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->customer_name }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total Order</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->total_order }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Lokasi Penempatan</strong>
-                            </td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->placement_location }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tahap Pengiriman</strong>
-                            </td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->delivery_stage }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Permintaan Khusus</strong>
-                            </td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->special_request }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Verifikasi 01</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->verification_one }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Verifikasi 02</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->verification_two }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Verifikasi 03</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->verification_three }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Verifikasi 04</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $oi->verification_four }}</td>
-                        </tr>
+                        @forelse ($oi->verifications as $verification)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">{{ $verification->id }}</td>
+                                <td class="px-6 py-4">{{ $verification->status }}</td>
+                                <td class="px-6 py-4">{{ $verification->verifier_name }}</td>
+                                <td class="px-6 py-4">{{ $verification->verifier_order }}</td>
+                                <td class="px-6 py-4">{{ $verification->updated_at }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="px-6 py-4 text-center">No verifications has been made.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
+
                 <div class="mt-8">
                     <a class="bg-lime-500 hover:bg-lime-700 text-lime-950 hover:text-white font-semibold py-2 px-4 border border-lime-500 hover:border-transparent rounded"
                         href="{{ route('ois.verify', $oi->id) }}">Verify OI</a>
