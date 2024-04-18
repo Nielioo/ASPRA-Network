@@ -25,8 +25,8 @@
                     <div class="text-md p-2 font-bold flex items-center">OI ID: {{ $oi->id }}</div>
                     {{-- header 2 --}}
                     <div class="grid-cols-subgrid col-span-3">
-                        <div class="text-md text-center font-semibold border-solid border-2 border-slate-400">Laporan
-                            Telusur Balik OI
+                        <div class="text-md text-center font-semibold border-solid border-2 border-slate-400">
+                            Laporan Telusur Balik OI
                         </div>
                     </div>
                     {{-- body --}}
@@ -70,6 +70,10 @@
                     </div>
                 </div>
 
+                <div class="mt-8">
+                    @livewire('oi.verify-order', ['oi' => $oi])
+                </div>
+
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between py-10">
                         <h1 class="text-4xl dark:text-white">Riwayat Verifikasi OI</h1>
@@ -103,10 +107,10 @@
                     </tbody>
                 </table>
 
-                <div class="mt-8">
+                {{-- <div class="mt-8">
                     <a class="bg-lime-500 hover:bg-lime-700 text-lime-950 hover:text-white font-semibold py-2 px-4 border border-lime-500 hover:border-transparent rounded"
                         href="{{ route('ois.verify', $oi->id) }}">Verify OI</a>
-                </div>
+                </div> --}}
 
             </div>
         </div>
