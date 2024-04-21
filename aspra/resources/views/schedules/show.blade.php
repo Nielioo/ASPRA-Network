@@ -12,44 +12,24 @@
                     href="{{ route('schedules.index') }}">Back</a>
             </div>
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
+                {{-- header 1 --}}
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pb-10">
                         <h1 class="text-4xl dark:text-white">Detail Schedule</h1>
                     </div>
                 </div>
 
-                <table class="table-auto">
-                    <tbody>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>ID</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $schedule->id }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Produksi</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $schedule->production }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tanggal Mulai</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $schedule->date_start }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Shift Mulai</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $schedule->shift_start }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tanggal Selesai</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $schedule->date_end }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Shift selesai</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $schedule->shift_end }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Nama Mesin</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $schedule->machine->name }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                {{-- body --}}
+                @livewire('schedule.schedule-detail-component', ['schedule' => $schedule])
+
+                {{-- header 1 --}}
+                <div class="col-lg-12 margin-tb mt-20">
+                    <div class="flex items-center justify-between pb-10">
+                        <h1 class="text-4xl dark:text-white">Detail OI Yang Bersangkutan</h1>
+                    </div>
+                </div>
+
+                @livewire('oi.oi-detail-component', ['oi' => $schedule->oi])
 
             </div>
         </div>

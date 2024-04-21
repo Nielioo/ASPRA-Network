@@ -45,12 +45,11 @@
                     <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-
                                 <th scope="col" class="px-6 py-3">ID</th>
-                                <th scope="col" class="px-6 py-3">Produksi</th>
-                                <th scope="col" class="px-6 py-3">Tanggal mulai</th>
-                                <th scope="col" class="px-6 py-3">Tanggal selesai</th>
-                                <th scope="col" class="px-6 py-3">Nama Mesin</th>
+                                <th scope="col" class="px-6 py-3">Nama produk <br> yang ingin di produksi</th>
+                                <th scope="col" class="px-6 py-3">Jumlah produk <br> yang ingin di produksi</th>
+                                <th scope="col" class="px-6 py-3">Tanggal mulai <br> produksi</th>
+                                <th scope="col" class="px-6 py-3">Tanggal selesai <br> produksi</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
@@ -58,10 +57,10 @@
                             @foreach ($schedules as $schedule)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $schedule->id }}</td>
-                                    <td class="px-6 py-4">{{ $schedule->production }}</td>
+                                    <td class="px-6 py-4">{{ $schedule->product_name }}</td>
+                                    <td class="px-6 py-4">{{ $schedule->product_quantity }}</td>
                                     <td class="px-6 py-4">{{ $schedule->date_start }} {{ $schedule->shift_start }}</td>
                                     <td class="px-6 py-4">{{ $schedule->date_end }} {{ $schedule->shift_end }}</td>
-                                    <td class="px-6 py-4">{{ $schedule->machine->name }}</td>
                                     <td class="px-6 py-4 flex flex-col md:flex-row">
                                         <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST"
                                             class="flex flex-col md:flex-row">
