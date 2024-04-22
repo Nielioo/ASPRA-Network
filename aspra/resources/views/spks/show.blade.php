@@ -12,33 +12,72 @@
                     href="{{ route('spks.index') }}">Back</a>
             </div>
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
+                {{-- Header 1 --}}
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pb-10">
                         <h1 class="text-4xl dark:text-white">Detail SPK</h1>
                     </div>
                 </div>
 
-                <table class="table-auto">
-                    <tbody>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>ID</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $spk->id }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>File Location</strong></td>
-                            <td class="border px-4 py-2 text-center">
-                                <a href="{{ asset($spk->file_path) }}" target="_blank">{{ $spk->file_path }}</a>
-                            </td>
-                        </tr>
-                        </tr>
-                    </tbody>
-                </table>
+                {{-- Body --}}
+                <div class="grid-cols-subgrid col-span-3">
+                    <div class="grid grid-cols-3 gap-1 border-solid border-2 border-slate-700 p-1">
 
-                <h1 class="text-lg dark:text-white pt-4 pb-2">File Preview</h1>
+                        <div class="text-md p-2 font-bold">SPK_ID</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $spk->id }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">File Path</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2"><a href="{{ asset($spk->file_path) }}" class="text-blue-500 underline">{{ $spk->file_path }}</a></div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Schedule_ID</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $spk->schedule->id }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Nama produk yang ingin di produksi</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $spk->schedule->product_name }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Jumlah produk yang ingin di produksi</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $spk->schedule->product_quantity }}</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {{-- Header 1 --}}
+                <div class="col-lg-12 margin-tb">
+                    <div class="flex items-center justify-between py-10">
+                        <h1 class="text-4xl dark:text-white">SPK File Preview</h1>
+                    </div>
+                </div>
+
+                {{-- Body --}}
                 <iframe title="SPK File" src="{{ asset($spk->file_path) }}" width="100%" height="600px">
                     This browser does not support PDFs. Please download the PDF to view it:
                     <a href="{{ asset($spk->file_path) }}">Download PDF</a>
                 </iframe>
+
+                {{-- header 1 --}}
+                <div class="col-lg-12 margin-tb">
+                    <div class="flex items-center justify-between py-10">
+                        <h1 class="text-4xl dark:text-white">Detail Schedule Yang Bersangkutan</h1>
+                    </div>
+                </div>
+
+                {{-- body --}}
+                @livewire('schedule.schedule-detail-component', ['schedule' => $spk->schedule])
+
+                {{-- header 1 --}}
+                <div class="col-lg-12 margin-tb">
+                    <div class="flex items-center justify-between py-10">
+                        <h1 class="text-4xl dark:text-white">Detail OI Yang Bersangkutan</h1>
+                    </div>
+                </div>
+
+                @livewire('oi.oi-detail-component', ['oi' => $spk->schedule->oi])
 
             </div>
         </div>

@@ -27,7 +27,6 @@ class Form extends Component
     ];
 
     public function mount() {
-
         // Check if the schedule property is set
         if (!$this->schedule){
             $this->schedule = new Schedule();
@@ -38,6 +37,16 @@ class Form extends Component
         } else {
             $this->submitButtonName = 'Edit';
         }
+    }
+
+    public function updatedOi($value)
+    {
+        // Find the selected OI
+        $oi = Oi::find($value);
+
+         // Initialize schedule with a default product_name
+         $this->schedule->product_name = $oi->product->name;
+         $this->schedule->product_quantity = $oi->total_order;
     }
 
     public function save()

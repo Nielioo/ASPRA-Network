@@ -27,7 +27,7 @@
                 <option value="" class="text-slate-400" selected>Select an option</option>
                 @foreach ($schedules as $schedule)
                     <option value="{{ $schedule->id }}" {{ $schedule->id == $this->spk->schedule_id ? 'selected' : '' }}>
-                        {{ $schedule->id }}</option>
+                        [{{ $schedule->id }}] - {{$schedule->product_name}} (Total Pesanan: {{$schedule->product_quantity}})</option>
                 @endforeach
             </select>
             @error('schedule')

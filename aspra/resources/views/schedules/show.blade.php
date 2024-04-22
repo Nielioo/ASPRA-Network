@@ -23,8 +23,8 @@
                 @livewire('schedule.schedule-detail-component', ['schedule' => $schedule])
 
                 {{-- header 1 --}}
-                <div class="col-lg-12 margin-tb mt-20">
-                    <div class="flex items-center justify-between pb-10">
+                <div class="col-lg-12 margin-tb">
+                    <div class="flex items-center justify-between py-10">
                         <h1 class="text-4xl dark:text-white">Detail OI Yang Bersangkutan</h1>
                     </div>
                 </div>

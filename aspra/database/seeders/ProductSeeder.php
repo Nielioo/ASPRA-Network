@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
     {
         $materials = ['Wood', 'Metal', 'Plastic'];
         $colors = ['Red', 'Blue', 'Green'];
-        $packingTypes = ['Box', 'Bag', 'Wrap'];
+        $packingTypes = ['SAK', 'DUS'];
 
         for ($i = 0; $i < 20; $i++) {
             DB::table('products')->insert([

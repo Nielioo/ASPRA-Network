@@ -27,7 +27,7 @@
                 <option value="" class="text-slate-400" selected>Select an option</option>
                 @foreach ($products as $product)
                     <option value="{{ $product->id }}" {{ $product->id == $this->oi->product_id ? 'selected' : '' }}>
-                        {{ $product->product_code }}</option>
+                        [{{ $product->product_code }}] - {{ $product->name}} </option>
                 @endforeach
             </select>
             @error('product')
