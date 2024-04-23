@@ -12,28 +12,33 @@
                     href="{{ route('machines.index') }}">Back</a>
             </div>
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
+                {{-- Header 1 --}}
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pb-10">
                         <h1 class="text-4xl dark:text-white">Detail Machine</h1>
                     </div>
                 </div>
 
-                <table class="table-auto">
-                    <tbody>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>ID</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $machine->id }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Nomor Mesin</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $machine->number }}</td>
-                        </tr>
-                        <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Nama Mesin</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $machine->name }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                {{-- Body --}}
+                <div class="grid-cols-subgrid col-span-3">
+                    <div class="grid grid-cols-3 gap-1 border-solid border-2 border-slate-700 p-1">
+
+                        <div class="text-md p-2 font-bold">ID Mesin</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $machine->id }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Nomor Mesin</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $machine->number }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Nama Mesin</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $machine->name }}</div>
+                        </div>
+
+
+                    </div>
+                </div>
 
             </div>
         </div>
