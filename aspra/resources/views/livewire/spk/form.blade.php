@@ -35,7 +35,7 @@
             @enderror
         </div>
         <div class="px-4 py-2">
-            <x-label for="file_path" value="{{ __('Unggah file SPK') }}" />
+            <x-label for="file_path" value="{{ __('Unggah file SPK') }}" class="pb-1" />
             <x-input wire:model="spkFile" type="file" name="file_path" :value="old('file_path')" class="w-full" required
                 autofocus />
             @error('spkFile')

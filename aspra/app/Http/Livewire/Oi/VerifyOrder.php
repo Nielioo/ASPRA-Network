@@ -10,6 +10,7 @@ use Livewire\Component;
 class VerifyOrder extends Component
 {
     public $oi;
+    public $oiIsVerified;
 
     protected $listeners = ['triggerConfirm' => 'confirmAction'];
 
@@ -24,6 +25,9 @@ class VerifyOrder extends Component
     public function mount(Oi $oi)
     {
         $this->oi = $oi;
+        $this->oiIsVerified = $this->oi->verifications->contains(function ($verification) {
+            return $verification->status === 'verified';
+        });
     }
 
     public function verify()
