@@ -12,10 +12,9 @@
                     href="{{ route('ois.index') }}">Back</a>
             </div>
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
-                <div class="col-lg-12 margin-tb">
-                    <div class="flex items-center justify-between pb-10">
-                        <h1 class="text-4xl dark:text-white">Detail OI</h1>
-                    </div>
+                <div class="col-lg-12 margin-tb flex items-end justify-between pb-10">
+                    <h1 class="text-4xl dark:text-white">Detail OI</h1>
+                    @livewire('oi.export-pdf', ['oi' => $oi])
                 </div>
 
                 @livewire('oi.oi-detail-component', ['oi' => $oi])
