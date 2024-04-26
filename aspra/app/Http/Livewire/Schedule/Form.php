@@ -24,6 +24,7 @@ class Form extends Component
         'schedule.shift_start' => 'required',
         'schedule.date_end' => 'required',
         'schedule.shift_end' => 'required',
+        'schedule.output_std_per_shift' => 'required',
     ];
 
     public function mount() {

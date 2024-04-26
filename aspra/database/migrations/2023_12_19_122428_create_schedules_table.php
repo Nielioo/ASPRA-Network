@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('shift_start', ['Shift 1', 'Shift 2', 'Shift 3']);
             $table->date('date_end');
             $table->enum('shift_end', ['Shift 1', 'Shift 2', 'Shift 3']);
+            $table->integer('output_std_per_shift');
 
             $table->unsignedBigInteger('machine_id');
             $table->foreign('machine_id')

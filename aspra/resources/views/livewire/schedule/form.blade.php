@@ -120,6 +120,14 @@
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
+        <div class="px-4 py-2">
+            <x-label for="output_std_per_shift" value="{{ __('Output STD / Shift') }}" />
+            <x-input wire:model="schedule.output_std_per_shift" type="number" name="output_std_per_shift" :value="old('output_std_per_shift')"
+                class="w-full" required />
+            @error('schedule.output_std_per_shift')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
 
         <div class="px-4 pt-8 pb-4">
             <button type="submit"

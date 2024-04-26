@@ -16,6 +16,7 @@ class Schedule extends Model
         'shift_start',
         'date_end',
         'shift_end',
+        'output_std_per_shift',
     ];
 
     public function machine()

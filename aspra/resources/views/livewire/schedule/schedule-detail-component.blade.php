@@ -28,6 +28,10 @@
             <div class="grid-cols-subgrid col-span-2">
                 <div class="text-md p-2">{{ $schedule->date_end }} ({{ $schedule->shift_end }})</div>
             </div>
+            <div class="text-md p-2 font-bold">Output STD / Shift</div>
+            <div class="grid-cols-subgrid col-span-2">
+                <div class="text-md p-2">{{ $schedule->output_std_per_shift }}</div>
+            </div>
 
         </div>
     </div>
