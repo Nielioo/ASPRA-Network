@@ -11,11 +11,11 @@ class ProductionReport extends Model
 
     protected $fillable = [
         'type',
-        'product_quantity',
         'date',
         'shift',
         'total_approved',
         'total_rejected',
+        'description',
     ];
 
     public function schedule()

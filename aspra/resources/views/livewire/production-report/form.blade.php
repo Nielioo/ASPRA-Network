@@ -27,7 +27,7 @@
                 @foreach ($schedules as $schedule)
                     <option value="{{ $schedule->id }}"
                         {{ $schedule->id == $this->productionReport->schedule_id ? 'selected' : '' }}>
-                        {{ $schedule->id }} - {{ $schedule->product_name }}</option>
+                        [{{ $schedule->id }}] - {{ $schedule->product_name }}</option>
                 @endforeach
             </select>
             @error('schedule')
@@ -45,14 +45,6 @@
                 <option value="BLOW" {{ $this->productionReport->type == 'BLOW' ? 'selected' : '' }}>BLOW</option>
             </select>
             @error('productionReport.type')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="px-4 py-2">
-            <x-label for="product_quantity" value="{{ __('Jumlah total produk yang diproduksi') }}" />
-            <x-input wire:model="productionReport.product_quantity" type="text" name="product_quantity"
-                :value="old('product_quantity')" class="w-full" required autofocus />
-            @error('productionReport.product_quantity')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
@@ -82,18 +74,26 @@
             @enderror
         </div>
         <div class="px-4 py-2">
-            <x-label for="total_approved" value="{{ __('Total produk (approved)') }}" />
-            <x-input wire:model="productionReport.total_approved" type="text" name="total_approved" :value="old('total_approved')"
+            <x-label for="total_approved" value="{{ __('Total produk yang sudah terealisasi') }}" />
+            <x-input wire:model="productionReport.total_approved" type="number" name="total_approved" :value="old('total_approved')"
                 class="w-full" required />
             @error('productionReport.total_approved')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
         <div class="px-4 py-2">
-            <x-label for="total_rejected" value="{{ __('Total produk (total_rejected)') }}" />
-            <x-input wire:model="productionReport.total_rejected" type="text" name="total_rejected" :value="old('total_rejected')"
+            <x-label for="total_rejected" value="{{ __('Total produk reject') }}" />
+            <x-input wire:model="productionReport.total_rejected" type="number" name="total_rejected" :value="old('total_rejected')"
                 class="w-full" required />
             @error('productionReport.total_rejected')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="px-4 py-2">
+            <x-label for="description" value="{{ __('Keterangan Tambahan') }}" />
+            <x-input wire:model="productionReport.description" type="text" name="description" :value="old('description')"
+                class="w-full" />
+            @error('productionReport.description')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>

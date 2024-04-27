@@ -45,12 +45,10 @@
                     <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">ID</th>
-                                <th scope="col" class="px-6 py-3">Initial Settings</th>
-                                <th scope="col" class="px-6 py-3">Date</th>
-                                <th scope="col" class="px-6 py-3">Shift</th>
-                                <th scope="col" class="px-6 py-3">Approved</th>
-                                <th scope="col" class="px-6 py-3">Rejected</th>
+                                <th scope="col" class="px-6 py-3">Report <br> ID</th>
+                                <th scope="col" class="px-6 py-3">Tanggal Pembuatan</th>
+                                <th scope="col" class="px-6 py-3">Total produk <br> yang sudah terealisasi</th>
+                                <th scope="col" class="px-6 py-3">Total produk <br> reject</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
@@ -58,11 +56,9 @@
                             @foreach ($productionReports as $productionReport)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $productionReport->id }}</td>
-                                    <td class="px-6 py-4">{{ $productionReport->initial_settings }}</td>
-                                    <td class="px-6 py-4">{{ $productionReport->date }}</td>
-                                    <td class="px-6 py-4">{{ $productionReport->shift }}</td>
-                                    <td class="px-6 py-4">{{ $productionReport->approved }}</td>
-                                    <td class="px-6 py-4">{{ $productionReport->rejected }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->date }} <br> {{ $productionReport->shift }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->total_approved }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->total_rejected }}</td>
                                     <td class="px-6 py-4 flex flex-col md:flex-row">
                                         <form action="{{ route('production_reports.destroy', $productionReport->id) }}" method="POST"
                                             class="flex flex-col md:flex-row">

@@ -25,25 +25,93 @@
                             <td class="border px-4 py-2 text-center">{{ $productionReport->id }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Initial Settings</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $productionReport->initial_settings }}</td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>type</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->type }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Date</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>date</strong></td>
                             <td class="border px-4 py-2 text-center">{{ $productionReport->date }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Shift</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>shift</strong></td>
                             <td class="border px-4 py-2 text-center">{{ $productionReport->shift }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Approved</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $productionReport->approved }}</td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>total_approved</strong>
+                            </td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->total_approved }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Rejected</strong></td>
-                            <td class="border px-4 py-2 text-center">{{ $productionReport->rejected }}</td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>total_rejected</strong>
+                            </td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->total_rejected }}</td>
                         </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>description</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>schedule_id</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->schedule_id }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
+                                <strong>output_std_per_shift</strong>
+                            </td>
+                            <td class="border px-4 py-2 text-center">
+                                {{ $productionReport->schedule->output_std_per_shift }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Persentase Pencapaian
+                                    (%)</strong></td>
+                            <td class="border px-4 py-2 text-center">
+                                {{ ($productionReport->total_approved / $productionReport->schedule->output_std_per_shift) * 100 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Grade Pencapaian</strong>
+                            </td>
+                            <td class="border px-4 py-2 text-center">
+                                @php
+                                    $percentage = ($productionReport->total_approved / $productionReport->schedule->output_std_per_shift) * 100;
+                                    if ($percentage >= 95) {
+                                        $result = 'A';
+                                    } elseif ($percentage == 0) {
+                                        $result = '-';
+                                    } elseif ($percentage >= 86) {
+                                        $result = 'B';
+                                    } else {
+                                        $result = 'C';
+                                    }
+                                @endphp
+                                {{ $result }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>product_id</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->product_id }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>product_name</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->product->name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total Order (sesuai oi)</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->schedule->oi->total_order }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total produk yang sudah di produksi (di gudang)</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->product->remaining_stock }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total reject </strong></td>
+                            <td class="border px-4 py-2 text-center"> Tambah total reject di produk</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Outstanding (Sisa OI)</strong></td>
+                            <td class="border px-4 py-2 text-center">{{ $productionReport->product->outstanding }}</td>
+                        </tr>
+
                     </tbody>
                 </table>
 

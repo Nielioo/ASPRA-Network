@@ -69,6 +69,14 @@
             @enderror
         </div>
         <div class="px-4 py-2">
+            <x-label for="output_std_per_shift" value="{{ __('Output STD / Shift') }}" />
+            <x-input wire:model="schedule.output_std_per_shift" type="number" name="output_std_per_shift" :value="old('output_std_per_shift')"
+                class="w-full" required />
+            @error('schedule.output_std_per_shift')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="px-4 py-2">
             <x-label for="date_start" value="{{ __('Tanggal mulai produksi') }}" />
             <x-input wire:model="schedule.date_start" type="date" name="date_start" :value="old('date_start')" class="w-full"
                 required />
@@ -117,14 +125,6 @@
                 </option>
             </select>
             @error('schedule.shift_end')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="px-4 py-2">
-            <x-label for="output_std_per_shift" value="{{ __('Output STD / Shift') }}" />
-            <x-input wire:model="schedule.output_std_per_shift" type="number" name="output_std_per_shift" :value="old('output_std_per_shift')"
-                class="w-full" required />
-            @error('schedule.output_std_per_shift')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>

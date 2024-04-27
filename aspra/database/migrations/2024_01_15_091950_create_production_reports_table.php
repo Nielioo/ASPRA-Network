@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('production_reports', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['INJECT', 'BLOW']);
-            $table->integer('product_quantity');
             $table->date('date');
             $table->enum('shift', ['Shift 1', 'Shift 2', 'Shift 3']);
             $table->integer('total_approved');
             $table->integer('total_rejected');
+            $table->string('description')->nullable();
 
             $table->unsignedBigInteger('schedule_id');
             $table->foreign('schedule_id')
