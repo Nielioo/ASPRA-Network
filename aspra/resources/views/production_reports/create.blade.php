@@ -17,7 +17,7 @@
                         <h1 class="text-4xl dark:text-white">Create New Production Report</h2>
                     </div>
                 </div>
-
+                
                 @livewire('production-report.form')
 
             </div>

@@ -13,6 +13,7 @@ class Form extends Component
 {
     public $productionReport;
     public $schedule;
+    public $product_name_here;
 
     public $submitButtonName;
 
@@ -36,6 +37,14 @@ class Form extends Component
         } else {
             $this->submitButtonName = 'Edit';
         }
+    }
+
+    public function updatedSchedule($value)
+    {
+        // Find the selected Schedule
+        $schedule = Schedule::find($value);
+
+        $this->product_name_here = $schedule->product_name;
     }
 
     public function save()

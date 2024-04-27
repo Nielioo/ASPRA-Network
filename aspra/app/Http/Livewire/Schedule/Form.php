@@ -45,9 +45,9 @@ class Form extends Component
         // Find the selected OI
         $oi = Oi::find($value);
 
-         // Initialize schedule with a default product_name
-         $this->schedule->product_name = $oi->product->name;
-         $this->schedule->product_quantity = $oi->total_order;
+        // Initialize schedule with a default product_name
+        $this->schedule->product_name = $oi->product->name;
+        $this->schedule->product_quantity = $oi->total_order;
     }
 
     public function save()

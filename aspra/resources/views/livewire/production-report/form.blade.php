@@ -34,6 +34,12 @@
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
+
+        <p>{{$product_name_here}}</p>
+        {{-- <div>
+            @livewire('schedule.schedule-detail-component', ['schedule' => $this->productionReport->schedule])
+        </div> --}}
+
         <div class="px-4 py-2">
             <x-label for="type" value="{{ __('Pilih tipe produksi') }}" />
             {{-- Input Dropdown --}}
