@@ -35,10 +35,47 @@
             @enderror
         </div>
 
-        <p>{{$product_name_here}}</p>
-        {{-- <div>
-            @livewire('schedule.schedule-detail-component', ['schedule' => $this->productionReport->schedule])
-        </div> --}}
+        @if ($selectedSchedule)
+            <div class="px-4 py-2">
+                <div class="grid-cols-subgrid col-span-3">
+                    <div class="grid grid-cols-3 gap-1 border-solid border-2 border-slate-700 p-1">
+
+                        <div class="text-md p-2 font-bold">Schedule_ID</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $selectedSchedule->id }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Mesin yang digunakan</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">[{{ $selectedSchedule->machine->id }}] - {{ $selectedSchedule->machine->name }}
+                            </div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Nama Produk yang ingin di produksi</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">[{{ $selectedSchedule->oi->product->product_code }}] -
+                                {{ $selectedSchedule->product_name }}
+                            </div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Jumlah Produk yang ingin di produksi</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $selectedSchedule->product_quantity }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Jadwal mulai produksi</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $selectedSchedule->date_start }} ({{ $selectedSchedule->shift_start }})</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Jadwal selesai produksi</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $selectedSchedule->date_end }} ({{ $selectedSchedule->shift_end }})</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Output STD / Shift</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $selectedSchedule->output_std_per_shift }}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="px-4 py-2">
             <x-label for="type" value="{{ __('Pilih tipe produksi') }}" />
@@ -47,7 +84,8 @@
                 class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required>
                 <option value="" class="text-slate-400" selected>Select an option</option>
-                <option value="INJECT" {{ $this->productionReport->type == 'INJECT' ? 'selected' : '' }}>INJECT</option>
+                <option value="INJECT" {{ $this->productionReport->type == 'INJECT' ? 'selected' : '' }}>INJECT
+                </option>
                 <option value="BLOW" {{ $this->productionReport->type == 'BLOW' ? 'selected' : '' }}>BLOW</option>
             </select>
             @error('productionReport.type')

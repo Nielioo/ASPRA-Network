@@ -13,7 +13,7 @@ class Form extends Component
 {
     public $productionReport;
     public $schedule;
-    public $product_name_here;
+    public $selectedSchedule;
 
     public $submitButtonName;
 
@@ -44,7 +44,7 @@ class Form extends Component
         // Find the selected Schedule
         $schedule = Schedule::find($value);
 
-        $this->product_name_here = $schedule->product_name;
+        $this->selectedSchedule = $schedule;
     }
 
     public function save()
