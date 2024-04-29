@@ -13,6 +13,9 @@ class Form extends Component
 {
     public $productionReport;
     public $schedule;
+
+    public $query;
+    public $schedules;
     public $selectedSchedule;
 
     public $submitButtonName;
@@ -32,6 +35,7 @@ class Form extends Component
         if (!$this->productionReport){
             $this->productionReport = new ProductionReport(['date' => Carbon::now()->format('Y-m-d')]);
             $this->schedule = $this->productionReport->schedule_id;
+            $this->schedules = Schedule::all();
 
             $this->submitButtonName = 'Create';
         } else {
@@ -47,13 +51,39 @@ class Form extends Component
         $this->selectedSchedule = $schedule;
     }
 
+    public function updateSelectedSchedule($scheduleId)
+    {
+        $selectedSchedule = Schedule::find($scheduleId);
+
+        if ($selectedSchedule) {
+            $this->selectedSchedule = $selectedSchedule;
+            $this->resetVars();
+        }
+    }
+
+    public function updatedQuery()
+    {
+        sleep(0.5);
+        $this->schedules = Schedule::where('id', 'like', '%' . $this->query . '%')
+            ->orWhere('product_name', 'like', '%' . $this->query . '%')
+            ->orWhere('date_start', 'like', '%' . $this->query . '%')
+            ->get()->toArray();
+    }
+
+    public function resetVars()
+    {
+        $this->query = '';
+        $this->schedules = [];
+    }
+
+
     public function save()
     {
-        $schedule = Schedule::find($this->schedule);
-
+        $this->schedule = $this->selectedSchedule;
         $this->validate();
-        $this->productionReport->schedule_id = $this->schedule;
-        $this->productionReport->product_id = $schedule->oi->product_id;
+
+        $this->productionReport->schedule_id = $this->schedule->id;
+        $this->productionReport->product_id = $this->schedule->oi->product_id;
 
         if ($this->productionReport->exists) {
             // Subtract the old total_approved from remaining_stock
