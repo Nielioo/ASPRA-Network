@@ -18,6 +18,8 @@
             </div>
         @endif
 
+        @livewire('schedule.schedule-search-bar',['schedules' => $schedules])
+
         <div class="px-4 py-2">
             <x-label for="schedule" value="{{ __('Pilih Jadwal') }}" />
             {{-- Input Dropdown --}}
@@ -27,7 +29,7 @@
                 @foreach ($schedules as $schedule)
                     <option value="{{ $schedule->id }}"
                         {{ $schedule->id == $this->productionReport->schedule_id ? 'selected' : '' }}>
-                        [{{ $schedule->id }}] - {{ $schedule->product_name }}</option>
+                        [{{ $schedule->id }}] - ({{ $schedule->date_start }} {{ $schedule->shift_start }} s.d. {{ $schedule->date_end }} {{ $schedule->shift_end }}) - {{ $schedule->product_name }} </option>
                 @endforeach
             </select>
             @error('schedule')
