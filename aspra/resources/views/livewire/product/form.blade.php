@@ -84,6 +84,14 @@
             @enderror
         </div>
         <div class="px-4 py-2">
+            <x-label for="needs_per_month" value="{{ __('Kebutuhan per Bulan') }}" />
+            <x-input wire:model="product.needs_per_month" type="number" name="needs_per_month" :value="old('needs_per_month')"
+                class="w-full" required />
+            @error('product.needs_per_month')
+                <div class="text-red-600">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="px-4 py-2">
             <x-label for="remaining_stock" value="{{ __('Stok Akhir') }}" />
             <x-input wire:model="product.remaining_stock" type="number" name="remaining_stock" :value="old('remaining_stock')"
                 class="w-full" required />
@@ -100,18 +108,10 @@
             @enderror
         </div>
         <div class="px-4 py-2">
-            <x-label for="needs_per_month" value="{{ __('Kebutuhan per Bulan') }}" />
-            <x-input wire:model="product.needs_per_month" type="number" name="needs_per_month" :value="old('needs_per_month')"
+            <x-label for="grand_total_rejected" value="{{ __('Total reject keseluruhan') }}" />
+            <x-input wire:model="product.grand_total_rejected" type="number" name="grand_total_rejected" :value="old('grand_total_rejected')"
                 class="w-full" required />
-            @error('product.needs_per_month')
-                <div class="text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="px-4 py-2">
-            <x-label for="last_order_date" value="{{ __('Pengajuan Terakhir') }}" />
-            <x-input wire:model="product.last_order_date" type="date" name="last_order_date" :value="old('last_order_date')"
-                class="w-full" required />
-            @error('product.last_order_date')
+            @error('product.grand_total_rejected')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>

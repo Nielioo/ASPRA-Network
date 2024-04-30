@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('outstanding')->nullable();
             $table->integer('needs_per_month')->nullable();
             $table->date('last_order_date')->nullable();
+            $table->integer('grand_total_rejected')->nullable();
             $table->timestamps();
         });
     }

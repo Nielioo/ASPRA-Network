@@ -39,10 +39,15 @@ class Form extends Component
 
     public function save()
     {
+        $product = Product::find($this->product);
+
         $this->validate();
         $this->oi->product_id = $this->product;
+        $product->last_order_date = $this->oi->date_created;
 
         $this->oi->save();
+        $product->save();
+
         session()->flash('message', 'Oi Saved!');
         return redirect()->route('ois.index');
     }

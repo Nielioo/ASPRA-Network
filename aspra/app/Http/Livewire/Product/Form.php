@@ -23,12 +23,17 @@ class Form extends Component
         'product.outstanding' => '',
         'product.needs_per_month' => '',
         'product.last_order_date' => '',
+        'product.grand_total_rejected' => '',
     ];
 
     public function mount() {
         // Check if the Product property is set
         if (!$this->product){
             $this->product = new Product();
+            $this->product->remaining_stock = 0;
+            $this->product->outstanding = 0;
+            $this->product->grand_total_rejected = 0;
+            $this->product->last_order_date = null;
 
             $this->submitButtonName = 'Create';
         } else {

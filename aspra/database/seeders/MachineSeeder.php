@@ -14,7 +14,7 @@ class MachineSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             DB::table('machines')->insert([
                 'number' => '1 - ' . rand(2,10),
                 'name' => 'Machine ' . ($i + 1),

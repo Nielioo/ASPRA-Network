@@ -22,6 +22,7 @@ class Product extends Model
         'outstanding',
         'needs_per_month',
         'last_order_date',
+        'grand_total_rejected',
     ];
 
     public function ois()

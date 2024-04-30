@@ -72,7 +72,9 @@
 
                         <div class="text-md p-2 font-bold">Pengajuan OI terakhir</div>
                         <div class="grid-cols-subgrid col-span-2">
-                            <div class="text-md p-2">{{ $product->last_order_date }}</div>
+                            <div class="text-md p-2">
+                                {{ $product->last_order_date ? $product->last_order_date : 'Belum ada pengajuan'}}
+                            </div>
                         </div>
                         <div class="text-md p-2 font-bold">Stok Akhir</div>
                         <div class="grid-cols-subgrid col-span-2">
@@ -81,6 +83,10 @@
                         <div class="text-md p-2 font-bold">Outstanding</div>
                         <div class="grid-cols-subgrid col-span-2">
                             <div class="text-md p-2">{{ $product->outstanding }}</div>
+                        </div>
+                        <div class="text-md p-2 font-bold">Total reject keseluruhan</div>
+                        <div class="grid-cols-subgrid col-span-2">
+                            <div class="text-md p-2">{{ $product->grand_total_rejected }}</div>
                         </div>
                         <div class="text-md p-2 font-bold">Kebutuhan per bulan</div>
                         <div class="grid-cols-subgrid col-span-2">
