@@ -10,8 +10,12 @@ use Livewire\Component;
 class Form extends Component
 {
     public $schedule;
-    public $machine;
     public $oi;
+    public $machine;
+
+    public $oiQuery;
+    public $ois;
+    public $selectedOi;
 
     public $submitButtonName;
 
@@ -36,6 +40,8 @@ class Form extends Component
 
             $this->submitButtonName = 'Create';
         } else {
+            $this->selectedOi = $this->schedule->oi;
+
             $this->submitButtonName = 'Edit';
         }
     }
@@ -45,13 +51,43 @@ class Form extends Component
         // Find the selected OI
         $oi = Oi::find($value);
 
-        // Initialize schedule with a default product_name
-        $this->schedule->product_name = $oi->product->name;
-        $this->schedule->product_quantity = $oi->total_order;
+        $this->selectedOi = $oi;
+    }
+
+    public function updateSelectedOi($oiId)
+    {
+        $selectedOi = Oi::with('product')->find($oiId);
+
+        if ($selectedOi) {
+            $this->selectedOi = $selectedOi;
+            $this->schedule->product_name = $selectedOi->product->name;
+            $this->schedule->product_quantity = $selectedOi->total_order;
+            $this->resetVars();
+        }
+    }
+
+    public function updatedOiQuery()
+    {
+        sleep(0.5);
+        $this->ois = Oi::with('product')
+               ->where('ois.id', 'like', '%' . $this->oiQuery . '%')
+               ->orWhereHas('product', function ($query) {
+                $query->where('name', 'like', '%' . $this->oiQuery . '%');
+                })
+               ->orWhere('customer_name', 'like', '%' . $this->oiQuery . '%')
+               ->get()->toArray();
+    }
+
+    public function resetVars()
+    {
+        $this->oiQuery = '';
+        $this->ois = [];
     }
 
     public function save()
     {
+        $this->oi = $this->selectedOi->id;
+
         $this->validate();
         $this->schedule->machine_id = $this->machine;
         $this->schedule->oi_id = $this->oi;

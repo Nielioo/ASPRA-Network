@@ -19,9 +19,47 @@
             </div>
         @endif
 
+        {{-- oi search bar --}}
         <div class="px-4 py-2">
             <x-label for="oi" value="{{ __('Pilih OI') }}" />
-            {{-- Input Dropdown --}}
+            @if ($selectedOi)
+                <p class="p-2 border border-gray-300 rounded-none rounded-t-lg w-full">
+                    [{{ $selectedOi->id }}] - {{ $selectedOi->product->name }} (Customer Name: {{ $selectedOi->customer_name }},Total order: {{ $selectedOi->total_order }})
+                </p>
+            @else
+                <p class="text-slate-400 p-2 border border-gray-300 rounded-none rounded-t-lg w-full">No OI
+                    selected. Please select OI first.</p>
+            @endif
+            <x-input type="text"
+                class="border border-gray-300 rounded-none rounded-b-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="search ois here..." wire:model="oiQuery" wire:keydown.escape="resetVars"
+                wire:click.outside="resetVars" />
+            <div class="overflow-y-scroll bg-white w-full">
+                @if (!empty($oiQuery))
+                    <div class="fixed top-0 right-0 bottom-0 left-0 -z-10" wire:click="resetVars"></div>
+                    @if (!empty($ois))
+                        @foreach ($ois as $oi)
+                            <ul class="list-outside list-none">
+                                <li class="p-2 border-x-2 border-b-2 border-slate-200 cursor-pointer divide-y hover:bg-slate-100"
+                                    wire:click="updateSelectedOi({{ $oi['id'] }})">
+                                    [{{ $oi['id'] }}] - {{ $oi['product']['name'] }} (Customer Name: {{ $oi['customer_name'] }},Total order: {{ $oi['total_order'] }})
+                                    {{-- [{{ $oi['id'] }}] - (Customer Name: {{ $oi['customer_name'] }},Total order: {{ $oi['total_order'] }}) --}}
+                                </li>
+                            </ul>
+                        @endforeach
+                    @else
+                        <ul class="list-outside list-none">
+                            <li class="p-2 border-x-2 border-b-2 border-slate-200 cursor-pointer divide-y hover:bg-slate-100">
+                                No result found
+                            </li>
+                        </ul>
+                    @endif
+                @endif
+            </div>
+        </div>
+        {{-- <div class="px-4 py-2">
+            <x-label for="oi" value="{{ __('Pilih OI') }}" />
+            // Input Dropdown
             <select wire:model="oi"
                 class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="" class="text-slate-400" selected>Select an option</option>
@@ -33,7 +71,8 @@
             @error('oi')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
+
         <div class="px-4 py-2">
             <x-label for="machine" value="{{ __('Pilih Mesin') }}" />
             {{-- Input Dropdown --}}
