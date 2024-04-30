@@ -39,6 +39,8 @@ class Form extends Component
 
             $this->submitButtonName = 'Create';
         } else {
+            $this->selectedSchedule = $this->productionReport->schedule;
+
             $this->submitButtonName = 'Edit';
         }
     }

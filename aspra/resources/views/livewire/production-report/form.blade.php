@@ -78,6 +78,7 @@
             @enderror
         </div> --}}
 
+        {{-- Schedule Preview --}}
         @if ($selectedSchedule)
             <div class="px-4 py-2">
                 <div class="grid-cols-subgrid col-span-3">
