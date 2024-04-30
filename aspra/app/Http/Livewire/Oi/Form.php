@@ -12,6 +12,10 @@ class Form extends Component
     public $oi;
     public $product;
 
+    public $productQuery;
+    public $products;
+    public $selectedProduct;
+
     public $submitButtonName;
 
     protected $rules = [
@@ -33,20 +37,56 @@ class Form extends Component
 
             $this->submitButtonName = 'Create';
         } else {
+            $this->selectedProduct = $this->oi->product;
+
             $this->submitButtonName = 'Edit';
         }
     }
 
+    public function updatedProduct($value)
+    {
+        // Find the selected Product
+        $product = Product::find($value);
+
+        $this->selectedProduct = $product;
+    }
+
+    public function updateSelectedProduct($productId)
+    {
+        $selectedProduct = Product::find($productId);
+
+        if ($selectedProduct) {
+            $this->selectedProduct = $selectedProduct;
+            $this->resetVars();
+        }
+    }
+
+    public function updatedProductQuery()
+    {
+        sleep(0.5);
+        $this->products = Product::where('id', 'like', '%' . $this->productQuery . '%')
+            ->orWhere('product_code', 'like', '%' . $this->productQuery . '%')
+            ->orWhere('name', 'like', '%' . $this->productQuery . '%')
+            ->get()->toArray();
+    }
+
+    public function resetVars()
+    {
+        $this->productQuery = '';
+        $this->products = [];
+    }
+
+
     public function save()
     {
-        $product = Product::find($this->product);
+        $this->product = $this->selectedProduct;
 
         $this->validate();
-        $this->oi->product_id = $this->product;
-        $product->last_order_date = $this->oi->date_created;
+        $this->oi->product_id = $this->product->id;
+        $this->product->last_order_date = $this->oi->date_created;
 
         $this->oi->save();
-        $product->save();
+        $this->product->save();
 
         session()->flash('message', 'Oi Saved!');
         return redirect()->route('ois.index');
