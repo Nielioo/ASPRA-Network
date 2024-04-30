@@ -53,15 +53,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($productionReports as $productionReport)
+                            @forelse ($productionReports as $productionReport)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $productionReport->id }}</td>
-                                    <td class="px-6 py-4">{{ $productionReport->date }} <br> {{ $productionReport->shift }}</td>
+                                    <td class="px-6 py-4">{{ $productionReport->date }} <br>
+                                        {{ $productionReport->shift }}</td>
                                     <td class="px-6 py-4">{{ $productionReport->total_approved }}</td>
                                     <td class="px-6 py-4">{{ $productionReport->total_rejected }}</td>
                                     <td class="px-6 py-4 flex flex-col md:flex-row">
-                                        <form action="{{ route('production_reports.destroy', $productionReport->id) }}" method="POST"
-                                            class="flex flex-col md:flex-row">
+                                        <form action="{{ route('production_reports.destroy', $productionReport->id) }}"
+                                            method="POST" class="flex flex-col md:flex-row">
                                             @csrf
 
                                             <a class="inline-block bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
@@ -86,7 +87,12 @@
                                     </td>
 
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="px-6 py-4 text-center">No report has been made.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

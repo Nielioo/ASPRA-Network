@@ -127,14 +127,51 @@
         <tr>
             <td colspan="3"
                 style="text-align: center; font-weight: bold; border: 2px solid #2d3748; padding: 0.5em;">
+                Status Produk
+            </td>
+        </tr>
+        <!-- body -->
+        @if ($product->last_order_date)
+            <tr>
+                <td style="font-weight: bold; padding: 0.5em; width: 33%;">Pengajuan OI terakhir</td>
+                <td style="padding: 0.5em; text-align: left; width: 33%;">{{ $product->last_order_date }}</td>
+                <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
+            </tr>
+        @endif
+        <tr>
+            <td style="font-weight: bold; padding: 0.5em; width: 33%;">Stok saat ini</td>
+            <td style="padding: 0.5em; text-align: left; width: 33%;">{{ $product->remaining_stock }}</td>
+            <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold; padding: 0.5em; width: 33%;">Outstanding</td>
+            <td style="padding: 0.5em; text-align: left; width: 33%;">{{ $product->outstanding }}</td>
+            <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold; padding: 0.5em; width: 33%;">Total reject keseluruhan</td>
+            <td style="padding: 0.5em; text-align: left; width: 33%;">{{ $product->grand_total_rejected }}</td>
+            <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold; padding: 0.5em; width: 33%;">Kebutuhan per bulan</td>
+            <td style="padding: 0.5em; text-align: left; width: 33%;">{{ $product->needs_per_month }}</td>
+            <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
+        </tr>
+        <!-- header 2 -->
+        <tr>
+            <td colspan="3"
+                style="text-align: center; font-weight: bold; border: 2px solid #2d3748; padding: 0.5em;">
                 Riwayat Verifikasi
             </td>
         </tr>
         <!-- body -->
         @forelse ($oi->verifications as $verification)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td style="font-weight: bold; padding: 0.5em; width: 50%;">Verifier {{ $verification->verifier_order }}</td>
-                <td style="padding: 0.5em; text-align: left; width: 50%;">{{ strtoupper($verification->status) }} at {{ $verification->updated_at }} by {{ $verification->verifier_name }}</td>
+                <td style="font-weight: bold; padding: 0.5em; width: 50%;">Verifier {{ $verification->verifier_order }}
+                </td>
+                <td style="padding: 0.5em; text-align: left; width: 50%;">{{ strtoupper($verification->status) }} at
+                    {{ $verification->updated_at }} by {{ $verification->verifier_name }}</td>
                 <td style="padding: 0.5em; width: 0%;"> &nbsp; </td>
             </tr>
         @empty

@@ -54,7 +54,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($spks as $spk)
+                            @forelse ($spks as $spk)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $spk->id }}</td>
                                     <td class="px-6 py-4">{{ $spk->schedule->id }}</td>
@@ -85,9 +85,13 @@
                                             {{-- @endcan --}}
                                         </form>
                                     </td>
-
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="px-6 py-4 text-center">No spk has been made.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

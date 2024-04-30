@@ -76,7 +76,7 @@
                                 {{ $product->last_order_date ? $product->last_order_date : 'Belum ada pengajuan'}}
                             </div>
                         </div>
-                        <div class="text-md p-2 font-bold">Stok Akhir</div>
+                        <div class="text-md p-2 font-bold">Stok saat ini</div>
                         <div class="grid-cols-subgrid col-span-2">
                             <div class="text-md p-2">{{ $product->remaining_stock }}</div>
                         </div>

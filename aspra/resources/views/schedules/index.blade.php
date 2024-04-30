@@ -54,12 +54,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($schedules as $schedule)
+
+                            @forelse ($schedules as $schedule)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $schedule->id }}</td>
                                     <td class="px-6 py-4">{{ $schedule->product_name }}</td>
                                     <td class="px-6 py-4">{{ $schedule->product_quantity }}</td>
-                                    <td class="px-6 py-4">{{ $schedule->date_start }} {{ $schedule->shift_start }}</td>
+                                    <td class="px-6 py-4">{{ $schedule->date_start }} {{ $schedule->shift_start }}
+                                    </td>
                                     <td class="px-6 py-4">{{ $schedule->date_end }} {{ $schedule->shift_end }}</td>
                                     <td class="px-6 py-4 flex flex-col md:flex-row">
                                         <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST"
@@ -86,9 +88,13 @@
                                             {{-- @endcan --}}
                                         </form>
                                     </td>
-
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="px-6 py-4 text-center">No schedule has been made.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

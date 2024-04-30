@@ -53,7 +53,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($ois as $oi)
+                            @forelse ($ois as $oi)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $oi->id }}</td>
                                     <td class="px-6 py-4">{{ $oi->date_created }}</td>
@@ -86,7 +86,12 @@
                                     </td>
 
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="px-6 py-4 text-center">No OI has been made.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

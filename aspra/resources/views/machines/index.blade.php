@@ -53,7 +53,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($machines as $machine)
+                            @forelse ($machines as $machine)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $machine->id }}</td>
                                     <td class="px-6 py-4">{{ $machine->number }}</td>
@@ -83,9 +83,13 @@
                                             {{-- @endcan --}}
                                         </form>
                                     </td>
-
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="px-6 py-4 text-center">No machine has been made.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

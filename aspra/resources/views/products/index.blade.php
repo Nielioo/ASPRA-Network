@@ -48,12 +48,12 @@
                                 {{-- <th scope="col" class="px-6 py-3">No</th> --}}
                                 <th scope="col" class="px-6 py-3">Kode Produk</th>
                                 <th scope="col" class="px-6 py-3">Nama Produk</th>
-                                <th scope="col" class="px-6 py-3">Stok yang sudah terealisasi</th>
+                                <th scope="col" class="px-6 py-3">Stok saat ini</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @forelse ($products as $product)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     {{-- <td class="px-6 py-4">{{ ++$i }}</td> --}}
                                     <td class="px-6 py-4">{{ $product->product_code }}</td>
@@ -85,7 +85,12 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="px-6 py-4 text-center">No product has been made.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

@@ -7,6 +7,7 @@ use Livewire\Component;
 class ProductDetailToogle extends Component
 {
     public $isOpen = false;
+    public $isOpen2 = false;
     public $product;
 
     public function mount($product)
@@ -17,6 +18,11 @@ class ProductDetailToogle extends Component
     public function toggle()
     {
         $this->isOpen = !$this->isOpen;
+    }
+
+    public function toggle2()
+    {
+        $this->isOpen2 = !$this->isOpen2;
     }
 
     public function render()
