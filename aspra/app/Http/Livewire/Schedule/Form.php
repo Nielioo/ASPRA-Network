@@ -35,12 +35,11 @@ class Form extends Component
         // Check if the schedule property is set
         if (!$this->schedule){
             $this->schedule = new Schedule();
-            $this->machine = $this->schedule->machine_id;
-            $this->oi = $this->schedule->oi_id;
 
             $this->submitButtonName = 'Create';
         } else {
             $this->selectedOi = $this->schedule->oi;
+            $this->machine = $this->schedule->machine_id;
 
             $this->submitButtonName = 'Edit';
         }

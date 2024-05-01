@@ -79,7 +79,7 @@
             <select wire:model="machine"
                 class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required>
-                <option value="" class="text-slate-400" selected>Select an option</option>
+                <option value="" class="text-slate-400" {{ is_null($this->schedule->machine_id) ? 'selected' : '' }}>Select an option</option>
                 @foreach ($machines as $machine)
                     <option value="{{ $machine->id }}"
                         {{ $machine->id == $this->schedule->machine_id ? 'selected' : '' }}>
