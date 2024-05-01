@@ -24,7 +24,8 @@
             <x-label for="oi" value="{{ __('Pilih OI') }}" />
             @if ($selectedOi)
                 <p class="p-2 border border-gray-300 rounded-none rounded-t-lg w-full">
-                    [{{ $selectedOi->id }}] - {{ $selectedOi->product->name }} (Customer Name: {{ $selectedOi->customer_name }},Total order: {{ $selectedOi->total_order }})
+                    [{{ $selectedOi->id }}] - {{ $selectedOi->product->name }} (Customer Name:
+                    {{ $selectedOi->customer_name }},Total order: {{ $selectedOi->total_order }})
                 </p>
             @else
                 <p class="text-slate-400 p-2 border border-gray-300 rounded-none rounded-t-lg w-full">No OI
@@ -42,14 +43,16 @@
                             <ul class="list-outside list-none">
                                 <li class="p-2 border-x-2 border-b-2 border-slate-200 cursor-pointer divide-y hover:bg-slate-100"
                                     wire:click="updateSelectedOi({{ $oi['id'] }})">
-                                    [{{ $oi['id'] }}] - {{ $oi['product']['name'] }} (Customer Name: {{ $oi['customer_name'] }},Total order: {{ $oi['total_order'] }})
+                                    [{{ $oi['id'] }}] - {{ $oi['product']['name'] }} (Customer Name:
+                                    {{ $oi['customer_name'] }},Total order: {{ $oi['total_order'] }})
                                     {{-- [{{ $oi['id'] }}] - (Customer Name: {{ $oi['customer_name'] }},Total order: {{ $oi['total_order'] }}) --}}
                                 </li>
                             </ul>
                         @endforeach
                     @else
                         <ul class="list-outside list-none">
-                            <li class="p-2 border-x-2 border-b-2 border-slate-200 cursor-pointer divide-y hover:bg-slate-100">
+                            <li
+                                class="p-2 border-x-2 border-b-2 border-slate-200 cursor-pointer divide-y hover:bg-slate-100">
                                 No result found
                             </li>
                         </ul>
@@ -74,12 +77,17 @@
         </div> --}}
 
         <div class="px-4 py-2">
+            @livewire('oi.oi-detail-component', ['oi' => $selectedOi])
+        </div>
+
+        <div class="px-4 py-2">
             <x-label for="machine" value="{{ __('Pilih Mesin') }}" />
             {{-- Input Dropdown --}}
             <select wire:model="machine"
                 class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required>
-                <option value="" class="text-slate-400" {{ is_null($this->schedule->machine_id) ? 'selected' : '' }}>Select an option</option>
+                <option value="" class="text-slate-400"
+                    {{ is_null($this->schedule->machine_id) ? 'selected' : '' }}>Select an option</option>
                 @foreach ($machines as $machine)
                     <option value="{{ $machine->id }}"
                         {{ $machine->id == $this->schedule->machine_id ? 'selected' : '' }}>
@@ -100,7 +108,8 @@
             @enderror
         </div>
         <div class="px-4 py-2">
-            <x-label for="product_quantity" value="{{ __('Jumlah produk yang ingin diproduksi (sesuai dengan oi)') }}" />
+            <x-label for="product_quantity"
+                value="{{ __('Jumlah produk yang ingin diproduksi (sesuai dengan oi)') }}" />
             <x-input wire:model="schedule.product_quantity" type="number" name="product_quantity" :value="old('product_quantity')"
                 class="w-full" required />
             @error('schedule.product_quantity')
@@ -109,8 +118,8 @@
         </div>
         <div class="px-4 py-2">
             <x-label for="output_std_per_shift" value="{{ __('Output STD / Shift') }}" />
-            <x-input wire:model="schedule.output_std_per_shift" type="number" name="output_std_per_shift" :value="old('output_std_per_shift')"
-                class="w-full" required />
+            <x-input wire:model="schedule.output_std_per_shift" type="number" name="output_std_per_shift"
+                :value="old('output_std_per_shift')" class="w-full" required />
             @error('schedule.output_std_per_shift')
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
