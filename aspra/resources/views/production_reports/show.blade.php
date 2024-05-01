@@ -123,8 +123,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total reject </strong></td>
-                            <td class="border px-4 py-2"> Tambah total reject di produk</td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total reject keseluruhan</strong></td>
+                            <td class="border px-4 py-2">{{ $productionReport->product->grand_total_rejected }}</td>
                         </tr>
                         <tr>
                             <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Outstanding (Sisa

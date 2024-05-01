@@ -87,12 +87,14 @@ class Form extends Component
         $this->productionReport->product_id = $this->schedule->oi->product_id;
 
         if ($this->productionReport->exists) {
-            // Subtract the old total_approved from remaining_stock
+            // Subtract the old value
             $this->productionReport->product->remaining_stock -= $this->productionReport->getOriginal('total_approved');
+            $this->productionReport->product->grand_total_rejected -= $this->productionReport->getOriginal('total_rejected');
         }
 
-        // Add the new total_approved to remaining_stock
+        // Add the new value
         $this->productionReport->product->remaining_stock += $this->productionReport->total_approved;
+        $this->productionReport->product->grand_total_rejected += $this->productionReport->total_rejected;
 
         $this->productionReport->product->outstanding = $this->productionReport->schedule->oi->total_order - $this->productionReport->product->remaining_stock;
 
