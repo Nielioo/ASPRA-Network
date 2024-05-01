@@ -78,7 +78,6 @@ class Form extends Component
         $this->schedules = [];
     }
 
-
     public function save()
     {
         $this->schedule = $this->selectedSchedule;

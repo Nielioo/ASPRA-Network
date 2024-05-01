@@ -17,11 +17,15 @@ class Form extends Component
     public $spkFile;
     public $schedule;
 
+    public $query;
+    public $schedules;
+    public $selectedSchedule;
+
     public $submitButtonName;
 
     protected $rules = [
         'schedule' => 'required',
-        'spkFile' => 'nullable|mimes:pdf,xlsx,xls,csv,txt,png,gif,jpg,jpeg|max:8192',
+        'spkFile' => 'nullable|mimes:pdf,xlsx,xls,csv,txt,png,gif,jpg,jpeg|max:24576',
     ];
 
 
@@ -29,17 +33,53 @@ class Form extends Component
         // Check if the spk property is set
         if (!$this->spk){
             $this->spk = new Spk();
-            $this->schedule = $this->spk->schedule_id;
 
             $this->submitButtonName = 'Create';
         } else {
+            $this->selectedSchedule = $this->spk->schedule;
+
             $this->submitButtonName = 'Edit';
         }
     }
 
+    public function updatedSchedule($value)
+    {
+        // Find the selected Schedule
+        $schedule = Schedule::find($value);
+
+        $this->selectedSchedule = $schedule;
+    }
+
+    public function updateSelectedSchedule($scheduleId)
+    {
+        $selectedSchedule = Schedule::find($scheduleId);
+
+        if ($selectedSchedule) {
+            $this->selectedSchedule = $selectedSchedule;
+            $this->resetVars();
+        }
+    }
+
+    public function updatedQuery()
+    {
+        sleep(0.5);
+        $this->schedules = Schedule::where('id', 'like', '%' . $this->query . '%')
+            ->orWhere('product_name', 'like', '%' . $this->query . '%')
+            ->orWhere('date_start', 'like', '%' . $this->query . '%')
+            ->get()->toArray();
+    }
+
+    public function resetVars()
+    {
+        $this->query = '';
+        $this->schedules = [];
+    }
+
     public function save()
     {
+        $this->schedule = $this->selectedSchedule->id;
         $this->validate();
+
         $this->spk->schedule_id = $this->schedule;
 
         // Handle file upload

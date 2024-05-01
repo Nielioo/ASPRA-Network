@@ -1,7 +1,6 @@
 <div>
     <div class="grid-cols-subgrid col-span-3">
         <div class="grid grid-cols-3 gap-1 border-solid border-2 border-slate-700 p-1">
-
             <div class="text-md p-2 font-bold">Schedule_ID</div>
             <div class="grid-cols-subgrid col-span-2">
                 <div class="text-md p-2">{{ $schedule->id }}</div>
@@ -32,7 +31,20 @@
             <div class="grid-cols-subgrid col-span-2">
                 <div class="text-md p-2">{{ $schedule->output_std_per_shift }}</div>
             </div>
-
+        </div>
+        <div class="grid grid-cols-3 gap-1 border-solid border-x-2 border-b-2 border-slate-700 p-1">
+            <div class="text-md p-2 font-bold">Stok saat ini</div>
+            <div class="grid-cols-subgrid col-span-2">
+                <div class="text-md p-2">{{ $schedule->oi->product->remaining_stock }}</div>
+            </div>
+            <div class="text-md p-2 font-bold">Outstanding</div>
+            <div class="grid-cols-subgrid col-span-2">
+                <div class="text-md p-2">{{ $schedule->oi->product->outstanding }}</div>
+            </div>
+            <div class="text-md p-2 font-bold">Total reject keseluruhan</div>
+            <div class="grid-cols-subgrid col-span-2">
+                <div class="text-md p-2">{{ $schedule->oi->product->grand_total_rejected }}</div>
+            </div>
         </div>
     </div>
 </div>
