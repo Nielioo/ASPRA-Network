@@ -16,6 +16,12 @@ class ProductionReportController extends Controller
         return view('production_reports.index',compact('productionReports'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
+    public function recap()
+    {
+        $productionReports = ProductionReport::paginate(10);
+        return view('production_reports.recap',compact('productionReports'))->with('i', (request()->input('page', 1) - 1) * 10);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
