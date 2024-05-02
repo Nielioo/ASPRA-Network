@@ -12,13 +12,13 @@ class ProductionReportController extends Controller
      */
     public function index()
     {
-        $productionReports = ProductionReport::paginate(10);
+        $productionReports = ProductionReport::latest()->paginate(10);
         return view('production_reports.index',compact('productionReports'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
-    public function recap()
+    public function recap(string $type)
     {
-        $productionReports = ProductionReport::paginate(10);
+        $productionReports = ProductionReport::where('type', $type)->latest()->paginate(10);
         return view('production_reports.recap',compact('productionReports'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 

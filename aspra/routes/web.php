@@ -40,7 +40,7 @@ Route::middleware([
     Route::resource('ois', OiController::class);
     Route::resource('schedules', ScheduleController::class);
     Route::resource('spks', SpkController::class);
-    Route::get('production_reports/recap', [ProductionReportController::class, 'recap'])->name('production_reports.recap');
+    Route::get('production_reports/recap/{type}', [ProductionReportController::class, 'recap'])->name('production_reports.recap');
     Route::resource('production_reports', ProductionReportController::class);
 
     Route::resource('products', ProductController::class);
