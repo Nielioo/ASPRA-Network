@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ScheduleController extends Controller
@@ -22,53 +23,6 @@ class ScheduleController extends Controller
     {
         $schedules = Schedule::latest()->paginate(10);
         return view('schedules.recap',compact('schedules'))->with('i', (request()->input('page', 1) - 1) * 10);
-    }
-
-    public function exportToExcel()
-    {
-        // Turn off output buffering
-        ob_end_clean();
-
-        $schedules = Schedule::all();
-
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
-        $headers = ['No. Mesin', 'Nama Mesin', 'Nama Produk', 'Jumlah yang ingin diproduksi', 'Output STD / Shift', 'Tanggal Mulai Produksi', 'Shift Mulai Produksi', 'Tanggal Selesai Produksi', 'Shift Selesai Produksi'];
-        $sheet->fromArray([$headers], NULL, 'A1');
-
-        $row = 2;
-        foreach ($schedules as $schedule) {
-            $values = [
-                $schedule->machine->number,
-                $schedule->machine->name,
-                $schedule->product_name,
-                $schedule->product_quantity,
-                $schedule->output_std_per_shift,
-                $schedule->date_start,
-                $schedule->shift_start,
-                $schedule->date_end,
-                $schedule->shift_end,
-            ];
-            $sheet->fromArray([$values], NULL, 'A' . $row);
-            $row++;
-        }
-
-        $filename = 'schedules.xlsx';
-
-        // Prepare the Excel file as a binary data stream for the browser
-        $writer = new Xlsx($spreadsheet);
-
-        // Send headers
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="' . $filename . '"');
-        header('Cache-Control: max-age=0');
-
-        // Write file to output
-        $writer->save('php://output');
-
-        // Make sure no extra content is sent
-        exit;
     }
 
     /**
@@ -133,5 +87,69 @@ class ScheduleController extends Controller
 
         // redirect to index view
         return redirect()->route('schedules.index')->with('success','Schedule deleted successfully');
+    }
+
+    public function exportToExcel()
+    {
+        // Turn off output buffering
+        ob_end_clean();
+
+        $schedules = Schedule::all();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $headers = ['No. Mesin', 'Nama Mesin', 'Nama Produk', 'Jumlah yang ingin diproduksi', 'Output STD / Shift', 'Tanggal Mulai Produksi', 'Shift Mulai Produksi', 'Tanggal Selesai Produksi', 'Shift Selesai Produksi'];
+        $sheet->fromArray([$headers], NULL, 'A1');
+
+        $row = 2;
+        foreach ($schedules as $schedule) {
+            $values = [
+                $schedule->machine->number,
+                $schedule->machine->name,
+                $schedule->product_name,
+                $schedule->product_quantity,
+                $schedule->output_std_per_shift,
+                $schedule->date_start,
+                $schedule->shift_start,
+                $schedule->date_end,
+                $schedule->shift_end,
+            ];
+            $sheet->fromArray([$values], NULL, 'A' . $row);
+            $row++;
+        }
+
+        // Define the border style
+        $borderStyle = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ];
+
+        // Apply the border style to a range of cells
+        $highestRow = $sheet->getHighestRow(); // e.g. 10
+        $highestColumn = $sheet->getHighestColumn(); // e.g 'F'
+        $sheet->getStyle('A1:' . $highestColumn . $highestRow)->applyFromArray($borderStyle);
+
+        $date = date('Ymd');
+        $microtime = round(microtime(true) * 1000);
+        $filename = "Schedules_Recap_" . $date . "_" . $microtime . ".xlsx";
+
+        // Prepare the Excel file as a binary data stream for the browser
+        $writer = new Xlsx($spreadsheet);
+
+        // Send headers
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+
+        // Write file to output
+        $writer->save('php://output');
+
+        // Make sure no extra content is sent
+        exit;
     }
 }

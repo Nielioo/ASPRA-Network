@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SpkController;
 use App\Http\Controllers\UserController;
+use App\Models\ProductionReport;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,10 +39,11 @@ Route::middleware([
 
     Route::resource('ois', OiController::class);
     Route::get('schedule/recap', [ScheduleController::class, 'recap'])->name('schedules.recap');
-    Route::get('schedule/exportToExcel', [ScheduleController::class, 'exportToExcel'])->name('schedules.exportToExcel');
+    Route::get('schedule/recap/exportToExcel', [ScheduleController::class, 'exportToExcel'])->name('schedules.recap.exportToExcel');
     Route::resource('schedules', ScheduleController::class);
     Route::resource('spks', SpkController::class);
     Route::get('production_reports/recap/{type}', [ProductionReportController::class, 'recap'])->name('production_reports.recap');
+    Route::get('production_reports/recap/{type}/exportToExcel', [ProductionReportController::class, 'exportToExcel'])->name('production_reports.recap.exportToExcel');
     Route::resource('production_reports', ProductionReportController::class);
 
     Route::resource('products', ProductController::class);

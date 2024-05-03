@@ -8,13 +8,15 @@
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-8 shadow-md sm:rounded-lg">
                 <div class="col-lg-12 margin-tb">
-
-
-
                     <div
                         class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
-                        <div>
-                            {{-- Month Filter --}}
+                        {{-- Export to Excel --}}
+                        <a class="bg-lime-500 hover:bg-lime-700 font-bold text-black hover:text-white py-2 px-4 rounded"
+                            href="{{ route('production_reports.recap.exportToExcel', ['type' => session('type')]) }}">
+                            Export to Excel
+                        </a>
+                        <!-- Month Filter -->
+                        {{-- <div>
                             <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
                                 class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                                 type="button">
@@ -94,7 +96,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <label for="table-search" class="sr-only">Search</label>
                         <div class="relative">
@@ -150,19 +152,22 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
+                                    <th scope="col" rowspan="2"
+                                        class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
                                         Shift 1
                                     </th>
                                     <th scope="col" colspan="2" class="px-4 py-1 border-2 border-gray-300">
                                         Pencapaian
                                     </th>
-                                    <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
+                                    <th scope="col" rowspan="2"
+                                        class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
                                         Shift 2
                                     </th>
                                     <th scope="col" colspan="2" class="px-4 py-1 border-2 border-gray-300">
                                         Pencapaian
                                     </th>
-                                    <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
+                                    <th scope="col" rowspan="2"
+                                        class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
                                         Shift 3
                                     </th>
                                     <th scope="col" colspan="2" class="px-4 py-1 border-2 border-gray-300">
@@ -171,13 +176,16 @@
                                     <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300">
                                         TOTAL
                                     </th>
-                                    <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
+                                    <th scope="col" rowspan="2"
+                                        class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
                                         Shift 1
                                     </th>
-                                    <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
+                                    <th scope="col" rowspan="2"
+                                        class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
                                         Shift 2
                                     </th>
-                                    <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
+                                    <th scope="col" rowspan="2"
+                                        class="px-4 py-1 border-2 border-gray-300 whitespace-nowrap">
                                         Shift 3
                                     </th>
                                     <th scope="col" rowspan="2" class="px-4 py-1 border-2 border-gray-300">
