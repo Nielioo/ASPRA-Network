@@ -38,6 +38,7 @@ Route::middleware([
 
     Route::resource('ois', OiController::class);
     Route::get('schedule/recap', [ScheduleController::class, 'recap'])->name('schedules.recap');
+    Route::get('schedule/exportToExcel', [ScheduleController::class, 'exportToExcel'])->name('schedules.exportToExcel');
     Route::resource('schedules', ScheduleController::class);
     Route::resource('spks', SpkController::class);
     Route::get('production_reports/recap/{type}', [ProductionReportController::class, 'recap'])->name('production_reports.recap');
