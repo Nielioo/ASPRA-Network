@@ -65,18 +65,18 @@
                             </svg>
                         </button>
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                            {{-- <x-my-nav-link href="{{ route('schedules.recap') }}" :active="request()->routeIs('schedules.recap')">
+                            <x-my-nav-link href="{{ route('schedules.recap') }}" :active="request()->routeIs('schedules.recap')">
                                 <span class="pl-10">{{ __('Schedules') }}</span>
-                            </x-my-nav-link> --}}
+                            </x-my-nav-link>
                             <x-my-nav-link href="{{ route('production_reports.recap', ['type' => 'INJECT']) }}"
                                 :active="request()->route('production_reports.recap') &&
                                     request()->route('type') == 'INJECT'">
-                                <span class="ml-3">{{ __('Reports - INJECT') }}</span>
+                                <span class="pl-10">{{ __('Reports - INJECT') }}</span>
                             </x-my-nav-link>
                             <x-my-nav-link href="{{ route('production_reports.recap', ['type' => 'BLOW']) }}"
                                 :active="request()->route('production_reports.recap') &&
                                     request()->route('type') == 'BLOW'">
-                                <span class="ml-3">{{ __('Reports - BLOW') }}</span>
+                                <span class="pl-10">{{ __('Reports - BLOW') }}</span>
                             </x-my-nav-link>
                         </ul>
                     </li>

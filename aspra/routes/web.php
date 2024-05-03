@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\OiController;
-use App\Http\Controllers\PoiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionReportController;
 use App\Http\Controllers\RoleController;
@@ -38,6 +37,7 @@ Route::middleware([
     Route::resource('users', UserController::class);
 
     Route::resource('ois', OiController::class);
+    Route::get('schedule/recap', [ScheduleController::class, 'recap'])->name('schedules.recap');
     Route::resource('schedules', ScheduleController::class);
     Route::resource('spks', SpkController::class);
     Route::get('production_reports/recap/{type}', [ProductionReportController::class, 'recap'])->name('production_reports.recap');

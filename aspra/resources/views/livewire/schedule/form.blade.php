@@ -60,6 +60,12 @@
                 @endif
             </div>
         </div>
+        @if ($selectedOi)
+            <div class="px-4 py-2">
+                @livewire('oi.oi-detail-component', ['oi' => $selectedOi])
+            </div>
+        @endif
+
         {{-- <div class="px-4 py-2">
             <x-label for="oi" value="{{ __('Pilih OI') }}" />
             // Input Dropdown
@@ -75,10 +81,6 @@
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div> --}}
-
-        <div class="px-4 py-2">
-            @livewire('oi.oi-detail-component', ['oi' => $selectedOi])
-        </div>
 
         <div class="px-4 py-2">
             <x-label for="machine" value="{{ __('Pilih Mesin') }}" />
