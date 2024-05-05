@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class WhatsAppController extends Controller
 {
-    public function sendMessage(Request $request)
+    public function sendMessage()
     {
         $client = new Client();
         $token = 'Bearer EAANKo9YdU28BO6TUMN4FlJTUmvYtRB2Ws6fhdjFlBtVTzTSO9jt5DXP54hOlCT2gEK6jXhNJoIqDWFXzkHce7rDj83sj3hk1ZCkbwZB6AUlRUZCzNV2GUpkhJmvSC6oVESgujZBYPbbrXpot4XQJxaZA9KDuy2yzSx4IjreZCZACpL12CWQNknEoZBVr5P6cL5Mb';
@@ -52,8 +52,6 @@ class WhatsAppController extends Controller
                 ],
             ],
         ]);
-
-        // dd($response->getBody()->getContents());
 
         return back();
     }

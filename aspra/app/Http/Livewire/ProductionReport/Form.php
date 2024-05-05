@@ -6,6 +6,7 @@ use App\Models\Oi;
 use App\Models\Product;
 use App\Models\ProductionReport;
 use App\Models\Schedule;
+use GuzzleHttp\Client;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 
@@ -78,6 +79,57 @@ class Form extends Component
         $this->schedules = [];
     }
 
+    public function sendMessage()
+    {
+        $client = new Client();
+        $token = 'Bearer EAANKo9YdU28BO6TUMN4FlJTUmvYtRB2Ws6fhdjFlBtVTzTSO9jt5DXP54hOlCT2gEK6jXhNJoIqDWFXzkHce7rDj83sj3hk1ZCkbwZB6AUlRUZCzNV2GUpkhJmvSC6oVESgujZBYPbbrXpot4XQJxaZA9KDuy2yzSx4IjreZCZACpL12CWQNknEoZBVr5P6cL5Mb';
+
+        $product_name = '[' . $this->productionReport->type . '] ' . $this->productionReport->product->name;
+        $reject_percentage = $this->productionReport->total_rejected / $this->productionReport->total_approved * 100 . '%';
+        $date_and_shift = $this->productionReport->date . ' ' . $this->productionReport->shift;
+
+        $response = $client->post('https://graph.facebook.com/v19.0/260819393788777/messages', [
+            'headers' => [
+                'Authorization' => $token,
+                'Content-Type' => 'application/json'
+            ],
+            'json' => [
+                'messaging_product' => 'whatsapp',
+                'recipient_type' => 'individual',
+                'to' => '6285105118880',
+
+                'type' => 'template',
+                'template' => [
+                    'name' => 'production_reject_notifications',
+                    'language' => [
+                        'code' => 'en_US'
+                    ],
+                    'components' => [
+                        [
+                            'type' =>'body',
+                            'parameters' => [
+                                [
+                                    'type' => 'text',
+                                    'text' => $product_name,
+                                ],
+                                [
+                                    'type' => 'text',
+                                    'text' => $reject_percentage,
+                                ],
+                                [
+                                    'type' => 'text',
+                                    'text' => $date_and_shift,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        return back();
+    }
+
     public function save()
     {
         $this->schedule = $this->selectedSchedule;
@@ -97,6 +149,11 @@ class Form extends Component
         $this->productionReport->product->grand_total_rejected += $this->productionReport->total_rejected;
 
         $this->productionReport->product->outstanding = $this->productionReport->schedule->oi->total_order - $this->productionReport->product->remaining_stock;
+
+        if ($this->productionReport->total_rejected / $this->productionReport->total_approved * 100 >= 2.00)
+        {
+            $this->sendMessage();
+        }
 
         $this->productionReport->save();
         $this->productionReport->product->save();
