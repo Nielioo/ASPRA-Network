@@ -103,133 +103,139 @@ class ProductionReportController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
 
         // Set the headers
-        $sheet->setCellValue('A1', 'Mesin');
+        $sheet->setCellValue('A1', 'Tanggal');
         $sheet->mergeCells('A1:A3');
 
-        $sheet->setCellValue('B1', 'Nama Produk');
+        $sheet->setCellValue('B1', 'Mesin');
         $sheet->mergeCells('B1:B3');
 
-        $sheet->setCellValue('C1', 'Output STD / Shift');
+        $sheet->setCellValue('C1', 'Nama Produk');
         $sheet->mergeCells('C1:C3');
 
-        $sheet->setCellValue('D1', 'Hasil Produksi');
-        $sheet->mergeCells('D1:M1');
+        $sheet->setCellValue('D1', 'Output STD / Shift');
+        $sheet->mergeCells('D1:D3');
 
-        $sheet->setCellValue('N1', 'Reject');
-        $sheet->mergeCells('N1:R1');
+        $sheet->setCellValue('E1', 'Hasil Produksi');
+        $sheet->mergeCells('E1:N1');
 
-        $sheet->setCellValue('S1', 'Order (OI)');
-        $sheet->mergeCells('S1:S3');
+        $sheet->setCellValue('O1', 'Reject');
+        $sheet->mergeCells('O1:S1');
 
-        $sheet->setCellValue('T1', 'Grand Total Produksi');
+        $sheet->setCellValue('T1', 'Order (OI)');
         $sheet->mergeCells('T1:T3');
 
-        $sheet->setCellValue('U1', 'Grand Total Reject');
+        $sheet->setCellValue('U1', 'Grand Total Produksi');
         $sheet->mergeCells('U1:U3');
 
-        $sheet->setCellValue('V1', 'Outstanding (Sisa OI)');
+        $sheet->setCellValue('V1', 'Grand Total Reject');
         $sheet->mergeCells('V1:V3');
 
-        $sheet->setCellValue('W1', 'Keterangan');
-        $sheet->mergeCells('W1:Y2');
+        $sheet->setCellValue('W1', 'Outstanding (Sisa OI)');
+        $sheet->mergeCells('W1:W3');
 
-        $sheet->setCellValue('D2', 'Shift 1');
-        $sheet->mergeCells('D2:D3');
+        $sheet->setCellValue('X1', 'Keterangan');
+        $sheet->mergeCells('X1:Z2');
 
-        $sheet->setCellValue('E2', 'Pencapaian');
-        $sheet->mergeCells('E2:F2');
+        $sheet->setCellValue('E2', 'Shift 1');
+        $sheet->mergeCells('E2:E3');
 
-        $sheet->setCellValue('E3', '%');
-        $sheet->setCellValue('F3', 'Grade');
+        $sheet->setCellValue('F2', 'Pencapaian');
+        $sheet->mergeCells('F2:G2');
 
-        $sheet->setCellValue('G2', 'Shift 2');
-        $sheet->mergeCells('G2:G3');
+        $sheet->setCellValue('F3', '%');
+        $sheet->setCellValue('G3', 'Grade');
 
-        $sheet->setCellValue('H2', 'Pencapaian');
-        $sheet->mergeCells('H2:I2');
+        $sheet->setCellValue('H2', 'Shift 2');
+        $sheet->mergeCells('H2:H3');
 
-        $sheet->setCellValue('H3', '%');
-        $sheet->setCellValue('I3', 'Grade');
+        $sheet->setCellValue('I2', 'Pencapaian');
+        $sheet->mergeCells('I2:J2');
 
-        $sheet->setCellValue('J2', 'Shift 3');
-        $sheet->mergeCells('J2:J3');
+        $sheet->setCellValue('I3', '%');
+        $sheet->setCellValue('J3', 'Grade');
 
-        $sheet->setCellValue('K2', 'Pencapaian');
-        $sheet->mergeCells('K2:L2');
+        $sheet->setCellValue('K2', 'Shift 3');
+        $sheet->mergeCells('K2:K3');
 
-        $sheet->setCellValue('K3', '%');
-        $sheet->setCellValue('L3', 'Grade');
+        $sheet->setCellValue('L2', 'Pencapaian');
+        $sheet->mergeCells('L2:M2');
 
-        $sheet->setCellValue('M2', 'TOTAL');
-        $sheet->mergeCells('M2:M3');
+        $sheet->setCellValue('L3', '%');
+        $sheet->setCellValue('M3', 'Grade');
 
-        $sheet->setCellValue('N2', 'Shift 1');
+        $sheet->setCellValue('N2', 'TOTAL');
         $sheet->mergeCells('N2:N3');
 
-        $sheet->setCellValue('O2', 'Shift 2');
+        $sheet->setCellValue('O2', 'Shift 1');
         $sheet->mergeCells('O2:O3');
 
-        $sheet->setCellValue('P2', 'Shift 3');
+        $sheet->setCellValue('P2', 'Shift 2');
         $sheet->mergeCells('P2:P3');
 
-        $sheet->setCellValue('Q2', 'TOTAL');
+        $sheet->setCellValue('Q2', 'Shift 3');
         $sheet->mergeCells('Q2:Q3');
 
-        $sheet->setCellValue('R2', '%Reject');
+        $sheet->setCellValue('R2', 'TOTAL');
         $sheet->mergeCells('R2:R3');
 
-        $sheet->setCellValue('W3', 'Shift 1');
-        $sheet->setCellValue('X3', 'Shift 2');
-        $sheet->setCellValue('Y3', 'Shift 3');
+        $sheet->setCellValue('S2', '%Reject');
+        $sheet->mergeCells('S2:S3');
+
+        $sheet->setCellValue('X3', 'Shift 1');
+        $sheet->setCellValue('Y3', 'Shift 2');
+        $sheet->setCellValue('Z3', 'Shift 3');
 
         $row = 4;
-        foreach ($productionReports->groupby('schedule_id') as $schedule_id => $reports) {
-            $firstReport = optional($reports->first());
-            $values = [
-                $firstReport->schedule->machine->name,
-                $firstReport->product->name,
-                $firstReport->schedule->output_std_per_shift,
-            ];
+        foreach ($productionReports->sortBy('date')->groupby('schedule_id') as $schedule_id => $scheduleIdReports) {
+            foreach ($scheduleIdReports->groupby('date') as $date => $reports) {
+                $firstReport = optional($reports->first());
+                $values = [
+                    $firstReport->date,
+                    $firstReport->schedule->machine->name,
+                    $firstReport->product->name,
+                    $firstReport->schedule->output_std_per_shift,
+                ];
 
-            $grandTotalApproved = 0;
-            $grandTotalRejected = 0;
-            $totalRejectedPerShift = [];
-            $descriptions = [];
+                $grandTotalApproved = 0;
+                $grandTotalRejected = 0;
+                $totalRejectedPerShift = [];
+                $descriptions = [];
 
-            foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift) {
-                $currentReport = optional($reports->firstWhere('shift', $shift));
-                $totalApproved = $currentReport->total_approved ?? '-';
-                $totalRejected = $currentReport->total_rejected ?? '-';
-                $description = $currentReport->description ?? '-';
+                foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift) {
+                    $currentReport = optional($reports->firstWhere('shift', $shift));
+                    $totalApproved = $currentReport->total_approved ?? '-';
+                    $totalRejected = $currentReport->total_rejected ?? '-';
+                    $description = $currentReport->description ?? '-';
 
-                $percentage = $currentReport->shift ? ($totalApproved / $firstReport->schedule->output_std_per_shift) * 100 : '-';
-                $result = '-';
-                if ($currentReport->shift) {
-                    if ($percentage >= 95) {
-                        $result = 'A';
-                    } elseif ($percentage >= 86) {
-                        $result = 'B';
-                    } else {
-                        $result = 'C';
+                    $percentage = $currentReport->shift ? ($totalApproved / $firstReport->schedule->output_std_per_shift) * 100 : '-';
+                    $result = '-';
+                    if ($currentReport->shift) {
+                        if ($percentage >= 95) {
+                            $result = 'A';
+                        } elseif ($percentage >= 86) {
+                            $result = 'B';
+                        } else {
+                            $result = 'C';
+                        }
                     }
+
+                    array_push($values, $totalApproved, $percentage, $result);
+                    $grandTotalApproved += intval($totalApproved);
+                    $grandTotalRejected += intval($totalRejected);
+                    array_push($totalRejectedPerShift, $totalRejected);
+                    array_push($descriptions, $description);
                 }
 
-                array_push($values, $totalApproved, $percentage, $result);
-                $grandTotalApproved += intval($totalApproved);
-                $grandTotalRejected += intval($totalRejected);
-                array_push($totalRejectedPerShift, $totalRejected);
-                array_push($descriptions, $description);
+                $percentageRejected = rtrim(number_format(($grandTotalRejected / $grandTotalApproved) * 100, 3), '0');
+                $totalOrder = $firstReport->schedule->oi->total_order;
+                $remainingStock = $firstReport->product->remaining_stock;
+                $grandTotalRejectedProduct = $firstReport->product->grand_total_rejected;
+                $outstanding = $firstReport->product->outstanding;
+
+                $values = array_merge($values, [$grandTotalApproved], $totalRejectedPerShift, [$grandTotalRejected, $percentageRejected, $totalOrder, $remainingStock, $grandTotalRejectedProduct, $outstanding], $descriptions);
+                $sheet->fromArray([$values], NULL, 'A' . $row);
+                $row++;
             }
-
-            $percentageRejected = rtrim(number_format(($grandTotalRejected / $grandTotalApproved) * 100, 3), '0');
-            $totalOrder = $firstReport->schedule->oi->total_order;
-            $remainingStock = $firstReport->product->remaining_stock;
-            $grandTotalRejectedProduct = $firstReport->product->grand_total_rejected;
-            $outstanding = $firstReport->product->outstanding;
-
-            $values = array_merge($values, [$grandTotalApproved], $totalRejectedPerShift, [$grandTotalRejected, $percentageRejected, $totalOrder, $remainingStock, $grandTotalRejectedProduct, $outstanding], $descriptions);
-            $sheet->fromArray([$values], NULL, 'A' . $row);
-            $row++;
         }
 
         // Define the border style

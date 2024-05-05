@@ -120,6 +120,9 @@
                                 class="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" rowspan="3" class="px-4 py-1 border-2 border-gray-300">
+                                        Tanggal
+                                    </th>
+                                    <th scope="col" rowspan="3" class="px-4 py-1 border-2 border-gray-300">
                                         Mesin
                                     </th>
                                     <th scope="col" rowspan="3" class="px-4 py-1 border-2 border-gray-300">
@@ -215,119 +218,124 @@
 
                             </thead>
                             <tbody class="text-left">
-                                @forelse ($productionReports->groupby('schedule_id') as $schedule_id => $reports)
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-600">
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ optional($reports->first())->schedule->machine->name }}
-                                        </td>
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ optional($reports->first())->product->name }}
-                                        </td>
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ optional($reports->first())->schedule->output_std_per_shift }}
-                                        </td>
-                                        {{-- Total Approved per Shift --}}
-                                        @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
-                                            @php
-                                                $currentReport = optional($reports->firstWhere('shift', $shift));
-                                            @endphp
+                                @forelse ($productionReports->sortBy('date')->groupBy('schedule_id') as $schedule_id => $scheduleIdReports)
+                                    @foreach ($scheduleIdReports->groupBy('date') as $date => $reports)
+                                        <tr
+                                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-600">
                                             <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                                {{ $currentReport->total_approved ?? '-' }}
+                                                {{ optional($reports->first())->date }}
                                             </td>
                                             <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                                {{ $currentReport->shift ? ($currentReport->total_approved / $currentReport->schedule->output_std_per_shift) * 100 : '-' }}
+                                                {{ optional($reports->first())->schedule->machine->name }}
                                             </td>
                                             <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                                @if ($currentReport->shift)
-                                                    @php
-                                                        $percentage =
-                                                            ($currentReport->total_approved /
-                                                                $currentReport->schedule->output_std_per_shift) *
-                                                            100;
-                                                        if ($percentage >= 95) {
-                                                            $result = 'A';
-                                                        } elseif ($percentage >= 86) {
-                                                            $result = 'B';
-                                                        } else {
-                                                            $result = 'C';
-                                                        }
-                                                    @endphp
-                                                @else
-                                                    @php
-                                                        $result = '-';
-                                                    @endphp
-                                                @endif
-                                                {{ $result }}
+                                                {{ optional($reports->first())->product->name }}
                                             </td>
-                                        @endforeach
-                                        {{-- Grand Total Approved --}}
-                                        @php
-                                            $grandTotalApproved = 0;
-                                        @endphp
-                                        @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
-                                            @php
-                                                $currentReport = $reports->firstWhere('shift', $shift);
-                                                if ($currentReport) {
-                                                    $grandTotalApproved += $currentReport->total_approved;
-                                                }
-                                            @endphp
-                                        @endforeach
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ $grandTotalApproved }}
-                                        </td>
-                                        {{-- Total Reject per Shift --}}
-                                        @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
-                                            @php
-                                                $currentReport = optional($reports->firstWhere('shift', $shift));
-                                            @endphp
                                             <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                                {{ $currentReport->total_rejected ?? '-' }}
+                                                {{ optional($reports->first())->schedule->output_std_per_shift }}
                                             </td>
-                                        @endforeach
-                                        {{-- Grand Total Rejected --}}
-                                        @php
-                                            $grandTotalRejected = 0;
-                                        @endphp
-                                        @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
+                                            {{-- Total Approved per Shift --}}
+                                            @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
+                                                @php
+                                                    $currentReport = optional($reports->firstWhere('shift', $shift));
+                                                @endphp
+                                                <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                    {{ $currentReport->total_approved ?? '-' }}
+                                                </td>
+                                                <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                    {{ $currentReport->shift ? ($currentReport->total_approved / $currentReport->schedule->output_std_per_shift) * 100 : '-' }}
+                                                </td>
+                                                <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                    @if ($currentReport->shift)
+                                                        @php
+                                                            $percentage =
+                                                                ($currentReport->total_approved /
+                                                                    $currentReport->schedule->output_std_per_shift) *
+                                                                100;
+                                                            if ($percentage >= 95) {
+                                                                $result = 'A';
+                                                            } elseif ($percentage >= 86) {
+                                                                $result = 'B';
+                                                            } else {
+                                                                $result = 'C';
+                                                            }
+                                                        @endphp
+                                                    @else
+                                                        @php
+                                                            $result = '-';
+                                                        @endphp
+                                                    @endif
+                                                    {{ $result }}
+                                                </td>
+                                            @endforeach
+                                            {{-- Grand Total Approved --}}
                                             @php
-                                                $currentReport = $reports->firstWhere('shift', $shift);
-                                                if ($currentReport) {
-                                                    $grandTotalRejected += $currentReport->total_rejected;
-                                                }
+                                                $grandTotalApproved = 0;
                                             @endphp
-                                        @endforeach
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ $grandTotalRejected }}
-                                            {{-- {{ optional($reports->first())->product->grand_total_rejected }} --}}
-                                        </td>
-                                        {{-- % Rejected --}}
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ rtrim(number_format(($grandTotalRejected / $grandTotalApproved) * 100, 3), '0') }}
-                                        </td>
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ optional($reports->first())->schedule->oi->total_order }}
-                                        </td>
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ optional($reports->first())->product->remaining_stock }}
-                                        </td>
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ optional($reports->first())->product->grand_total_rejected }}
-                                        </td>
-                                        <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                            {{ optional($reports->first())->product->outstanding }}
-                                        </td>
-                                        {{-- Report Description --}}
-                                        @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
-                                            @php
-                                                $currentReport = optional($reports->firstWhere('shift', $shift));
-                                            @endphp
+                                            @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
+                                                @php
+                                                    $currentReport = $reports->firstWhere('shift', $shift);
+                                                    if ($currentReport) {
+                                                        $grandTotalApproved += $currentReport->total_approved;
+                                                    }
+                                                @endphp
+                                            @endforeach
                                             <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
-                                                {{ $currentReport->description ?? '-' }}
+                                                {{ $grandTotalApproved }}
                                             </td>
-                                        @endforeach
+                                            {{-- Total Reject per Shift --}}
+                                            @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
+                                                @php
+                                                    $currentReport = optional($reports->firstWhere('shift', $shift));
+                                                @endphp
+                                                <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                    {{ $currentReport->total_rejected ?? '-' }}
+                                                </td>
+                                            @endforeach
+                                            {{-- Grand Total Rejected --}}
+                                            @php
+                                                $grandTotalRejected = 0;
+                                            @endphp
+                                            @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
+                                                @php
+                                                    $currentReport = $reports->firstWhere('shift', $shift);
+                                                    if ($currentReport) {
+                                                        $grandTotalRejected += $currentReport->total_rejected;
+                                                    }
+                                                @endphp
+                                            @endforeach
+                                            <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                {{ $grandTotalRejected }}
+                                                {{-- {{ optional($reports->first())->product->grand_total_rejected }} --}}
+                                            </td>
+                                            {{-- % Rejected --}}
+                                            <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                {{ rtrim(number_format(($grandTotalRejected / $grandTotalApproved) * 100, 3), '0') }}
+                                            </td>
+                                            <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                {{ optional($reports->first())->schedule->oi->total_order }}
+                                            </td>
+                                            <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                {{ optional($reports->first())->product->remaining_stock }}
+                                            </td>
+                                            <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                {{ optional($reports->first())->product->grand_total_rejected }}
+                                            </td>
+                                            <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                {{ optional($reports->first())->product->outstanding }}
+                                            </td>
+                                            {{-- Report Description --}}
+                                            @foreach (['Shift 1', 'Shift 2', 'Shift 3'] as $shift)
+                                                @php
+                                                    $currentReport = optional($reports->firstWhere('shift', $shift));
+                                                @endphp
+                                                <td class="px-4 py-2 border-2 border-gray-300 whitespace-nowrap">
+                                                    {{ $currentReport->description ?? '-' }}
+                                                </td>
+                                            @endforeach
 
-                                    </tr>
+                                        </tr>
+                                    @endforeach
                                 @empty
                                     <tr>
                                         <td colspan="25" class="px-6 py-4 border-2 border-gray-300 text-center">
