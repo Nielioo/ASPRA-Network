@@ -82,6 +82,32 @@ class UserSeeder extends Seeder
         $this->assignNewRolesToUser($userTwo, $newRolesAndPermissions);
         $this->assignExistingRolesToUser($userTwo, ['ProductCRUD']);
 
+        // Random Users
+        User::create([
+            'name' => 'Adam Smith',
+            'email' => 'adam@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+        User::create([
+            'name' => 'Ben Franklin',
+            'email' => 'ben@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+        User::create([
+            'name' => 'Carol Carter',
+            'email' => 'Carol@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+        User::create([
+            'name' => 'Daniel Aprillio',
+            'email' => 'daniel@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+        User::create([
+            'name' => 'Emily Johnson',
+            'email' => 'emily@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
 
     }
 }

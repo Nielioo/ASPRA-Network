@@ -26,7 +26,7 @@ class VerifyOrder extends Component
     {
         $this->oi = $oi;
         $this->oiIsVerified = $this->oi->verifications->contains(function ($verification) {
-            return $verification->status === 'verified';
+            return $verification->verifier_name === Auth::user()->name && $verification->status === 'verified';
         });
     }
 
