@@ -17,9 +17,8 @@
                 </button>
                 <!-- App Logo -->
                 <a href="#" class="flex ml-2 md:mr-24">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Nielio Logo" />
-                    <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Nielio</span>
+                    <img src="{{ asset('img/aspra_logo_512x512.png') }}" class="h-8 mr-3" alt="PT ASPRA Logo" />
+                    <span class="self-center text-md font-semibold sm:text-lg whitespace-nowrap dark:text-white">ASPRA Production System</span>
                 </a>
             </div>
 
