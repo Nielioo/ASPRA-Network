@@ -56,11 +56,6 @@
             <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
         </tr>
         <tr>
-            <td style="font-weight: bold; padding: 0.5em; width: 33%;">Lokasi Penempatan</td>
-            <td style="padding: 0.5em; text-align: left; width: 33%;">{{ $oi->placement_location }}</td>
-            <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
-        </tr>
-        <tr>
             <td style="font-weight: bold; padding: 0.5em; width: 33%;">Tahap Pengiriman</td>
             <td style="padding: 0.5em; text-align: left; width: 33%;">{{ $oi->delivery_stage }}</td>
             <td style="padding: 0.5em; width: 33%;"> &nbsp; </td>
