@@ -14,9 +14,11 @@ class MachineSeeder extends Seeder
      */
     public function run(): void
     {
+        $machineTypes = ['I', 'P'];
+
         for ($i = 0; $i < 10; $i++) {
             DB::table('machines')->insert([
-                'number' => '1 - ' . rand(2,10),
+                'number' => $machineTypes[array_rand($machineTypes)].' - ' . rand(2,10),
                 'name' => 'Machine ' . ($i + 1),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

@@ -13,10 +13,10 @@
                         <h1 class="text-4xl dark:text-white">Products</h2>
                     </div>
                     <div class="flex items-center justify-between pb-4">
-                        @can('product-create')
+                        {{-- @can('product-create') --}}
                             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
                                 href="{{ route('products.create') }}"> Create New Product</a>
-                        @endcan
+                        {{-- @endcan --}}
 
                         <label for="table-search" class="sr-only">Search</label>
                         <div class="relative">

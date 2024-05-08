@@ -71,7 +71,8 @@ class Form extends Component
         $this->ois = Oi::with('product')
                ->where('ois.id', 'like', '%' . $this->oiQuery . '%')
                ->orWhereHas('product', function ($query) {
-                $query->where('name', 'like', '%' . $this->oiQuery . '%');
+                $query->where('name', 'like', '%' . $this->oiQuery . '%')
+                    ->orWhere('product_code', 'like', '%' . $this->oiQuery . '%');
                 })
                ->orWhere('customer_name', 'like', '%' . $this->oiQuery . '%')
                ->get()->toArray();

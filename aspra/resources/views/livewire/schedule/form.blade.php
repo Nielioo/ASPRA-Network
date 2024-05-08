@@ -93,7 +93,7 @@
                 @foreach ($machines as $machine)
                     <option value="{{ $machine->id }}"
                         {{ $machine->id == $this->schedule->machine_id ? 'selected' : '' }}>
-                        [{{ $machine->id }}] - {{ $machine->name }}
+                        [{{ $machine->number }}] - {{ $machine->name }}
                     </option>
                 @endforeach
             </select>

@@ -170,9 +170,8 @@
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td style="font-weight: bold; padding: 0.5em; width: 50%;">Verifier {{ $verification->verifier_order }}
                 </td>
-                <td style="padding: 0.5em; text-align: left; width: 50%;">{{ strtoupper($verification->status) }} at
+                <td colspan="2" style="padding: 0.5em; text-align: left; width: 50%;">{{ strtoupper($verification->status) }} at
                     {{ $verification->updated_at }} by {{ $verification->verifier_name }}</td>
-                <td style="padding: 0.5em; width: 0%;"> &nbsp; </td>
             </tr>
         @empty
             <tr>

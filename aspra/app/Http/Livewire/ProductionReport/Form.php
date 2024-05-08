@@ -67,7 +67,12 @@ class Form extends Component
     public function updatedQuery()
     {
         sleep(0.5);
-        $this->schedules = Schedule::where('id', 'like', '%' . $this->query . '%')
+        $this->schedules = Schedule::with('oi.product')
+            ->where('id', 'like', '%' . $this->query . '%')
+            ->orWhereHas('oi.product', function ($query) {
+                $query->where('product_code', 'like', '%' . $this->query . '%')
+                    ->orWhere('name', 'like', '%' . $this->query . '%');
+            })
             ->orWhere('product_name', 'like', '%' . $this->query . '%')
             ->orWhere('date_start', 'like', '%' . $this->query . '%')
             ->get()->toArray();
