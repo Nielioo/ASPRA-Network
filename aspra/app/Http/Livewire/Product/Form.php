@@ -39,13 +39,6 @@ class Form extends Component
         } else {
             $this->submitButtonName = 'Edit';
         }
-
-        // Check if the ID exists in the route parameters
-        // if(request()->route('product')) {
-        //     $this->submitButtonName = 'Edit';
-        // } else {
-        //     $this->submitButtonName = 'Create';
-        // }
     }
 
     public function save()
