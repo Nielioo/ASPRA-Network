@@ -1,0 +1,15 @@
+<?php return array (
+  'dashboard.current-hour' => 'App\\Http\\Livewire\\Dashboard\\CurrentHour',
+  'machine.form' => 'App\\Http\\Livewire\\Machine\\Form',
+  'my-navigation-menu' => 'App\\Http\\Livewire\\MyNavigationMenu',
+  'oi.export-pdf' => 'App\\Http\\Livewire\\Oi\\ExportPdf',
+  'oi.form' => 'App\\Http\\Livewire\\Oi\\Form',
+  'oi.oi-detail-component' => 'App\\Http\\Livewire\\Oi\\OiDetailComponent',
+  'oi.product-detail-toogle' => 'App\\Http\\Livewire\\Oi\\ProductDetailToogle',
+  'oi.verify-order' => 'App\\Http\\Livewire\\Oi\\VerifyOrder',
+  'product.form' => 'App\\Http\\Livewire\\Product\\Form',
+  'production-report.form' => 'App\\Http\\Livewire\\ProductionReport\\Form',
+  'schedule.form' => 'App\\Http\\Livewire\\Schedule\\Form',
+  'schedule.schedule-detail-component' => 'App\\Http\\Livewire\\Schedule\\ScheduleDetailComponent',
+  'spk.form' => 'App\\Http\\Livewire\\Spk\\Form',
+);
