@@ -1,6 +1,6 @@
 <x-custom-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-sm md:text-xl text-gray-800 leading-tight">
             {{ __('Production Reports') }}
         </h2>
     </x-slot>
@@ -17,7 +17,7 @@
                         <h1 class="text-4xl dark:text-white">Create New Production Report</h2>
                     </div>
                 </div>
-                
+
                 @livewire('production-report.form')
 
             </div>
