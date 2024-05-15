@@ -88,49 +88,52 @@ class Form extends Component
     {
         $client = new Client();
         $token = 'Bearer EAANKo9YdU28BO6TUMN4FlJTUmvYtRB2Ws6fhdjFlBtVTzTSO9jt5DXP54hOlCT2gEK6jXhNJoIqDWFXzkHce7rDj83sj3hk1ZCkbwZB6AUlRUZCzNV2GUpkhJmvSC6oVESgujZBYPbbrXpot4XQJxaZA9KDuy2yzSx4IjreZCZACpL12CWQNknEoZBVr5P6cL5Mb';
+        $phone_numbers = ['6285105118880'];
 
         $product_name = '[' . $this->productionReport->type . '] ' . '[' . $this->productionReport->product->product_code . '] ' . $this->productionReport->product->name;
         $reject_percentage = $this->productionReport->total_rejected / $this->productionReport->total_approved * 100 . '%';
         $date_and_shift = $this->productionReport->date . ' ' . $this->productionReport->shift;
 
-        $response = $client->post('https://graph.facebook.com/v19.0/260819393788777/messages', [
-            'headers' => [
-                'Authorization' => $token,
-                'Content-Type' => 'application/json'
-            ],
-            'json' => [
-                'messaging_product' => 'whatsapp',
-                'recipient_type' => 'individual',
-                'to' => '6285105118880',
+        foreach($phone_numbers as $phone_number){
+            $response = $client->post('https://graph.facebook.com/v19.0/260819393788777/messages', [
+                'headers' => [
+                    'Authorization' => $token,
+                    'Content-Type' => 'application/json'
+                ],
+                'json' => [
+                    'messaging_product' => 'whatsapp',
+                    'recipient_type' => 'individual',
+                    'to' => $phone_number,
 
-                'type' => 'template',
-                'template' => [
-                    'name' => 'production_reject_notifications',
-                    'language' => [
-                        'code' => 'en_US'
-                    ],
-                    'components' => [
-                        [
-                            'type' =>'body',
-                            'parameters' => [
-                                [
-                                    'type' => 'text',
-                                    'text' => $product_name,
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => $reject_percentage,
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => $date_and_shift,
+                    'type' => 'template',
+                    'template' => [
+                        'name' => 'production_reject_notifications',
+                        'language' => [
+                            'code' => 'en_US'
+                        ],
+                        'components' => [
+                            [
+                                'type' =>'body',
+                                'parameters' => [
+                                    [
+                                        'type' => 'text',
+                                        'text' => $product_name,
+                                    ],
+                                    [
+                                        'type' => 'text',
+                                        'text' => $reject_percentage,
+                                    ],
+                                    [
+                                        'type' => 'text',
+                                        'text' => $date_and_shift,
+                                    ],
                                 ],
                             ],
                         ],
                     ],
                 ],
-            ],
-        ]);
+            ]);
+        }
 
         return back();
     }

@@ -33,6 +33,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
+            'position' => 'required',
+            'phone_number' => ['required', 'regex:/^62[0-9]{9,12}$/'],
             'roles' => 'required'
         ]);
 
@@ -66,6 +68,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
+            'position' => 'required',
+            'phone_number' => ['required', 'regex:/^62[0-9]{9,12}$/'],
             'roles' => 'required'
         ]);
 

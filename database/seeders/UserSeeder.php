@@ -58,6 +58,8 @@ class UserSeeder extends Seeder
         $userOne = User::create([
             'name' => 'One',
             'email' => 'one@gmail.com',
+            'position' => 'one',
+            'phone_number' => '6285112341201',
             'password' => Hash::make('12345678')
         ]);
 
@@ -72,6 +74,8 @@ class UserSeeder extends Seeder
         $userTwo = User::create([
             'name' => 'Two',
             'email' => 'two@gmail.com',
+            'position' => 'two',
+            'phone_number' => '6285112341202',
             'password' => Hash::make('12345678')
         ]);
 
@@ -86,26 +90,36 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Adam Smith',
             'email' => 'adam@gmail.com',
+            'position' => 'Employee',
+            'phone_number' => '6285112341203',
             'password' => Hash::make('12345678')
         ]);
         User::create([
             'name' => 'Ben Franklin',
             'email' => 'ben@gmail.com',
+            'position' => 'Employee',
+            'phone_number' => '6285112341204',
             'password' => Hash::make('12345678')
         ]);
         User::create([
             'name' => 'Carol Carter',
             'email' => 'Carol@gmail.com',
+            'position' => 'Employee',
+            'phone_number' => '6285112341205',
             'password' => Hash::make('12345678')
         ]);
         User::create([
             'name' => 'Daniel Aprillio',
             'email' => 'daniel@gmail.com',
+            'position' => 'Employee',
+            'phone_number' => '6285112341206',
             'password' => Hash::make('12345678')
         ]);
         User::create([
             'name' => 'Emily Johnson',
             'email' => 'emily@gmail.com',
+            'position' => 'Employee',
+            'phone_number' => '6285112341207',
             'password' => Hash::make('12345678')
         ]);
 
