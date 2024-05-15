@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @livewire('my-navigation-menu')
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -25,54 +26,42 @@
                 <x-label for="name" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                     required autofocus autocomplete="name" />
-                @error('name')
-                    <div class="text-red-600">{{ $message }}</div>
-                @enderror
+                <x-input-error for="name" />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                     required autocomplete="username" />
-                @error('email')
-                    <div class="text-red-600">{{ $message }}</div>
-                @enderror
+                <x-input-error for="email" />
             </div>
 
             <div class="mt-4">
                 <x-label for="position" value="{{ __('Jabatan') }}" />
                 <x-input id="position" class="block mt-1 w-full" type="text" name="position" :value="old('position')"
                     required autocomplete="position" />
-                @error('position')
-                    <div class="text-red-600">{{ $message }}</div>
-                @enderror
+                <x-input-error for="position" />
             </div>
 
             <div class="mt-4">
                 <x-label for="phone_number" value="{{ __('Nomor Whatsapp (format: 62XXXXXXXX)') }}" />
                 <x-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number"
                     :value="old('phone_number', '62')" required autocomplete="phone_number" />
-                @error('phone_number')
-                    <div class="text-red-600">{{ $message }}</div>
-                @enderror
+                <x-input-error for="phone_number" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" />
-                @error('password')
-                    <div class="text-red-600">{{ $message }}</div>
-                @enderror
+                <x-input-error for="password" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
                     name="password_confirmation" required autocomplete="new-password" />
-                @error('password_confirmation')
-                    <div class="text-red-600">{{ $message }}</div>
-                @enderror
+                <x-input-error for="password_confirmation" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -105,7 +94,7 @@
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Sudah terdaftar?') }}
                 </a>
 
                 <x-button class="ml-4">
