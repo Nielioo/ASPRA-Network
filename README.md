@@ -21,4 +21,5 @@ chmod -R 775 bootstrap/cache
 
 <!-- Deploy -->
 php artisan serve
+npm run build
 npm run dev

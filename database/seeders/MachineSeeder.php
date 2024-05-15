@@ -16,7 +16,7 @@ class MachineSeeder extends Seeder
     {
         $machineTypes = ['I', 'P'];
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             DB::table('machines')->insert([
                 'number' => $machineTypes[array_rand($machineTypes)].' - ' . rand(2,10),
                 'name' => 'Machine ' . ($i + 1),

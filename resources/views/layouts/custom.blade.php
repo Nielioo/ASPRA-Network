@@ -194,7 +194,7 @@
         <!-- Page Heading -->
         @if (isset($header))
             <header class="bg-white shadow">
-                <div class="mt-16 p-4 sm:ml-64">
+                <div class="mt-16 p-4">
                     {{ $header }}
                 </div>
             </header>
