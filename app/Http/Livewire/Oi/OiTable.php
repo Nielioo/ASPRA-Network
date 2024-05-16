@@ -21,7 +21,6 @@ class OiTable extends Component
                 ->where('date_created', 'like', '%' . $this->tableSearch . '%')
                 ->orWhere('customer_name', 'like', '%' . $this->tableSearch . '%')
                 ->orWhere('placement_location', 'like', '%' . $this->tableSearch . '%')
-                ->orWhere('placement_location', 'like', '%' . $this->tableSearch . '%')
                 ->orWhereHas('product', function ($query) {
                     $query->where('product_code', 'like', '%' . $this->tableSearch . '%')
                         ->orWhere('name', 'like', '%' . $this->tableSearch . '%');
