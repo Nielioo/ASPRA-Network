@@ -30,22 +30,28 @@
     @endif
 
     <div class="relative overflow-x-auto shadow-sm sm:rounded-lg">
-        <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="table-auto w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">ID OI</th>
-                    <th scope="col" class="px-6 py-3">Tanggal Pembuatan</th>
-                    <th scope="col" class="px-6 py-3">Nama Produk</th>
-                    <th scope="col" class="px-6 py-3">Tahapan Verifikasi</th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Kode Produk</th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Produk</th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Total Order</th>
+                    <th scope="col" class="px-6 py-3 ">Tanggal Pembuatan</th>
+                    <th scope="col" class="px-6 py-3 ">Nama Customer</th>
+                    <th scope="col" class="px-6 py-3 ">Lokasi Penempatan</th>
+                    <th scope="col" class="px-6 py-3 ">Tahapan Verifikasi</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($ois as $oi)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4">{{ $oi->id }}</td>
-                        <td class="px-6 py-4">{{ $oi->date_created }}</td>
+                        <td class="px-6 py-4">{{ $oi->product->product_code }}</td>
                         <td class="px-6 py-4">{{ $oi->product->name }}</td>
+                        <td class="px-6 py-4">{{ $oi->total_order }}</td>
+                        <td class="px-6 py-4">{{ $oi->date_created }}</td>
+                        <td class="px-6 py-4">{{ $oi->customer_name }}</td>
+                        <td class="px-6 py-4">{{ $oi->placement_location }}</td>
                         <td class="px-6 py-4">{{ $oi->maxVerificationOrder->max ?? '0' }}</td>
                         <td class="px-6 py-4 flex flex-col md:flex-row">
                             <form action="{{ route('ois.destroy', $oi->id) }}" method="POST"

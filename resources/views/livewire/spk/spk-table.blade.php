@@ -33,20 +33,28 @@
         <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">SPK <br> ID</th>
                     <th scope="col" class="px-6 py-3">Schedule <br> ID</th>
-                    <th scope="col" class="px-6 py-3">Nama produk <br> yang akan diproduksi</th>
+                    <th scope="col" class="px-6 py-3">Kode produk</th>
+                    <th scope="col" class="px-6 py-3">Nama produk</th>
                     <th scope="col" class="px-6 py-3">Jumlah produk <br> yang akan diproduksi</th>
+                    <th scope="col" class="px-6 py-3">Tanggal mulai</th>
+                    <th scope="col" class="px-6 py-3">Tanggal selesai</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($spks as $spk)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4">{{ $spk->id }}</td>
                         <td class="px-6 py-4">{{ $spk->schedule->id }}</td>
+                        <td class="px-6 py-4">{{ $spk->schedule->oi->product->product_code }}</td>
                         <td class="px-6 py-4">{{ $spk->schedule->product_name }}</td>
                         <td class="px-6 py-4">{{ $spk->schedule->product_quantity }}</td>
+                        <td class="px-6 py-4">
+                            {{ $spk->schedule->date_start }} {{ $spk->schedule->shift_start }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $spk->schedule->date_end }} {{ $spk->schedule->shift_end }}
+                        </td>
                         <td class="px-6 py-4 flex flex-col md:flex-row">
                             <form action="{{ route('spks.destroy', $spk->id) }}" method="POST"
                                 class="flex flex-col md:flex-row">

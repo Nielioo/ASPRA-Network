@@ -33,9 +33,11 @@
         <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">Report <br> ID</th>
+                    <th scope="col" class="px-6 py-3">Kode Produk</th>
+                    <th scope="col" class="px-6 py-3">Nama Produk</th>
+                    <th scope="col" class="px-6 py-3">Report type</th>
                     <th scope="col" class="px-6 py-3">Tanggal Pembuatan</th>
-                    <th scope="col" class="px-6 py-3">Total produk <br> yang sudah terealisasi</th>
+                    <th scope="col" class="px-6 py-3">Total produk <br> terealisasi</th>
                     <th scope="col" class="px-6 py-3">Total produk <br> reject</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
@@ -43,7 +45,9 @@
             <tbody>
                 @forelse ($productionReports as $productionReport)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4">{{ $productionReport->id }}</td>
+                        <td class="px-6 py-4">{{ $productionReport->product->product_code }}</td>
+                        <td class="px-6 py-4">{{ $productionReport->product->name }}</td>
+                        <td class="px-6 py-4">{{ $productionReport->type }}</td>
                         <td class="px-6 py-4">{{ $productionReport->date }} <br>
                             {{ $productionReport->shift }}</td>
                         <td class="px-6 py-4">{{ $productionReport->total_approved }}</td>

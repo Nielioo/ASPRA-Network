@@ -18,15 +18,15 @@
                     </div>
                 </div>
 
-                <table class="table-auto" style="width: 75%;">
+                <table class="table-auto w-1/2">
                     <tbody>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>schedule_id</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Schedule ID</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->schedule_id }}</td>
                         </tr>
                         <tr>
                             <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800">
-                                <strong>output_std_per_shift</strong>
+                                <strong>Output STD / Shift</strong>
                             </td>
                             <td class="border px-4 py-2">
                                 {{ $productionReport->schedule->output_std_per_shift }}</td>
@@ -34,26 +34,26 @@
                     </tbody>
                 </table>
                 <br>
-                <table class="table-auto" style="width: 75%;">
+                <table class="table-auto w-1/2">
                     <tbody>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>ID</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Report ID</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->id }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>type</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tipe produksi</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->type }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>date</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Tanggal pembuatan</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->date }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>shift</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Shift</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->shift }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>total_approved</strong>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total produk yang sudah terealisasi</strong>
                             </td>
                             <td class="border px-4 py-2">{{ $productionReport->total_approved }}</td>
                         </tr>
@@ -87,12 +87,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>total_rejected</strong>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Total produk reject</strong>
                             </td>
                             <td class="border px-4 py-2">{{ $productionReport->total_rejected }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>description</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Deskripsi</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->description }}</td>
                         </tr>
                     </tbody>
@@ -100,14 +100,14 @@
 
                 <br>
 
-                <table class="table-auto" style="width: 75%;">
+                <table class="table-auto w-1/2">
                     <tbody>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>product_id</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Product ID</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->product_id }}</td>
                         </tr>
                         <tr>
-                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>product_name</strong></td>
+                            <td class="border px-4 py-2 bg-gray-50 dark:bg-gray-800"><strong>Nama Produk</strong></td>
                             <td class="border px-4 py-2">{{ $productionReport->product->name }}</td>
                         </tr>
                         <tr>
