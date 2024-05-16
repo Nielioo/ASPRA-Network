@@ -83,7 +83,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-4 text-center">No spk has been made.
+                        <td colspan="7" class="px-6 py-4 text-center">No spk has been made.
                         </td>
                     </tr>
                 @endforelse

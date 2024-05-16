@@ -82,7 +82,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-4 text-center">No OI has been made.
+                        <td colspan="8" class="px-6 py-4 text-center">No OI has been made.
                         </td>
                     </tr>
                 @endforelse
