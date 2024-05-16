@@ -20,7 +20,7 @@ class OiSeeder extends Seeder
             DB::table('ois')->insert([
                 'date_created' => Carbon::now(),
                 'customer_name' => 'Customer ' . ($i + 1),
-                'total_order' => rand(100,1000),
+                'total_order' => rand(10000,100000),
                 'placement_location' => 'Warehouse ' . ($i + 1),
                 'delivery_stage' => Carbon::tomorrow()->addDay(rand(2,7)),
                 'test_type' => $testTypes[array_rand($testTypes)],
