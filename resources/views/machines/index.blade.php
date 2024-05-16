@@ -8,9 +8,6 @@
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
-                <div class="flex items-center justify-between pb-4">
-                    <h1 class="text-4xl dark:text-white">Machines</h2>
-                </div>
 
                 @livewire('machine.machine-table', ['machines' => $machines])
 

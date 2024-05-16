@@ -1,9 +1,9 @@
 <div>
     <div class="col-lg-12 margin-tb">
         <div class="flex items-center justify-between pb-4">
-            {{-- @can('machine-create') --}}
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" href="{{ route('machines.create') }}">
-                Create New Machine</a>
+            {{-- @can('product-create') --}}
+            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" href="{{ route('products.create') }}">
+                Create New Product</a>
             {{-- @endcan --}}
 
             <label for="table-search" class="sr-only">Search</label>
@@ -33,36 +33,37 @@
         <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-
-                    <th scope="col" class="px-6 py-3">ID</th>
-                    <th scope="col" class="px-6 py-3">Nomor Mesin</th>
-                    <th scope="col" class="px-6 py-3">Nama Mesin</th>
+                    {{-- <th scope="col" class="px-6 py-3">No</th> --}}
+                    <th scope="col" class="px-6 py-3">Kode Produk</th>
+                    <th scope="col" class="px-6 py-3">Nama Produk</th>
+                    <th scope="col" class="px-6 py-3">Stok saat ini</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($machines as $machine)
+                @forelse ($products as $product)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4">{{ $machine->id }}</td>
-                        <td class="px-6 py-4">{{ $machine->number }}</td>
-                        <td class="px-6 py-4">{{ $machine->name }}</td>
-                        <td class="px-6 py-4 flex flex-col md:flex-row">
-                            <form action="{{ route('machines.destroy', $machine->id) }}" method="POST"
+                        {{-- <td class="px-6 py-4">{{ ++$i }}</td> --}}
+                        <td class="px-6 py-4">{{ $product->product_code }}</td>
+                        <td class="px-6 py-4">{{ $product->name }}</td>
+                        <td class="px-6 py-4">{{ $product->remaining_stock }}</td>
+                        <td class="px-6 py-4">
+                            <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                 class="flex flex-col md:flex-row">
                                 @csrf
 
                                 <a class="inline-block bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
-                                    href="{{ route('machines.show', $machine->id) }}">
+                                    href="{{ route('products.show', $product->id) }}">
                                     <i class="fas fa-eye fa-lg"></i>
                                 </a>
-                                {{-- @can('machine-edit') --}}
+                                {{-- @can('product-edit') --}}
                                 <a class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
-                                    href="{{ route('machines.edit', $machine->id) }}">
+                                    href="{{ route('products.edit', $product->id) }}">
                                     <i class="fas fa-pencil fa-lg"></i>
                                 </a>
                                 {{-- @endcan --}}
 
-                                {{-- @can('machine-delete') --}}
+                                {{-- @can('product-delete') --}}
                                 @method('DELETE')
                                 <button type="submit"
                                     class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded">
@@ -74,7 +75,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="px-6 py-4 text-center">No machine has been made.
+                        <td colspan="4" class="px-6 py-4 text-center">No product has been made.
                         </td>
                     </tr>
                 @endforelse
@@ -83,6 +84,6 @@
     </div>
 
     <div class="pt-5">
-        {!! $machines->links() !!}
+        {!! $products->links() !!}
     </div>
 </div>

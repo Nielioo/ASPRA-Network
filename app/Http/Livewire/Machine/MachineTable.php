@@ -19,6 +19,7 @@ class MachineTable extends Component
         } else {
             $machines = Machine::where('name', 'like', '%' . $this->tableSearch . '%')
                 ->orWhere('number', 'like', '%' . $this->tableSearch . '%')
+                ->latest()
                 ->paginate(10);
         }
         return view('livewire.machine.machine-table', ['machines' => $machines]);
