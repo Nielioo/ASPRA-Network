@@ -81,7 +81,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7 class="px-6 py-4 text-center">No report has been made.
+                        <td colspan="7" class="px-6 py-4 text-center">
+                            No report has been made.
                         </td>
                     </tr>
                 @endforelse
