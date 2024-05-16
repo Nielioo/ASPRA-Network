@@ -12,7 +12,7 @@ class MachineController extends Controller
      */
     public function index()
     {
-        $machines = Machine::paginate(10);
+        $machines = Machine::latest()->paginate(10);
         return view('machines.index',compact('machines'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
