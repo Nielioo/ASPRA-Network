@@ -24,6 +24,7 @@ php artisan migrate:fresh --seed
 
 <!-- Deploy -->
 php artisan serve
+npm run build
 npm run dev
 
 <!-- Others -->
