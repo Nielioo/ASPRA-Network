@@ -27,6 +27,7 @@ class Form extends Component
         'oi.delivery_stage' => 'required',
         'oi.test_type' => 'required',
         'oi.special_request' => '',
+        'oi.is_print' => 'boolean',
     ];
 
     public function mount() {
@@ -76,6 +77,11 @@ class Form extends Component
         $this->products = [];
     }
 
+    public function toggleIsPrint()
+    {
+        // Toggle the value of 'is_print' when the checkbox is changed
+        $this->oi->is_print = !$this->oi->is_print;
+    }
 
     public function save()
     {

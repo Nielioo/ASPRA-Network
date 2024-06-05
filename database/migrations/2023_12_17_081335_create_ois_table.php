@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('test_type');
             $table->string('special_request')->nullable();
             $table->string('current_verifier')->nullable();
+            $table->boolean('is_print')->default(0);
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')

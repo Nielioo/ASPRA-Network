@@ -18,6 +18,7 @@ class Oi extends Model
         'test_type',
         'special_request',
         'current_verifier',
+        'is_print',
     ];
 
     public function product()
