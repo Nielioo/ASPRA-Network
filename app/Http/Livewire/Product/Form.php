@@ -43,6 +43,14 @@ class Form extends Component
 
     public function save()
     {
+        $this->product->product_code = strtoupper($this->product->product_code);
+        $this->product->name = strtoupper($this->product->name);
+        $this->product->material = strtoupper($this->product->material);
+        $this->product->weight = strtoupper($this->product->weight);
+        $this->product->volume = strtoupper($this->product->volume);
+        $this->product->color = strtoupper($this->product->color);
+        $this->product->packing = strtoupper($this->product->packing);
+
         $this->validate();
         $this->product->save();
         session()->flash('message', 'Product Saved!');
