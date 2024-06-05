@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('ois', function (Blueprint $table) {
             $table->id();
+            $table->string('oi_code')->nullable();
             $table->date('date_created');
             $table->string('customer_name');
             $table->integer('total_order');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('test_type');
             $table->string('special_request')->nullable();
             $table->string('current_verifier')->nullable();
+            $table->boolean('is_print')->default(0);
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')

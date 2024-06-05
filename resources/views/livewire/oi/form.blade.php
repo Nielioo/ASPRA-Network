@@ -127,7 +127,12 @@
                 <div class="text-red-600">{{ $message }}</div>
             @enderror
         </div>
-
+        <div class="px-4 pt-4">
+            <div class="flex items-center">
+                <input wire:model="oi.is_print" id="is_print" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <x-label for="is_print" class="ms-2 italic font-bold" value="{{ __('*centang jika perlu di print') }}" />
+            </div>
+        </div>
         <div class="px-4 pt-8 pb-4">
             <button type="submit"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full">

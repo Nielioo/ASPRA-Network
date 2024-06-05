@@ -20,6 +20,7 @@ class Form extends Component
 
     protected $rules = [
         'product' => 'required',
+        'oi.oi_code' => '',
         'oi.date_created' => 'required',
         'oi.customer_name' => 'required',
         'oi.total_order' => 'required',
@@ -27,6 +28,7 @@ class Form extends Component
         'oi.delivery_stage' => 'required',
         'oi.test_type' => 'required',
         'oi.special_request' => '',
+        'oi.is_print' => 'boolean',
     ];
 
     public function mount() {
@@ -76,10 +78,59 @@ class Form extends Component
         $this->products = [];
     }
 
+    public function toggleIsPrint()
+    {
+        // Toggle the value of 'is_print' when the checkbox is changed
+        $this->oi->is_print = !$this->oi->is_print;
+    }
+
+    private function convertToRoman($number)
+    {
+        switch ($number) {
+            case '1':
+                return 'I';
+            case '2':
+                return 'II';
+            case '3':
+                return 'III';
+            case '4':
+                return 'IV';
+            case '5':
+                return 'V';
+            case '6':
+                return 'VI';
+            case '7':
+                return 'VII';
+            case '8':
+                return 'VIII';
+            case '9':
+                return 'IX';
+            case '10':
+                return 'X';
+            case '11':
+                return 'XI';
+            case '12':
+                return 'XII';
+            default:
+                return 'NONE';
+        }
+    }
+
+    private function generateOiCode($oi){
+        $month = date('n', strtotime($oi->date_created));
+        $romanMonth = $this->convertToRoman($month);
+
+        $year = date('Y', strtotime($oi->date_created));
+
+        $suffix = $oi->is_print ? '/p' : '';
+
+        return str_pad($oi->id, 3, '0', STR_PAD_LEFT).'/'.$romanMonth.'/'.$year.$suffix;
+    }
 
     public function save()
     {
         $this->product = $this->selectedProduct;
+        $this->oi->oi_code = $this->generateOiCode($this->oi);
 
         $this->validate();
         $this->oi->product_id = $this->product->id;

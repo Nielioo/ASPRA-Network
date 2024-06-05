@@ -14,14 +14,14 @@ class OiSeeder extends Seeder
      */
     public function run(): void
     {
-        $testTypes = ['Matching Test', 'Test Drop', 'Test Bocor'];
+        $testTypes = ['MATCHING TEST', 'TEST DROP', 'TEST BOCOR'];
 
         for ($i = 0; $i < 5; $i++) {
             DB::table('ois')->insert([
                 'date_created' => Carbon::now(),
-                'customer_name' => 'Customer ' . ($i + 1),
+                'customer_name' => 'CUSTOMER ' . ($i + 1),
                 'total_order' => rand(10000,100000),
-                'placement_location' => 'Warehouse ' . ($i + 1),
+                'placement_location' => 'WAREHOUSE ' . ($i + 1),
                 'delivery_stage' => Carbon::tomorrow()->addDay(rand(2,7)),
                 'test_type' => $testTypes[array_rand($testTypes)],
                 'special_request' => 'Tidak Ada',

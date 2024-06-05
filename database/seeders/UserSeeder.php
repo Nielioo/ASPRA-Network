@@ -57,6 +57,7 @@ class UserSeeder extends Seeder
         // User One
         $userOne = User::create([
             'name' => 'One',
+            'uname' => 'one',
             'email' => 'one@gmail.com',
             'position' => 'one',
             'phone_number' => '6285112341201',
@@ -73,6 +74,7 @@ class UserSeeder extends Seeder
         // User Two
         $userTwo = User::create([
             'name' => 'Two',
+            'uname' => 'two',
             'email' => 'two@gmail.com',
             'position' => 'two',
             'phone_number' => '6285112341202',
@@ -89,6 +91,7 @@ class UserSeeder extends Seeder
         // Random Users
         User::create([
             'name' => 'Adam Smith',
+            'uname' => 'adam',
             'email' => 'adam@gmail.com',
             'position' => 'Employee',
             'phone_number' => '6285112341203',
@@ -96,6 +99,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Ben Franklin',
+            'uname' => 'ben',
             'email' => 'ben@gmail.com',
             'position' => 'Employee',
             'phone_number' => '6285112341204',
@@ -103,6 +107,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Carol Carter',
+            'uname' => 'carol',
             'email' => 'Carol@gmail.com',
             'position' => 'Employee',
             'phone_number' => '6285112341205',
@@ -110,6 +115,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Daniel Aprillio',
+            'uname' => 'daniel',
             'email' => 'daniel@gmail.com',
             'position' => 'Employee',
             'phone_number' => '6285112341206',
@@ -117,6 +123,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Emily Johnson',
+            'uname' => 'emily',
             'email' => 'emily@gmail.com',
             'position' => 'Employee',
             'phone_number' => '6285112341207',

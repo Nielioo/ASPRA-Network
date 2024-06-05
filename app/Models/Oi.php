@@ -10,6 +10,7 @@ class Oi extends Model
     use HasFactory;
 
     protected $fillable = [
+        'oi_code',
         'date_created',
         'customer_name',
         'total_order',
@@ -18,6 +19,7 @@ class Oi extends Model
         'test_type',
         'special_request',
         'current_verifier',
+        'is_print',
     ];
 
     public function product()

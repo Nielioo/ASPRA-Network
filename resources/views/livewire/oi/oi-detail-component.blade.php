@@ -4,7 +4,7 @@
         <div class="grid-cols-subgrid col-span-2">
             <div class="text-3xl p-2 font-bold">PT Asia Pramulia</div>
         </div>
-        <div class="text-md p-2 font-bold flex items-center">OI ID: {{ $oi->id }}</div>
+        <div class="text-md p-2 font-bold flex items-center">Kode OI: {{ $oi->oi_code }}</div>
         {{-- header 2 --}}
         <div class="grid-cols-subgrid col-span-3">
             <div class="text-md text-center font-semibold border-solid border-2 border-slate-400">
