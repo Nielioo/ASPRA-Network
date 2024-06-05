@@ -10,6 +10,7 @@ class Oi extends Model
     use HasFactory;
 
     protected $fillable = [
+        'oi_code',
         'date_created',
         'customer_name',
         'total_order',

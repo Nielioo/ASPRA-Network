@@ -25,7 +25,7 @@
         <!-- header 1 -->
         <tr>
             <td colspan="2" style="font-size: 1.5em; font-weight: bold; padding: 0.5em;">PT Asia Pramulia</td>
-            <td style="font-weight: bold; padding: 0.5em;">OI ID: {{ $oi->id }}</td>
+            <td style="font-weight: bold; padding: 0.5em;">OI ID: {{ $oi->oi_code }}</td>
         </tr>
         <!-- header 2 -->
         <tr>

@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('ois', function (Blueprint $table) {
             $table->id();
+            $table->string('oi_code')->nullable();
             $table->date('date_created');
             $table->string('customer_name');
             $table->integer('total_order');
