@@ -16,23 +16,23 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $materials = ['Wood', 'Metal', 'Plastic'];
-        $colors = ['Red', 'Blue', 'Green'];
+        $materials = ['PVC', 'PET', 'HDPE', 'LDPE', 'PP', 'PS', 'PC'];
+        $colors = ['NATURAL', 'PUTIH', 'HITAM'];
         $packingTypes = ['SAK', 'DUS'];
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             DB::table('products')->insert([
                 'product_code' => 'PROD' . str_pad($i + 1, 4, '0', STR_PAD_LEFT),
-                'name' => 'Product ' . ($i + 1),
+                'name' => 'PRODUK ' . ($i + 1),
                 'material' => $materials[array_rand($materials)],
-                'weight' => rand(1, 10) . ' gr',
-                'volume' => rand(1, 10) . ' ml',
+                'weight' => rand(1, 50) . ' GR',
+                'volume' => rand(1, 50) . ' ML',
                 'color' => $colors[array_rand($colors)],
                 'packing' => $packingTypes[array_rand($packingTypes)],
                 'product_content' => rand(1, 100),
                 'remaining_stock' => 0,
                 'outstanding' => 0,
-                'needs_per_month' => rand(5000, 10000),
+                'needs_per_month' => rand(50000, 100000),
                 'last_order_date' => Carbon::now()->subDays(rand(1, 30))->format('Y-m-d'),
                 'grand_total_rejected' => 0,
                 'created_at' => Carbon::now(),
