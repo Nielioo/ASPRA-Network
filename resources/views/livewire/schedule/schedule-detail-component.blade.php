@@ -1,9 +1,9 @@
 <div>
     <div class="grid-cols-subgrid col-span-3">
         <div class="grid grid-cols-3 gap-1 border-solid border-2 border-slate-700 p-1">
-            <div class="text-md p-2 font-bold">Schedule_ID</div>
+            <div class="text-md p-2 font-bold">Kode OI</div>
             <div class="grid-cols-subgrid col-span-2">
-                <div class="text-md p-2">{{ $schedule->id }}</div>
+                <div class="text-md p-2">{{ $schedule->oi->oi_code }}</div>
             </div>
             <div class="text-md p-2 font-bold">Mesin yang digunakan</div>
             <div class="grid-cols-subgrid col-span-2">
@@ -30,6 +30,10 @@
             <div class="text-md p-2 font-bold">Output STD / Shift</div>
             <div class="grid-cols-subgrid col-span-2">
                 <div class="text-md p-2">{{ $schedule->output_std_per_shift }}</div>
+            </div>
+            <div class="text-md p-2 font-bold">Permintaan Khusus</div>
+            <div class="grid-cols-subgrid col-span-2">
+                <div class="text-md p-2">{{ $schedule->oi->special_request}}</div>
             </div>
         </div>
         <div class="grid grid-cols-3 gap-1 border-solid border-x-2 border-b-2 border-slate-700 p-1">
