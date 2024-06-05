@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Support\Str; 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -19,8 +20,12 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+
+        $input['uname'] = Str::lower($input['uname']);
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'uname' => ['required', 'string', 'max:255', 'unique:users,uname'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'position' => 'required',
             'phone_number' => ['required', 'regex:/^62[0-9]{9,12}$/', 'unique:users'],
@@ -30,6 +35,7 @@ class CreateNewUser implements CreatesNewUsers
 
         return User::create([
             'name' => $input['name'],
+            'uname' => $input['uname'],
             'email' => $input['email'],
             'position' => $input['position'],
             'phone_number' => $input['phone_number'],

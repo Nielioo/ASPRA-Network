@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
@@ -29,8 +30,11 @@ class UserController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $request['uname'] = Str::lower($request['uname']);
+
         $this->validate($request, [
             'name' => 'required',
+            'uname' => 'required|unique:users,uname',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'position' => 'required',
@@ -64,8 +68,11 @@ class UserController extends Controller
 
     public function update(Request $request, $id): RedirectResponse
     {
+        $request['uname'] = Str::lower($request['uname']);
+
         $this->validate($request, [
             'name' => 'required',
+            'uname' => 'required|unique:users,uname',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'position' => 'required',

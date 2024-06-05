@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
@@ -17,11 +18,14 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
+        $input['uname'] = Str::lower($input['uname']);
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'uname' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'position' => 'required',
-            'phone_number' => ['required', 'regex:/^62[0-9]{9,12}$/', 'unique:users'],
+            'phone_number' => ['required', 'regex:/^62[0-9]{9,12}$/', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 
@@ -35,6 +39,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'name' => $input['name'],
+                'uname' => $input['uname'],
                 'email' => $input['email'],
                 'position' => $input['position'],
                 'phone_number' => $input['phone_number'],

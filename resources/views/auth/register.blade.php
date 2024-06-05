@@ -30,9 +30,16 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="uname" value="{{ __('Username') }}" />
+                <x-input id="uname" class="block mt-1 w-full" type="text" name="uname" :value="old('uname')"
+                    required autocomplete="uname" />
+                <x-input-error for="name" />
+            </div>
+
+            <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required autocomplete="username" />
+                    required autocomplete="email" />
                 <x-input-error for="email" />
             </div>
 
