@@ -89,6 +89,7 @@ class Form extends Component
         $client = new Client();
         $token = 'Bearer EAANKo9YdU28BO6TUMN4FlJTUmvYtRB2Ws6fhdjFlBtVTzTSO9jt5DXP54hOlCT2gEK6jXhNJoIqDWFXzkHce7rDj83sj3hk1ZCkbwZB6AUlRUZCzNV2GUpkhJmvSC6oVESgujZBYPbbrXpot4XQJxaZA9KDuy2yzSx4IjreZCZACpL12CWQNknEoZBVr5P6cL5Mb';
         $phone_numbers = ['6285105118880'];
+        // $phone_numbers = ['6285105118880','6287862504820','6287891516172'];
 
         $product_name = '[' . $this->productionReport->type . '] ' . '[' . $this->productionReport->product->product_code . '] ' . $this->productionReport->product->name;
         $reject_percentage = $this->productionReport->total_rejected / $this->productionReport->total_approved * 100 . '%';
