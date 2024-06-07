@@ -118,7 +118,7 @@ class UserSeeder extends Seeder
             'uname' => 'daniel',
             'email' => 'daniel@gmail.com',
             'position' => 'Employee',
-            'phone_number' => '6285112341206',
+            'phone_number' => '6285105118880',
             'password' => Hash::make('12345678')
         ]);
         User::create([

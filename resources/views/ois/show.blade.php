@@ -24,8 +24,16 @@
                 </div>
 
                 <div class="col-lg-12 margin-tb">
-                    <div class="flex items-center justify-between py-10">
-                        <h1 class="text-4xl dark:text-white">Riwayat Verifikasi OI</h1>
+                    <div class="flex items-center justify-between pt-10 pb-4">
+                        <h1 class="text-2xl dark:text-white">Notifikasi OI</h1>
+                    </div>
+                </div>
+
+                @livewire('oi.oi-whatsapp-notification', ['oi' => $oi])
+
+                <div class="col-lg-12 margin-tb">
+                    <div class="flex items-center justify-between pt-10 pb-4">
+                        <h1 class="text-2xl dark:text-white">Riwayat Verifikasi OI</h1>
                     </div>
                 </div>
 
