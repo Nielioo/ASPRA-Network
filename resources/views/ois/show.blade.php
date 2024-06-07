@@ -25,14 +25,6 @@
 
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pt-10 pb-4">
-                        <h1 class="text-2xl dark:text-white">Notifikasi OI</h1>
-                    </div>
-                </div>
-
-                @livewire('oi.oi-whatsapp-notification', ['oi' => $oi])
-
-                <div class="col-lg-12 margin-tb">
-                    <div class="flex items-center justify-between pt-10 pb-4">
                         <h1 class="text-2xl dark:text-white">Riwayat Verifikasi OI</h1>
                     </div>
                 </div>
@@ -43,6 +35,7 @@
                             <th scope="col" class="px-6 py-3">id</th>
                             <th scope="col" class="px-6 py-3">status</th>
                             <th scope="col" class="px-6 py-3">verifier_name</th>
+                            <th scope="col" class="px-6 py-3">verifier_position</th>
                             <th scope="col" class="px-6 py-3">verifier order</th>
                             <th scope="col" class="px-6 py-3">updated_at</th>
                         </tr>
@@ -52,13 +45,14 @@
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4">{{ $verification->id }}</td>
                                 <td class="px-6 py-4">{{ $verification->status }}</td>
-                                <td class="px-6 py-4">{{ $verification->verifier_name }}</td>
+                                <td class="px-6 py-4">{{ $verification->user->name }}</td>
+                                <td class="px-6 py-4">{{ $verification->user->position }}</td>
                                 <td class="px-6 py-4">{{ $verification->verifier_order }}</td>
                                 <td class="px-6 py-4">{{ $verification->updated_at }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-4 text-center">No verifications has been made.</td>
+                                <td colspan="6" class="px-6 py-4 text-center">No verifications has been made.</td>
                             </tr>
                         @endforelse
                     </tbody>

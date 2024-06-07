@@ -13,10 +13,15 @@ class Verification extends Model
 
     protected $fillable = [
         'status',
-        'verifier_name',
         'verifier_order',
+        'user_id',
         'oi_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function oi()
     {

@@ -129,8 +129,8 @@ class Form extends Component
 
     public function save()
     {
+
         $this->product = $this->selectedProduct;
-        $this->oi->oi_code = $this->generateOiCode($this->oi);
 
         $this->validate();
         $this->oi->product_id = $this->product->id;
@@ -139,6 +139,10 @@ class Form extends Component
         $this->oi->save();
         $this->product->save();
 
+        $this->oi->oi_code = $this->generateOiCode($this->oi);
+
+        $this->oi->save();
+
         session()->flash('message', 'Oi Saved!');
         return redirect()->route('ois.index');
     }
@@ -146,6 +150,7 @@ class Form extends Component
     public function render()
     {
         $products = Product::all();
+        $this->oi->is_print = $this->oi->is_print ?? false;
         return view('livewire.oi.form', ['products' => $products,]);
     }
 }

@@ -1,22 +1,28 @@
 {{-- Verification OI --}}
 <div>
-    <button onclick="confirmAction('verify')"
-    class="{{$oiIsVerified ? 'bg-slate-500 hover:bg-slate-700 text-white hover:text-white' : 'bg-lime-500 hover:bg-lime-700 text-lime-950 hover:text-white'}} font-semibold py-2 px-4 border border-lime-500 hover:border-transparent rounded">
-        Verify OI
+    <button onclick="confirmVerifyOrderAction('approve')"
+        class="{{ $oiIsVerified ? 'bg-slate-500 hover:bg-slate-700 text-white hover:text-white' : 'bg-lime-500 hover:bg-lime-700 text-lime-950 hover:text-white' }} font-semibold py-2 px-4 border border-lime-500 hover:border-transparent rounded">
+        Approve OI
     </button>
-    <button onclick="confirmAction('needRevision')"
-        class="{{$oiIsVerified ? 'bg-slate-500 hover:bg-slate-700 text-white hover:text-white' : 'bg-amber-500 hover:bg-amber-700 text-amber-950 hover:text-white'}} font-semibold py-2 px-4 border border-amber-500 hover:border-transparent rounded">
-        Need Revision
+    <button onclick="confirmVerifyOrderAction('reject')"
+        class="{{ $oiIsVerified ? 'bg-slate-500 hover:bg-slate-700 text-white hover:text-white' : 'bg-rose-500 hover:bg-rose-700 text-white hover:text-white' }} font-semibold py-2 px-4 border border-rose-500 hover:border-transparent rounded">
+        Reject OI
     </button>
-    <button onclick="confirmAction('deny')"
-        class="{{$oiIsVerified ? 'bg-slate-500 hover:bg-slate-700 text-white hover:text-white' : 'bg-rose-500 hover:bg-rose-700 text-white hover:text-white'}} font-semibold py-2 px-4 border border-rose-500 hover:border-transparent rounded">
-        Deny OI
-    </button>
+
+    @if ($oiIsVerified)
+        <div class="col-lg-12 margin-tb">
+            <div class="flex items-center justify-between pt-10 pb-4">
+                <h1 class="text-2xl dark:text-white">Notifikasi OI</h1>
+            </div>
+        </div>
+
+        @livewire('oi.oi-whatsapp-notification', ['oi' => $oi])
+    @endif
 </div>
 
 <script>
-    function confirmAction(param) {
-        if (confirm("Are you sure you " + param.toUpperCase() + "?")) {
+    function confirmVerifyOrderAction(param) {
+        if (confirm("Are you sure you want to " + param.toUpperCase() + " this OI?")) {
             @this.call(param)
         }
     }

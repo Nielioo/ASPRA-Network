@@ -39,7 +39,8 @@
                     <th scope="col" class="px-6 py-3 ">Tanggal Pembuatan</th>
                     <th scope="col" class="px-6 py-3 ">Nama Customer</th>
                     <th scope="col" class="px-6 py-3 ">Lokasi Penempatan</th>
-                    <th scope="col" class="px-6 py-3 ">Tahapan Verifikasi</th>
+                    <th scope="col" class="px-6 py-3 ">Approval Terakhir</th>
+                    <th scope="col" class="px-6 py-3 ">Tahapan Approval</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
             </thead>
@@ -52,6 +53,7 @@
                         <td class="px-6 py-4">{{ $oi->date_created }}</td>
                         <td class="px-6 py-4">{{ $oi->customer_name }}</td>
                         <td class="px-6 py-4">{{ $oi->placement_location }}</td>
+                        <td class="px-6 py-4">{{ $oi->current_verifier ?? "-" }}</td>
                         <td class="px-6 py-4">{{ $oi->maxVerificationOrder->max ?? '0' }}</td>
                         <td class="px-6 py-4 flex flex-col md:flex-row">
                             <form action="{{ route('ois.destroy', $oi->id) }}" method="POST"

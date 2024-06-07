@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Oi;
 
 use App\Models\Oi;
 use App\Models\User;
+use App\Models\Verification;
 use GuzzleHttp\Client;
 use Livewire\Component;
 
@@ -14,6 +15,8 @@ class OiWhatsappNotification extends Component
     public $userQuery;
     public $users;
     public $selectedUser;
+
+    protected $listeners = ['triggerConfirm' => 'confirmWhatsappNotification'];
 
     public function mount(Oi $oi)
     {
@@ -55,13 +58,26 @@ class OiWhatsappNotification extends Component
         $this->users = [];
     }
 
-    public function notify()
+    public function waitingForApproval()
     {
-        $phone_number = $this->selectedUser->phone_number;
+        $verification = Verification::firstOrNew([
+            'user_id' => $this->selectedUser->id,
+            'oi_id' => $this->oi->id,
+        ]);
 
-        $this->sendMessage($phone_number);
+        if (!$verification->exists) {
+            // Only set the verifier_order if this is a new verification
+            $verification->verifier_order = $this->oi->verifications()->count() + 1;
+        }
 
-        session()->flash('message', 'Message already send!');
+        $verification->status = 'waiting_for_approval';
+        $verification->save();
+
+        $this->oi->current_verifier = $this->selectedUser->name;
+        $this->oi->save();
+
+        session()->flash('message', 'OI is Waiting for Approval!');
+        return redirect()->route('ois.show', ['oi' => $this->oi->id]);
     }
 
     public function sendMessage($phone_number)
@@ -69,8 +85,7 @@ class OiWhatsappNotification extends Component
         $client = new Client();
         $token = 'Bearer EAANKo9YdU28BO6TUMN4FlJTUmvYtRB2Ws6fhdjFlBtVTzTSO9jt5DXP54hOlCT2gEK6jXhNJoIqDWFXzkHce7rDj83sj3hk1ZCkbwZB6AUlRUZCzNV2GUpkhJmvSC6oVESgujZBYPbbrXpot4XQJxaZA9KDuy2yzSx4IjreZCZACpL12CWQNknEoZBVr5P6cL5Mb';
         $phone_numbers = [$phone_number];
-
-        $message = 'dapat melakukan pengecekan OI dengan kode *' . $this->oi->oi_code . '* ';
+        $message = 'dapat melakukan pengecekan OI dengan kode *' . $this->oi->oi_code . '* pada link berikut: ' . url('ois/' . $this->oi->id);
 
         foreach($phone_numbers as $phone_number){
             $response = $client->post('https://graph.facebook.com/v19.0/260819393788777/messages', [
@@ -106,6 +121,19 @@ class OiWhatsappNotification extends Component
         }
 
         return back();
+    }
+
+    public function notify()
+    {
+        $this->waitingForApproval();
+
+        try {
+            $this->sendMessage($this->selectedUser->phone_number);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+        }
+
+        session()->flash('message', 'Message already send!');
     }
 
     public function render()

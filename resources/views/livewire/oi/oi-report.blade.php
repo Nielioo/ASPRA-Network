@@ -166,7 +166,7 @@
                 <td style="font-weight: bold; padding: 0.5em; width: 50%;">Verifier {{ $verification->verifier_order }}
                 </td>
                 <td colspan="2" style="padding: 0.5em; text-align: left; width: 50%;">{{ strtoupper($verification->status) }} at
-                    {{ $verification->updated_at }} by {{ $verification->verifier_name }}</td>
+                    {{ $verification->updated_at }} by {{ $verification->user->name }} [{{ $verification->user->position }}]</td>
             </tr>
         @empty
             <tr>

@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('verifications', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('status', ['unVerified', 'verified', 'needRevision']);
-            $table->string('verifier_name');
+            $table->enum('status', ['approved', 'waiting_for_approval', 'rejected']);
             $table->integer('verifier_order');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->unsignedBigInteger('oi_id');
             $table->foreign('oi_id')

@@ -1,5 +1,5 @@
 <div>
-    <x-label for="user" value="{{ __('Pilih pengguna selanjutya yang akan melakukan pengecekan') }}" />
+    <x-label for="user" value="{{ __('Pilih pengguna selanjutnya yang akan melakukan pengecekan') }}" />
     <div class="flex justify-between">
         <div class="flex-grow pe-2">
             @if ($selectedUser)
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <button onclick="confirmAction('notify')"
+        <button onclick="confirmWhatsappNotification('notify')"
             class="bg-sky-400 hover:bg-sky-700 text-black hover:text-white font-semibold py-2 px-4 border border-sky-400 hover:border-transparent rounded">
             Notify
         </button>
@@ -46,7 +46,7 @@
 </div>
 
 <script>
-    function confirmAction(param) {
+    function confirmWhatsappNotification(param) {
         if (confirm("Are you sure you want to " + param.toUpperCase() + "?")) {
             @this.call(param)
         }
