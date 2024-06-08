@@ -5,10 +5,14 @@ namespace App\Http\Livewire\User;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Form extends Component
 {
     public $user;
+
+    public $roles;
+    public $selectedRoles;
 
     public $submitButtonName;
 
@@ -27,8 +31,12 @@ class Form extends Component
 
             $this->submitButtonName = 'Create';
         } else {
+            $this->selectedRoles = $this->user->roles->pluck('id')->toArray();
+
             $this->submitButtonName = 'Edit';
         }
+
+        $this->roles = Role::all();
     }
 
     public function save()
@@ -39,6 +47,8 @@ class Form extends Component
         }
 
         $this->validate();
+
+        $this->user->syncRoles($this->selectedRoles);
 
         $this->user->save();
         session()->flash('message', 'User Saved!');
