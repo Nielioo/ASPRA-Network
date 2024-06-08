@@ -1,4 +1,4 @@
-{{-- Form OI --}}
+{{-- Form Schedule --}}
 
 <form wire:submit.prevent="save" method="POST">
     @csrf
