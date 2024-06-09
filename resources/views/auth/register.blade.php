@@ -45,8 +45,35 @@
 
             <div class="mt-4">
                 <x-label for="position" value="{{ __('Jabatan') }}" />
-                <x-input id="position" class="block mt-1 w-full" type="text" name="position" :value="old('position')"
-                    required autocomplete="position" />
+                {{-- <x-input id="position" class="block mt-1 w-full" type="text" name="position" :value="old('position')"
+                    required autocomplete="position" /> --}}
+                {{-- Input Dropdown --}}
+                <select id="position" name="position"
+                    class="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required>
+                    <option value="" class="text-slate-400"
+                        {{ is_null(old('position')) ? 'selected' : '' }}>
+                        Select an option</option>
+                    <option value="Employee" {{ old('position') == 'Employee' ? 'selected' : '' }}>
+                        Employee
+                    </option>
+                    <option value="Marketing" {{ old('position') == 'Marketing' ? 'selected' : '' }}>
+                        Marketing
+                    </option>
+                    <option value="Supervisor Marketing"
+                        {{ old('position') == 'Supervisor Marketing' ? 'selected' : '' }}>
+                        Supervisor Marketing
+                    </option>
+                    <option value="Manager" {{ old('position') == 'Manager' ? 'selected' : '' }}>
+                        Manager
+                    </option>
+                    <option value="Director" {{ old('position') == 'Director' ? 'selected' : '' }}>
+                        Director
+                    </option>
+                    <option value="Supervisor PPIC" {{ old('position') == 'Supervisor PPIC' ? 'selected' : '' }}>
+                        Supervisor PPIC
+                    </option>
+                </select>
                 <x-input-error for="position" />
             </div>
 
