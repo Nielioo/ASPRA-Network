@@ -153,6 +153,8 @@
                         </x-my-nav-link>
                     </li>
 
+                    @can('manage-users')
+
                     <hr class="border-gray-300 my-2">
 
                     <li>
@@ -166,6 +168,8 @@
                             <span class="ml-3">{{ __('Users') }}</span>
                         </x-my-nav-link>
                     </li>
+
+                    @endcan
 
                     {{-- Dropdown Menu --}}
                     {{-- <li>

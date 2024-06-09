@@ -19,9 +19,11 @@
 
                 @livewire('oi.oi-detail-component', ['oi' => $oi])
 
-                <div class="mt-8">
-                    @livewire('oi.verify-order', ['oi' => $oi])
-                </div>
+                @can('oi-verify')
+                    <div class="mt-8">
+                        @livewire('oi.verify-order', ['oi' => $oi])
+                    </div>
+                @endcan
 
                 <div class="col-lg-12 margin-tb">
                     <div class="flex items-center justify-between pt-10 pb-4">

@@ -14,6 +14,10 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:manage-users');
+    }
 
     public function index(): View
     {

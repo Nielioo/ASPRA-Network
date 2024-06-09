@@ -98,7 +98,7 @@
                     <input wire:model="selectedRoles" type="checkbox" id="{{ $role->name }}"
                         value="{{ $role->id }}"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        {{ in_array($role->id, $this->selectedRoles) ? 'checked' : '' }}>
+                        {{ in_array($role->id, $this->selectedRoles ?? []) ? 'checked' : '' }}>
                     <x-label for="{{ $role->name }}" class="ms-2" value="{{ $role->name }}" />
                 </div>
             @endforeach

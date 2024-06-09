@@ -24,10 +24,9 @@ class PermissionTableSeeder extends Seeder
             'product-edit',
             'product-delete',
 
-            'verify-one',
-            'verify-two',
-            'verify-three',
-            'verify-four',
+            'manage-users',
+
+            'oi-verify',
         ];
 
         foreach ($permissions as $permission) {
