@@ -43,13 +43,37 @@ class OiWhatsappNotification extends Component
 
     public function updatedUserQuery()
     {
+        // Define the position levels
+        $positionLevels = [
+            'Marketing' => 1,
+            'Supervisor Marketing' => 2,
+            'Manager' => 3,
+            'Director' => 4,
+            'Supervisor PPIC' => 5,
+        ];
+
+        // Get the current user's position level
+        $currentUserPositionLevel = $positionLevels[auth()->user()->position];
+        $currentUserId = auth()->user()->id; // Get the current user's id
+
         sleep(0.5);
-        $this->users = User::where('name', 'like', '%' . $this->userQuery . '%')
-            ->orWhere('uname', 'like', '%' . $this->userQuery . '%')
-            ->orWhere('phone_number', 'like', '%' . $this->userQuery . '%')
-            ->orWhere('email', 'like', '%' . $this->userQuery . '%')
-            ->orWhere('position', 'like', '%' . $this->userQuery . '%')
-            ->get()->toArray();
+        $this->users = User::where(function ($query) use ($positionLevels, $currentUserPositionLevel) {
+            foreach ($positionLevels as $position => $level) {
+                if ($currentUserPositionLevel < $level) { // Change <= to < to exclude same level
+                    $query->orWhere('position', 'like', '%' . $position . '%');
+                }
+            }
+        })
+        ->where('id', '!=', $currentUserId) // Exclude the current user
+        ->where(function ($query) {
+            $query->where('name', 'like', '%' . $this->userQuery . '%')
+                ->orWhere('uname', 'like', '%' . $this->userQuery . '%')
+                ->orWhere('phone_number', 'like', '%' . $this->userQuery . '%')
+                ->orWhere('email', 'like', '%' . $this->userQuery . '%')
+                ->orWhere('position', 'like', '%' . $this->userQuery . '%');
+        })
+        ->get()->toArray();
+
     }
 
     public function resetVars()
