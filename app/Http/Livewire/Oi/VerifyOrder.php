@@ -45,6 +45,12 @@ class VerifyOrder extends Component
         $verification->status = 'approved';
         $verification->save();
 
+        if($this->oi->setting->final_verifier_position == Auth::user()->position) {
+            $this->oi->status = 'verified';
+        } else {
+            $this->oi->status = 'pending';
+        }
+
         $this->oi->current_verifier = Auth::user()->name;
         $this->oi->save();
 

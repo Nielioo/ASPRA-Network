@@ -129,7 +129,6 @@ class Form extends Component
 
     public function save()
     {
-
         $this->product = $this->selectedProduct;
 
         $this->validate();

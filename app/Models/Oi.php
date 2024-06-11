@@ -19,6 +19,7 @@ class Oi extends Model
         'test_type',
         'special_request',
         'current_verifier',
+        'status',
         'is_print',
     ];
 
@@ -35,6 +36,11 @@ class Oi extends Model
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
+    }
+
+    public function setting()
+    {
+        return $this->belongsTo(Setting::class);
     }
 
     public function maxVerificationOrder()

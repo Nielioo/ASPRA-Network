@@ -6,6 +6,6 @@
     </x-slot>
 
     <div>
-        @livewire('user-settings', ['oi' => $oi, 'productionReport' => $productionReport])
+        @livewire('user-settings', ['setting' => $setting])
     </div>
 </x-custom-layout>

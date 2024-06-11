@@ -35,7 +35,7 @@ class Verification extends Model
 
         // Get the next verifier
         $nextVerifier = $this->oi->verifications()
-            ->where('status', 'unVerified')
+            ->where('status', 'waiting_for_approval')
             ->orderBy('verifier_order')
             ->first();
 

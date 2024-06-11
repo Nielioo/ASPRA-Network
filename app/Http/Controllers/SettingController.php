@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Oi;
-use App\Models\ProductionReport;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -13,9 +12,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $oi = Oi::all();
-        $productionReport = ProductionReport::all();
-        return view('settings.index',compact('oi','productionReport'));
+        $setting = Setting::find(1);
+        return view('settings.index',compact('setting'));
     }
 
     /**
