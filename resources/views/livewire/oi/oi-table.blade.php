@@ -54,7 +54,7 @@
                         <td class="px-6 py-4">{{ $oi->date_created }}</td>
                         <td class="px-6 py-4">{{ $oi->customer_name }}</td>
                         <td class="px-6 py-4">{{ $oi->placement_location }}</td>
-                        <td class="px-6 py-4">{{ $oi->status }}</td>
+                        <td class="px-6 py-4">{{ strtoupper($oi->status) }}</td>
                         <td class="px-6 py-4">{{ $oi->current_verifier ?? "-" }}</td>
                         <td class="px-6 py-4">{{ $oi->maxVerificationOrder->max ?? '0' }}</td>
                         <td class="px-6 py-4 flex flex-col md:flex-row">
