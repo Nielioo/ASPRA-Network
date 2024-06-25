@@ -159,13 +159,15 @@ class Form extends Component
 
         $this->productionReport->product->outstanding = $this->productionReport->schedule->oi->total_order - $this->productionReport->product->remaining_stock;
 
+        $this->productionReport->setting_id = 1;
+
+        $this->productionReport->save();
+        $this->productionReport->product->save();
+
         if ($this->productionReport->total_rejected / $this->productionReport->total_approved * 100 >= $this->productionReport->setting->reject_percentage)
         {
             $this->sendMessage();
         }
-
-        $this->productionReport->save();
-        $this->productionReport->product->save();
 
         session()->flash('message', 'Production Report Saved!');
         return redirect()->route('production_reports.index');
