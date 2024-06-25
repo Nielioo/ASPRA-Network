@@ -7,7 +7,7 @@
             </div>
             <div class="text-md p-2 font-bold">Mesin yang digunakan</div>
             <div class="grid-cols-subgrid col-span-2">
-                <div class="text-md p-2">[{{ $schedule->machine->id }}] - {{ $schedule->machine->name }}
+                <div class="text-md p-2">[{{ $schedule->machine->number }}] - {{ $schedule->machine->name }}
                 </div>
             </div>
             <div class="text-md p-2 font-bold">Nama Produk yang ingin di produksi</div>

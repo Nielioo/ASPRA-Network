@@ -135,6 +135,8 @@ class Form extends Component
         $this->oi->product_id = $this->product->id;
         $this->product->last_order_date = $this->oi->date_created;
 
+        $this->oi->setting_id = 1;
+
         $this->oi->save();
         $this->product->save();
 
