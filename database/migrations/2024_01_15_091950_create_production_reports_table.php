@@ -33,6 +33,12 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->unsignedBigInteger('setting_id')->default(1);
+            $table->foreign('setting_id')
+                ->references('id')->on('settings')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
