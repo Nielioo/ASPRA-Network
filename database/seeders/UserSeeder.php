@@ -129,6 +129,16 @@ class UserSeeder extends Seeder
         ]);
         $this->assignExistingRolesToUser($boby, ['Marketing']);
 
+        $nurul = User::create([
+            'name' => 'Nurul Anisa Fitriyah',
+            'uname' => 'nurul',
+            'email' => 'nurul@gmail.com',
+            'position' => 'Marketing',
+            'phone_number' => '6287862504820',
+            'password' => Hash::make('12345678')
+        ]);
+        $this->assignExistingRolesToUser($nurul, ['Marketing']);
+
         $carol = User::create([
             'name' => 'Carol Carter',
             'uname' => 'carol',
