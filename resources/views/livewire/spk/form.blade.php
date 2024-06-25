@@ -1,4 +1,4 @@
-{{-- Form Machine --}}
+{{-- Form SPK --}}
 
 <form wire:submit.prevent="save" method="POST" enctype="multipart/form-data">
     @csrf

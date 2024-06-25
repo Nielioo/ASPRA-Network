@@ -1,9 +1,9 @@
 <div>
     <div class="col-lg-12 margin-tb">
         <div class="flex items-center justify-between pb-4">
-            {{-- @can('oi-create') --}}
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" href="{{ route('ois.create') }}"> Create
-                New OI</a>
+            {{-- @can('user-create') --}}
+            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" href="{{ route('users.create') }}">
+                Create New User</a>
             {{-- @endcan --}}
 
             <label for="table-search" class="sr-only">Search</label>
@@ -30,50 +30,56 @@
     @endif
 
     <div class="relative overflow-x-auto shadow-sm sm:rounded-lg">
-        <table class="table-auto w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="w-full border border-gray-200 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Kode Produk</th>
-                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Produk</th>
-                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Total Order</th>
-                    <th scope="col" class="px-6 py-3 ">Tanggal Pembuatan</th>
-                    <th scope="col" class="px-6 py-3 ">Nama Customer</th>
-                    <th scope="col" class="px-6 py-3 ">Lokasi Penempatan</th>
-                    <th scope="col" class="px-6 py-3 ">Status Dokumen</th>
-                    <th scope="col" class="px-6 py-3 ">Approval Terakhir</th>
-                    <th scope="col" class="px-6 py-3 ">Tahapan Approval</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Username</th>
+                    <th scope="col" class="px-6 py-3">Email</th>
+                    <th scope="col" class="px-6 py-3">Phone Number</th>
+                    <th scope="col" class="px-6 py-3">Position</th>
+                    <th scope="col" class="px-6 py-3">Roles</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($ois as $oi)
+                @forelse ($users as $user)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4">{{ $oi->product->product_code }}</td>
-                        <td class="px-6 py-4">{{ $oi->product->name }}</td>
-                        <td class="px-6 py-4">{{ $oi->total_order }}</td>
-                        <td class="px-6 py-4">{{ $oi->date_created }}</td>
-                        <td class="px-6 py-4">{{ $oi->customer_name }}</td>
-                        <td class="px-6 py-4">{{ $oi->placement_location }}</td>
-                        <td class="px-6 py-4">{{ strtoupper($oi->status) }}</td>
-                        <td class="px-6 py-4">{{ $oi->current_verifier ?? "-" }}</td>
-                        <td class="px-6 py-4">{{ $oi->maxVerificationOrder->max ?? '0' }}</td>
+                        <td class="px-6 py-4">{{ $user->name }}</td>
+                        <td class="px-6 py-4">{{ $user->uname }}</td>
+                        <td class="px-6 py-4">{{ $user->email }}</td>
+                        <td class="px-6 py-4">{{ $user->phone_number }}</td>
+                        <td class="px-6 py-4">{{ $user->position }}</td>
+                        <td class="px-6 py-4">
+                            @if (count($user->getRoleNames()) > 0)
+                                @foreach ($user->getRoleNames() as $role)
+                                    <span
+                                        class="me-0.5 my-0.2 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                        {{ $role }}
+                                    </span>
+                                @endforeach
+                            @else
+                                <p>-</p>
+                            @endif
+                        </td>
                         <td class="px-6 py-4 flex flex-col md:flex-row">
-                            <form action="{{ route('ois.destroy', $oi->id) }}" method="POST"
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                 class="flex flex-col md:flex-row">
                                 @csrf
 
-                                <a class="inline-block bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
-                                    href="{{ route('ois.show', $oi->id) }}">
+                                {{-- <a class="inline-block bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
+                                    href="{{ route('users.show', $user->id) }}">
                                     <i class="fas fa-eye fa-lg"></i>
-                                </a>
-                                {{-- @can('oi-edit') --}}
+                                </a> --}}
+
+                                {{-- @can('user-edit') --}}
                                 <a class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mb-2 md:mb-0 md:mr-2"
-                                    href="{{ route('ois.edit', $oi->id) }}">
+                                    href="{{ route('users.edit', $user->id) }}">
                                     <i class="fas fa-pencil fa-lg"></i>
                                 </a>
                                 {{-- @endcan --}}
 
-                                {{-- @can('oi-delete') --}}
+                                {{-- @can('user-delete') --}}
                                 @method('DELETE')
                                 <button type="submit"
                                     class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded">
@@ -82,11 +88,10 @@
                                 {{-- @endcan --}}
                             </form>
                         </td>
-
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="px-6 py-4 text-center">No OI has been made.
+                        <td colspan="7" class="px-6 py-4 text-center">No user has been made.
                         </td>
                     </tr>
                 @endforelse
@@ -95,7 +100,6 @@
     </div>
 
     <div class="pt-5">
-        {!! $ois->links() !!}
+        {!! $users->links() !!}
     </div>
-
 </div>

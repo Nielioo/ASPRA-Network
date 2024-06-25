@@ -13,10 +13,9 @@
             </div>
             <div class="bg-white overflow-hidden p-10 shadow-xl sm:rounded-lg">
                 {{-- header 1 --}}
-                <div class="col-lg-12 margin-tb">
-                    <div class="flex items-center justify-between pb-10">
-                        <h1 class="text-4xl dark:text-white">Detail Schedule</h1>
-                    </div>
+                <div class="col-lg-12 margin-tb flex items-end justify-between pb-10">
+                    <h1 class="text-4xl dark:text-white">Detail Schedule</h1>
+                    @livewire('schedule.export-pdf', ['schedule' => $schedule])
                 </div>
 
                 {{-- body --}}

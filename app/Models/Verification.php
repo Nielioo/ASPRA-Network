@@ -13,10 +13,15 @@ class Verification extends Model
 
     protected $fillable = [
         'status',
-        'verifier_name',
         'verifier_order',
+        'user_id',
         'oi_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function oi()
     {
@@ -30,7 +35,7 @@ class Verification extends Model
 
         // Get the next verifier
         $nextVerifier = $this->oi->verifications()
-            ->where('status', 'unVerified')
+            ->where('status', 'waiting_for_approval')
             ->orderBy('verifier_order')
             ->first();
 

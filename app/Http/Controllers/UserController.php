@@ -14,12 +14,15 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-
-    public function index(Request $request):View
+    function __construct()
     {
-        $data = User::latest()->paginate(5);
+         $this->middleware('permission:manage-users');
+    }
 
-        return view('users.index',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
+    public function index(): View
+    {
+        $users = User::latest()->paginate(20);
+        return view('users.index',compact('users'))->with('i', (request()->input('page', 1) - 1) * 20);
     }
 
     public function create(): View

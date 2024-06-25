@@ -89,7 +89,7 @@ class UserSeeder extends Seeder
         $this->assignExistingRolesToUser($userTwo, ['ProductCRUD']);
 
         // Random Users
-        User::create([
+        $adam = User::create([
             'name' => 'Adam Smith',
             'uname' => 'adam',
             'email' => 'adam@gmail.com',
@@ -97,38 +97,87 @@ class UserSeeder extends Seeder
             'phone_number' => '6285112341203',
             'password' => Hash::make('12345678')
         ]);
-        User::create([
+        $this->assignExistingRolesToUser($adam, ['Employee']);
+
+        $adi = User::create([
+            'name' => 'Adi Prasetya',
+            'uname' => 'adi',
+            'email' => 'adi@gmail.com',
+            'position' => 'Employee',
+            'phone_number' => '6285112341233',
+            'password' => Hash::make('12345678')
+        ]);
+        $this->assignExistingRolesToUser($adi, ['Employee']);
+
+        $ben = User::create([
             'name' => 'Ben Franklin',
             'uname' => 'ben',
             'email' => 'ben@gmail.com',
-            'position' => 'Employee',
+            'position' => 'Marketing',
             'phone_number' => '6285112341204',
             'password' => Hash::make('12345678')
         ]);
-        User::create([
+        $this->assignExistingRolesToUser($ben, ['Marketing']);
+
+        $boby = User::create([
+            'name' => 'Boby Budiman',
+            'uname' => 'boby',
+            'email' => 'boby@gmail.com',
+            'position' => 'Marketing',
+            'phone_number' => '6285112341294',
+            'password' => Hash::make('12345678')
+        ]);
+        $this->assignExistingRolesToUser($boby, ['Marketing']);
+
+        $carol = User::create([
             'name' => 'Carol Carter',
             'uname' => 'carol',
             'email' => 'Carol@gmail.com',
-            'position' => 'Employee',
+            'position' => 'Supervisor Marketing',
             'phone_number' => '6285112341205',
             'password' => Hash::make('12345678')
         ]);
-        User::create([
+        $this->assignExistingRolesToUser($carol, ['SupervisorMarketing']);
+
+        $carmile = User::create([
+            'name' => 'Carmile Miles',
+            'uname' => 'carmile',
+            'email' => 'Carmile@gmail.com',
+            'position' => 'Supervisor Marketing',
+            'phone_number' => '6285112341295',
+            'password' => Hash::make('12345678')
+        ]);
+        $this->assignExistingRolesToUser($carmile, ['SupervisorMarketing']);
+
+        $daniel = User::create([
             'name' => 'Daniel Aprillio',
             'uname' => 'daniel',
             'email' => 'daniel@gmail.com',
-            'position' => 'Employee',
-            'phone_number' => '6285112341206',
+            'position' => 'Manager',
+            'phone_number' => '6285105118880',
             'password' => Hash::make('12345678')
         ]);
-        User::create([
+        $this->assignExistingRolesToUser($daniel, ['Manager']);
+
+        $emily = User::create([
             'name' => 'Emily Johnson',
             'uname' => 'emily',
             'email' => 'emily@gmail.com',
-            'position' => 'Employee',
+            'position' => 'Director',
             'phone_number' => '6285112341207',
             'password' => Hash::make('12345678')
         ]);
+        $this->assignExistingRolesToUser($emily, ['Director']);
+
+        $fiona = User::create([
+            'name' => 'Fiona Hubert',
+            'uname' => 'fiona',
+            'email' => 'fiona@gmail.com',
+            'position' => 'Supervisor PPIC',
+            'phone_number' => '6285112341208',
+            'password' => Hash::make('12345678')
+        ]);
+        $this->assignExistingRolesToUser($fiona, ['SupervisorPPIC']);
 
     }
 }

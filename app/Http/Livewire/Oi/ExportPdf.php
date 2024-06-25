@@ -15,7 +15,7 @@ class ExportPdf extends Component
         $this->oi = $oi;
     }
 
-    public function exportPdf()
+    public function oiExportPdf()
     {
         $date = date('Ymd');
         $microtime = round(microtime(true) * 1000);

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SpkController;
 use App\Http\Controllers\UserController;
 use App\Models\ProductionReport;
@@ -34,6 +35,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
@@ -48,6 +50,8 @@ Route::middleware([
 
     Route::resource('products', ProductController::class);
     Route::resource('machines', MachineController::class);
+
+    Route::resource('settings', SettingController::class);
 
     Route::post('/send-message', 'App\Http\Controllers\WhatsAppController@sendMessage');
 });

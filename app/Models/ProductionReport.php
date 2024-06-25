@@ -27,4 +27,9 @@ class ProductionReport extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function setting()
+    {
+        return $this->belongsTo(Setting::class);
+    }
 }

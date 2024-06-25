@@ -23,11 +23,18 @@ return new class extends Migration
             $table->string('test_type');
             $table->string('special_request')->nullable();
             $table->string('current_verifier')->nullable();
+            $table->enum('status', ['pending', 'verified', 'rejected'])->default('pending')->nullable();
             $table->boolean('is_print')->default(0);
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')
                 ->references('id')->on('products')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('setting_id');
+            $table->foreign('setting_id')
+                ->references('id')->on('settings')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

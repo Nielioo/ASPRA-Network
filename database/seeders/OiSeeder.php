@@ -26,6 +26,7 @@ class OiSeeder extends Seeder
                 'test_type' => $testTypes[array_rand($testTypes)],
                 'special_request' => 'Tidak Ada',
                 'product_id' => ($i + 1),
+                'setting_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
