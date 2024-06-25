@@ -18,6 +18,7 @@ class OiSeeder extends Seeder
 
         for ($i = 0; $i < 5; $i++) {
             DB::table('ois')->insert([
+                'oi_code' => 'SAMPLE_OI_00' . ($i + 1),
                 'date_created' => Carbon::now(),
                 'customer_name' => 'CUSTOMER ' . ($i + 1),
                 'total_order' => rand(10000,100000),
