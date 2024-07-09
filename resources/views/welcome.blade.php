@@ -855,25 +855,33 @@
             </div>
         @endif
 
-        <div class="max-w-7xl mx-auto p-6 md:p-8">
+        <div class="w-full mx-32 p-6 md:p-8">
 
             <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r to-cyan-600 from-sky-400">ASPRA</span>
-                Welcome Page.
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r to-cyan-600 from-sky-400">ASPRA</span>Network.com
             </h1>
             <p class="text-md text-justify font-normal text-gray-500 md:text-xl dark:text-gray-400">
-                ASPRA Network adalah sistem website yang dirancang untuk membantu perusahaan manufaktur mengelola proses produksi. Website ini dibuat untuk memenuhi keperluan tugas akhir.
+                PT Asia Pramulia (ASPRA) is a manufacturing company specializing in plastic packaging with Stretch Blow
+                Moulding process and Injection Moulding process. Our product include bottle, pail, jerrycan, tray,
+                jar, petcan, and others. We are safe for food (food contact) and Halal certified.
             </p>
+            {{-- <p class="text-md text-justify font-normal text-gray-500 md:text-xl dark:text-gray-400">
+                ASPRA Network adalah sistem website yang dirancang untuk membantu perusahaan manufaktur mengelola proses produksi. Website ini dibuat untuk memenuhi keperluan tugas akhir.
+            </p> --}}
+        </div>
 
-            <div class="flex justify-between mt-16 px-0 gap-4">
+        <div class="fixed bottom-0 w-full p-6 md:p-8">
+            <div class="flex justify-between mx-32 gap-4">
                 <div class="text-left text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                    <a href="https://github.com/Nielioo" class="hover:text-gray-700 dark:hover:text-white ">
-                        © Daniel Aprillio 0706012010003
+                    <a href="https://www.linkedin.com/in/daniel-aprillio/" class="hover:text-gray-700 dark:hover:text-white ">
+                        © Nielio 2024 All right Reserved
                     </a>
                 </div>
 
                 <div class="text-right text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                    Project created for PT Asia Pramulia (plastic packaging industry in Indonesia)
+                    {{-- Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) --}}
                 </div>
             </div>
         </div>
