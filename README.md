@@ -1,4 +1,7 @@
-# ASPRA
+# ASPRA Network
+
+Final Project at Ciputra University Surabaya. Finished on June 2024.
+
 <!-- Hostinger Setup -->
 cd domains/aspranetwork.com/
 git clone -b main git@github.com:Nielioo/ASPRA.git
